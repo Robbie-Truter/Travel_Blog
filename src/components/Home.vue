@@ -1,7 +1,7 @@
 <script setup></script>
 
 <template>
-  <img src="../assets/home/kasBoat.jpg" class="w-full h-[800px]" />
+  <img src="../assets/home/kasBoat.jpg" class="w-full h-auto max-h-[800px]" />
   <section class="flex flex-wrap justify-center gap-5 mt-20">
     <img
       class="h-96 max-w-xl rounded-lg shadow-xl transition ease-in-out hover:hover:-translate-y-1"

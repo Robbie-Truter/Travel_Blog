@@ -5,10 +5,13 @@ import "primeicons/primeicons.css";
 let isScrolledUp = ref<boolean>(true);
 
 window.onscroll = () => {
-  if (window.scrollY > 100) {
+  const thresholdUp = window.innerWidth < 1062 ? 200 : 100;
+  const thresholdDown = window.innerWidth < 1062 ? 40 : 20;
+
+  if (window.scrollY > thresholdUp) {
     if (isScrolledUp.value) isScrolledUp.value = false;
   }
-  if (window.scrollY < 20) {
+  if (window.scrollY < thresholdDown) {
     if (!isScrolledUp.value) isScrolledUp.value = true;
   }
 };
@@ -22,23 +25,19 @@ window.onscroll = () => {
     >
       <h1 class="leckerli-one-regular text-[20px] lg:mr-10">Rob & Kija</h1>
 
-      <button
-        class="rounded-full transition duration-300 ease-in-out hover:bg-[#EDB5BF] hover:-translate-y-1 hover:opacity-80 p-3 hover:shadow-lg"
-      >
-        <RouterLink to="/home">
+      <RouterLink to="/home">
+        <button class="btn-nav">
           <span class="pi pi-home mr-2"></span>
           Home
-        </RouterLink>
-      </button>
+        </button>
+      </RouterLink>
 
-      <button
-        class="rounded-full transition duration-300 ease-in-out hover:bg-[#EDB5BF] hover:-translate-y-1 hover:opacity-80 p-3 hover:shadow-lg"
-      >
-        <RouterLink to="/aboutMe">
+      <RouterLink to="/aboutMe">
+        <button class="btn-nav">
           <span class="pi pi-heart-fill mr-2"></span>
           About Us
-        </RouterLink>
-      </button>
+        </button>
+      </RouterLink>
 
       <div
         class="absolute lg:relative flex justify-center items-center top-2 right-1 lg:top-0 lg:right-0 border lg:ml-auto w-9 h-9 p-1 transition ease-in-out duration-900 rounded-full bg-[#EDB5BF] border-black hover:rounded"
@@ -53,26 +52,26 @@ window.onscroll = () => {
     >
       <h1 class="leckerli-one-regular text-[15px] lg:mr-10">Rob & Kija</h1>
 
-      <button
-        class="rounded-full transition duration-300 ease-in-out text-sm p-1 hover:bg-[#EDB5BF] hover:-translate-y-[2px] hover:opacity-80 hover:shadow-lg"
-      >
-        <RouterLink to="/home">
+      <RouterLink to="/home">
+        <button
+          class="rounded-full transition duration-300 ease-in-out text-sm p-1 hover:bg-[#EDB5BF] hover:-translate-y-[2px] hover:opacity-80 hover:shadow-lg"
+        >
           <span class="pi pi-home mr-2"></span>
           Home
-        </RouterLink>
-      </button>
+        </button>
+      </RouterLink>
 
-      <button
-        class="rounded-full transition duration-300 ease-in-out text-sm p-1 hover:bg-[#EDB5BF] hover:-translate-y-[2px] hover:opacity-80 hover:shadow-lg"
-      >
-        <RouterLink to="/aboutMe">
+      <RouterLink to="/aboutMe">
+        <button
+          class="rounded-full transition duration-300 ease-in-out text-sm p-1 hover:bg-[#EDB5BF] hover:-translate-y-[2px] hover:opacity-80 hover:shadow-lg"
+        >
           <span class="pi pi-heart-fill mr-2"></span>
           About Us
-        </RouterLink>
-      </button>
+        </button>
+      </RouterLink>
 
       <div
-        class="absolute lg:relative flex justify-center items-center lg:items-center top-2 right-1 lg:top-0 lg:right-0 border lg:ml-auto w-6 transition ease-in-out duration-900 rounded-full bg-[#EDB5BF] border-black hover:rounded"
+        class="absolute lg:relative flex justify-center items-center top-2 right-1 lg:top-0 lg:right-0 border lg:ml-auto w-6 transition ease-in-out duration-900 rounded-full bg-[#EDB5BF] border-black hover:rounded"
       >
         <button class="text-[11px] lg:text-[13px] mt-[1px]">
           <span class="pi pi-instagram m-auto"></span>
