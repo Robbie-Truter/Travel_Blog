@@ -2,6 +2,20 @@
 export default {
   content: ["./index.html", "./src/**/*.{vue,js,ts,jsx,tsx}"],
   theme: {
+    extend: {
+      keyframes: {
+        "fade-in-down": {
+          "0%": {
+            opacity: 0,
+            transform: "translate3d(0, -100%, 0)",
+          },
+          "100%": {
+            opacity: 1,
+            transform: "translate3d(0, 0, 0)",
+          },
+        },
+      },
+    },
     accentColor: ({ theme }) => ({
       ...theme("colors"),
       auto: "auto",
@@ -12,6 +26,7 @@ export default {
       ping: "ping 1s cubic-bezier(0, 0, 0.2, 1) infinite",
       pulse: "pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite",
       bounce: "bounce 1s infinite",
+      fadeInDown: "fade-in-down 1s ease-in 0.25s 1",
     },
     aria: {
       busy: 'busy="true"',

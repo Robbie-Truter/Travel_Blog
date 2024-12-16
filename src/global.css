@@ -1,11 +1,18 @@
+@import url("https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&family=Red+Hat+Display:ital,wght@0,300..900;1,300..900&display=swap");
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: "Red Hat Display", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
   line-height: 1.5;
-  font-weight: 400;
+  font-weight: 600;
 
   color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  color: black;
+  background-color: #faf9f6;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -14,6 +21,35 @@
 }
 
 body {
-  height: 100vh;
-  margin: 0;
+  height: 100%;
+}
+
+body::-webkit-scrollbar {
+  display: none;
+}
+
+@layer utilities {
+  .scrollbar::-webkit-scrollbar {
+    width: 3px;
+    height: 5px;
+  }
+
+  .scrollbar::-webkit-scrollbar-track {
+    border-radius: 5px;
+  }
+
+  .scrollbar::-webkit-scrollbar-thumb {
+    background: #000;
+    border-radius: 5px;
+  }
+
+  .scrollbar::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
+}
+
+@layer components {
+  .btn-nav {
+    @apply rounded-full transition duration-300 ease-in-out hover:bg-[#EDB5BF] hover:-translate-y-1 hover:opacity-80 p-3 hover:shadow-lg;
+  }
 }
