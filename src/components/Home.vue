@@ -5,10 +5,10 @@ import GeorgiaTab from "./tabs/GeorgiaTab.vue";
 import CapeTownTab from "./tabs/CapeTownTab.vue";
 
 const locationImageScroll: string[] = [
-  "GreeceStockImage.jpg",
-  "GreeceStockImage.jpg",
-  "GreeceStockImage.jpg",
-  "GreeceStockImage.jpg",
+  "/public/articles/GreeceStockImage.jpg",
+  "/public/articles/GreeceStockImage.jpg",
+  "/public/articles/GreeceStockImage.jpg",
+  "/public/articles/GreeceStockImage.jpg",
 ];
 
 const articleScroll: string[] = [
@@ -32,7 +32,10 @@ const articleScroll: string[] = [
         <aside
           class="flex flex-row justify-start items-center gap-4 transition ease-in-out duration-100 hover:bg-gray-100 hover:shadow-md"
         >
-          <img src="../../public/statue.jpg" class="h-32 min-w-28 border border-black rounded" />
+          <img
+            src="../../public/articles/statue.jpg"
+            class="h-32 min-w-28 border border-black rounded"
+          />
           <p class="text-wrap">{{ article }}</p>
         </aside>
         <hr v-if="articleScroll[index + 1]" class="w-full my-3" />
@@ -45,7 +48,7 @@ const articleScroll: string[] = [
       <div v-for="(image, index) in locationImageScroll" :key="index" class="relative group">
         <img
           alt="Article Image"
-          :src="`../${image}`"
+          :src="image"
           class="h-full min-w-72 rounded-md border-black transition-opacity ease-in-out duration-500 cursor-pointer group-hover:opacity-40"
         />
         <div
