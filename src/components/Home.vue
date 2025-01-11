@@ -1,4 +1,9 @@
 <script setup lang="ts">
+import Tab from "./ui/Tab.vue";
+import TurkeyTab from "./tabs/TurkeyTab.vue";
+import GeorgiaTab from "./tabs/GeorgiaTab.vue";
+import CapeTownTab from "./tabs/CapeTownTab.vue";
+
 const locationImageScroll: string[] = [
   "GreeceStockImage.jpg",
   "GreeceStockImage.jpg",
@@ -53,5 +58,21 @@ const articleScroll: string[] = [
         </div>
       </div>
     </article>
+  </section>
+
+  <section>
+    <Tab :tab-headers="['Turkey', 'Georgia', 'Cape Town']">
+      <template v-slot:Turkey>
+        <TurkeyTab />
+      </template>
+
+      <template v-slot:Georgia>
+        <GeorgiaTab />
+      </template>
+
+      <template v-slot:Cape-Town>
+        <CapeTownTab />
+      </template>
+    </Tab>
   </section>
 </template>
