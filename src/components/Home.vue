@@ -1,4 +1,9 @@
 <script setup lang="ts">
+import Tab from "./ui/Tab.vue";
+import TurkeyTab from "./tabs/TurkeyTab.vue";
+import GeorgiaTab from "./tabs/GeorgiaTab.vue";
+import CapeTownTab from "./tabs/CapeTownTab.vue";
+
 const locationImageScroll: string[] = [
   "GreeceStockImage.jpg",
   "GreeceStockImage.jpg",
@@ -16,30 +21,58 @@ const articleScroll: string[] = [
 
 <template>
   <header>
-    <img alt="Header Image" src="../assets/kasBoat.jpg" class="w-full h-auto max-h-[800px]" />
+    <img alt="Header Image" src="../assets/HeaderImg.jpg" class="w-full h-auto max-h-[800px]" />
   </header>
 
   <section
-    class="flex flex-col lg:flex-row justify-center gap-6 lg:gap-3 w-full lg:h-[420px] mt-10 px-2 lg:px-20 xl:px-40 font-bold text-lg mb-20"
+    class="flex flex-col lg:flex-row justify-center gap-6 w-full mt-10 px-2 lg:px-20 xl:px-40 font-bold text-lg mb-20"
   >
     <article class="flex flex-col gap-2 w-full 2xl:w-auto">
-      <figure v-for="(article, index) in articleScroll" :key="index">
-        <aside class="flex flex-row justify-start items-center gap-4">
-          <div class="h-20 min-w-28 border border-black rounded"></div>
-          <p>{{ article }}</p>
+      <figure v-for="(article, index) in articleScroll" :key="index" class="rounded cursor-pointer">
+        <aside
+          class="flex flex-row justify-start items-center gap-4 transition ease-in-out duration-100 hover:bg-gray-100 hover:shadow-md"
+        >
+          <img src="../../public/statue.jpg" class="h-32 min-w-28 border border-black rounded" />
+          <p class="text-wrap">{{ article }}</p>
         </aside>
         <hr v-if="articleScroll[index + 1]" class="w-full my-3" />
       </figure>
     </article>
 
-    <article class="flex flex-row justify-evenly gap-1 w-full 2xl:w-auto overflow-x-auto scrollbar">
-      <img
-        v-for="(image, index) in locationImageScroll"
-        :key="index"
-        alt="Article Image"
-        :src="`../public/${image}`"
-        class="h-full w-72 rounded-md transition duration-200 ease-in-out border-black z-10 cursor-pointer hover:scale-x-110 hover:shadow-xl hover:z-20 hover:border"
-      />
+    <article
+      class="flex flex-row justify-evenly lg:self-center gap-1 h-[420px] w-full 2xl:w-auto overflow-x-auto scrollbar"
+    >
+      <div v-for="(image, index) in locationImageScroll" :key="index" class="relative group">
+        <img
+          alt="Article Image"
+          :src="`../${image}`"
+          class="h-full min-w-72 rounded-md border-black transition-opacity ease-in-out duration-500 cursor-pointer group-hover:opacity-40"
+        />
+        <div
+          class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center opacity-0 group-hover:opacity-100"
+        >
+          <span
+            class="rounded-lg text-sm cursor-pointer font-bold p-6 bg-[#EDB5BF] group-hover:shadow-lg"
+            >Test Text</span
+          >
+        </div>
+      </div>
     </article>
+  </section>
+
+  <section>
+    <Tab :tab-headers="['Turkey', 'Georgia', 'Cape Town']">
+      <template v-slot:Turkey>
+        <TurkeyTab />
+      </template>
+
+      <template v-slot:Georgia>
+        <GeorgiaTab />
+      </template>
+
+      <template v-slot:Cape-Town>
+        <CapeTownTab />
+      </template>
+    </Tab>
   </section>
 </template>
