@@ -63,7 +63,7 @@ const articleScroll: string[] = [
     </article>
   </section>
 
-  <section>
+  <section class="mb-20">
     <Tab :tab-headers="['Turkey', 'Georgia', 'Cape Town']">
       <template v-slot:Turkey>
         <TurkeyTab />
