@@ -41,7 +41,7 @@ const isTabActive = (selectedTab: string) => {
 
 <style lang="css">
 .tab-fade-enter-active {
-  transition: 0.4s ease-out;
+  transition: 0.2s ease-in-out;
 }
 
 .tab-fade-enter-from,
