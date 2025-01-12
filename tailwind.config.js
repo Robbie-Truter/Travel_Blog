@@ -3,17 +3,9 @@ export default {
   content: ["./index.html", "./src/**/*.{vue,js,ts,jsx,tsx}"],
   theme: {
     extend: {
-      keyframes: {
-        "fade-in-down": {
-          "0%": {
-            opacity: 0,
-            transform: "translate3d(0, -100%, 0)",
-          },
-          "100%": {
-            opacity: 1,
-            transform: "translate3d(0, 0, 0)",
-          },
-        },
+      colors: {
+        "color-primary": "#EDB5BF",
+        "color-secondary": "#e7e5e5",
       },
     },
     accentColor: ({ theme }) => ({
