@@ -5,10 +5,10 @@ import GeorgiaTab from "./tabs/GeorgiaTab.vue";
 import CapeTownTab from "./tabs/CapeTownTab.vue";
 
 const locationImageScroll: string[] = [
-  "/public/articles/GreeceStockImage.jpg",
-  "/public/articles/GreeceStockImage.jpg",
-  "/public/articles/GreeceStockImage.jpg",
-  "/public/articles/GreeceStockImage.jpg",
+  "/articles/GreeceStockImage.jpg",
+  "/articles/GreeceStockImage.jpg",
+  "/articles/GreeceStockImage.jpg",
+  "/articles/GreeceStockImage.jpg",
 ];
 
 const articleScroll: string[] = [
