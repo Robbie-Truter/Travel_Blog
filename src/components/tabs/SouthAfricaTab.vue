@@ -6,12 +6,12 @@ type TTabImages = {
 
 const tabImages: TTabImages[] = [
   {
-    path: "/tabs/georgia/Tbilisi.jpg",
-    name: "Tbilisi",
+    path: "/tabs/south-africa/Clifton.jpg",
+    name: "Cape Town",
   },
   {
-    path: "/tabs/georgia/Kazbegi.jpg",
-    name: "Kazbegi",
+    path: "/tabs/south-africa/Paarl.jpg",
+    name: "Paarl",
   },
 ];
 </script>
