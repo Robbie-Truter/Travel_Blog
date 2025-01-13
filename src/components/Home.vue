@@ -11,11 +11,23 @@ const locationImageScroll: string[] = [
   "/articles/GreeceStockImage.jpg",
 ];
 
-const articleScroll: string[] = [
-  "Best locations to stay when visiting Antalya",
-  "How to get from Antalya to Kas via public transport",
-  "How to navigate Tbilisi, Georgia",
-  "Laos travel guide: complete 10 day itinerary",
+const articleHeadings = [
+  {
+    path: "/articles/headings/KaleichiOldTown.jpg",
+    description: "Best locations to stay when visiting Antalya",
+  },
+  {
+    path: "/tabs/turkey/KasTownMonument.jpg",
+    description: "How to get from Antalya to Kas via public transport",
+  },
+  {
+    path: "/articles/headings/Khinkali.jpg",
+    description: "Dive into georgian cuisine in Tbilisi",
+  },
+  {
+    path: "/articles/headings/AdalarsBeach.jpg",
+    description: "Best beach spots near Antalaya's old town",
+  },
 ];
 </script>
 
@@ -28,17 +40,18 @@ const articleScroll: string[] = [
     class="flex flex-col lg:flex-row justify-center gap-6 w-full mt-10 px-2 lg:px-20 xl:px-40 font-bold text-lg mb-20"
   >
     <article class="flex flex-col gap-2 w-full 2xl:w-auto">
-      <figure v-for="(article, index) in articleScroll" :key="index" class="rounded cursor-pointer">
+      <figure
+        v-for="(heading, index) in articleHeadings"
+        :key="index"
+        class="rounded cursor-pointer"
+      >
         <aside
           class="flex flex-row justify-start items-center gap-4 transition ease-in-out duration-100 hover:bg-gray-100 hover:shadow-md"
         >
-          <img
-            src="../../public/articles/statue.jpg"
-            class="h-32 min-w-28 border border-black rounded"
-          />
-          <p class="text-wrap">{{ article }}</p>
+          <img :src="heading.path" class="h-28 min-w-28 rounded-2xl object-cover" />
+          <p class="text-wrap">{{ heading.description }}</p>
         </aside>
-        <hr v-if="articleScroll[index + 1]" class="w-full my-3" />
+        <hr v-if="articleHeadings[index + 1]" class="w-full my-3" />
       </figure>
     </article>
 
