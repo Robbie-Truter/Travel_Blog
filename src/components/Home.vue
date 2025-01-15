@@ -4,11 +4,11 @@ import TurkeyTab from "./tabs/TurkeyTab.vue";
 import GeorgiaTab from "./tabs/GeorgiaTab.vue";
 import SouthAfricaTab from "./tabs/SouthAfricaTab.vue";
 
-const locationImageScroll: string[] = [
-  "/articles/GreeceStockImage.jpg",
-  "/articles/GreeceStockImage.jpg",
-  "/articles/GreeceStockImage.jpg",
-  "/articles/GreeceStockImage.jpg",
+const locationImages: string[] = [
+  "/articles/slider/TbilisiChurch.jpg",
+  "/articles/slider/Kalekoy.jpg",
+  "/articles/slider/Aspendos.jpg",
+  "/articles/slider/GreeceStockImage.jpg",
 ];
 
 const articleHeadings = [
@@ -58,7 +58,7 @@ const articleHeadings = [
     <article
       class="flex flex-row justify-evenly lg:self-center gap-1 h-[420px] w-full 2xl:w-auto overflow-x-auto scrollbar"
     >
-      <div v-for="(image, index) in locationImageScroll" :key="index" class="relative group">
+      <div v-for="(image, index) in locationImages" :key="index" class="relative group">
         <img
           alt="Article Image"
           :src="image"

@@ -34,7 +34,7 @@ const isTabActive = (selectedTab: string) => {
     </figcaption>
     <hr class="w-full border-[3px] border-[#EDB5BF]" />
   </figure>
-  <Transition name="tab-fade">
+  <Transition name="tab-fade" mode="out-in">
     <slot :name="currentTab.replace(/\s+/g, '-')"></slot>
   </Transition>
 </template>
