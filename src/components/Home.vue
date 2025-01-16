@@ -4,13 +4,6 @@ import TurkeyTab from "./tabs/TurkeyTab.vue";
 import GeorgiaTab from "./tabs/GeorgiaTab.vue";
 import SouthAfricaTab from "./tabs/SouthAfricaTab.vue";
 
-const locationImages: string[] = [
-  "/articles/slider/TbilisiChurch.jpg",
-  "/articles/slider/Kalekoy.jpg",
-  "/articles/slider/Aspendos.jpg",
-  "/articles/slider/GreeceStockImage.jpg",
-];
-
 const articleHeadings = [
   {
     path: "/articles/headings/KaleichiOldTown.jpg",
@@ -55,25 +48,21 @@ const articleHeadings = [
       </figure>
     </article>
 
-    <article
-      class="flex flex-row justify-evenly lg:self-center gap-1 h-[420px] w-full 2xl:w-auto overflow-x-auto scrollbar"
-    >
-      <div v-for="(image, index) in locationImages" :key="index" class="relative group">
-        <img
-          alt="Article Image"
-          :src="image"
-          class="h-full min-w-72 rounded-md border-black transition-opacity ease-in-out duration-500 cursor-pointer group-hover:opacity-40"
-        />
-        <div
-          class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center opacity-0 group-hover:opacity-100"
-        >
-          <span
-            class="rounded-lg text-sm cursor-pointer font-bold p-6 bg-[#EDB5BF] group-hover:shadow-lg"
-            >Test Text</span
-          >
-        </div>
-      </div>
-    </article>
+    <figure class="self-center relative">
+      <img
+        src="/articles/headings/KaleichiOldTown.jpg"
+        class="h-[20rem] lg:h-[30rem] w-[35rem] rounded-xl object-cover brightness-[.7]"
+      />
+      <figcaption
+        class="text-shadow absolute top-5 left-5 p-3 text-xl rounded-full transition duration-100 ease-in-out cursor-pointer bg-color-primary text-white"
+      >
+        Latest Post
+      </figcaption>
+      <figcaption class="absolute top-20 left-7 text-white [text-shadow:_0_1px_0_rgb(0_0_0_/_40%)]">
+        Best locations to stay when <br />
+        visiting Antalya
+      </figcaption>
+    </figure>
   </section>
 
   <section class="mb-20">

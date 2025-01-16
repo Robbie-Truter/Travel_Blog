@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import { ref } from "vue";
+import { ref, onMounted, onUnmounted } from "vue";
 import "primeicons/primeicons.css";
 
 let isScrolledUp = ref<boolean>(true);
 
-window.onscroll = () => {
+const handleScroll = () => {
   const thresholdUp = window.innerWidth < 1062 ? 200 : 100;
   const thresholdDown = window.innerWidth < 1062 ? 40 : 20;
 
@@ -15,6 +15,14 @@ window.onscroll = () => {
     if (!isScrolledUp.value) isScrolledUp.value = true;
   }
 };
+
+onMounted(() => {
+  window.addEventListener("scroll", handleScroll);
+});
+
+onUnmounted(() => {
+  window.removeEventListener("scroll", handleScroll);
+});
 </script>
 
 <template>
@@ -44,7 +52,7 @@ window.onscroll = () => {
     </div>
   </nav>
 
-  <Transition name="navbar-fadeIn">
+  <Transition name="navbar-fadeIn" mode="out-in">
     <nav
       v-if="!isScrolledUp"
       class="flex flex-col lg:flex-row justify-center lg:justify-start items-center h-auto lg:h-10 w-full fixed top-0 z-10 gap-0 lg:gap-4 px-10 shadow-lg rounded bg-white text-black bg-transparent"
@@ -101,5 +109,6 @@ window.onscroll = () => {
 .navbar-fadeIn-leave-to {
   transform: translateY(20px);
   opacity: 0;
+  will-change: transform, opacity;
 }
 </style>
