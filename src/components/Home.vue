@@ -25,8 +25,26 @@ const articleHeadings = [
 </script>
 
 <template>
-  <header>
-    <img alt="Header Image" src="../assets/HeaderImg.jpg" class="w-full h-auto max-h-[800px]" />
+  <header class="relative">
+    <img
+      alt="Header Image"
+      src="../assets/HeaderImg.jpg"
+      class="w-full h-auto max-h-[700px] object-cover brightness-90"
+    />
+    <div
+      class="flex flex-col gap-4 items-center absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-white"
+    >
+      <h1 class="text-sm lg:text-4xl [text-shadow:_0_1px_0_rgb(0_0_0_/_40%)]">Hi we're</h1>
+      <h2 class="font-bold text-md lg:text-6xl [text-shadow:_0_1px_0_rgb(0_0_0_/_40%)]">
+        Robert & Kija
+      </h2>
+      <div class="p-1 lg:p-4 rounded-lg text-center shadow-lg text-[#5b5a4f] bg-[#ebf0f2]">
+        <p class="text-[12px] lg:text-2xl">
+          Slow travel is is our favorite way of traveling. We share inspiring travel blogs and tips
+          to show you that planning doesn't have to be overwhelming
+        </p>
+      </div>
+    </div>
   </header>
 
   <section
@@ -54,7 +72,7 @@ const articleHeadings = [
         class="h-[20rem] lg:h-[30rem] w-[35rem] rounded-xl object-cover brightness-[.7]"
       />
       <figcaption
-        class="text-shadow absolute top-5 left-5 p-3 text-xl rounded-full transition duration-100 ease-in-out cursor-pointer bg-color-primary text-white"
+        class="absolute top-5 left-5 p-3 text-xl rounded-full transition duration-100 ease-in-out cursor-pointer bg-color-primary text-white"
       >
         Latest Post
       </figcaption>
