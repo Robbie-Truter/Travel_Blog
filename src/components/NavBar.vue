@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import { ref } from "vue";
+import { ref, onMounted, onUnmounted } from "vue";
 import "primeicons/primeicons.css";
 
 let isScrolledUp = ref<boolean>(true);
 
-window.onscroll = () => {
+const handleScroll = () => {
   const thresholdUp = window.innerWidth < 1062 ? 200 : 100;
   const thresholdDown = window.innerWidth < 1062 ? 40 : 20;
 
@@ -15,39 +15,46 @@ window.onscroll = () => {
     if (!isScrolledUp.value) isScrolledUp.value = true;
   }
 };
+
+onMounted(() => {
+  window.addEventListener("scroll", handleScroll);
+});
+
+onUnmounted(() => {
+  window.removeEventListener("scroll", handleScroll);
+});
 </script>
 
 <template>
-  <Transition name="navbar-fadeIn">
-    <nav
-      v-if="isScrolledUp"
-      class="flex flex-col lg:flex-row justify-center lg:justify-start items-center h-auto lg:h-20 w-full z-10 gap-0 lg:gap-4 px-10 shadow-lg rounded bg-none text-black bg-transparent"
+  <nav
+    class="flex flex-col lg:flex-row justify-center lg:justify-start items-center h-auto lg:h-20 w-full z-10 gap-0 lg:gap-4 px-10 shadow-lg rounded bg-none text-black bg-transparent"
+  >
+    <h1 class="leckerli-one-regular text-[20px] lg:mr-10">Rob & Kija</h1>
+
+    <RouterLink to="/home">
+      <button class="btn-nav">
+        <span class="pi pi-home mr-2"></span>
+        Home
+      </button>
+    </RouterLink>
+
+    <RouterLink to="/aboutMe">
+      <button class="btn-nav">
+        <span class="pi pi-heart-fill mr-2"></span>
+        About Us
+      </button>
+    </RouterLink>
+
+    <div
+      class="absolute lg:relative flex justify-center items-center top-2 right-1 lg:top-0 lg:right-0 border lg:ml-auto w-9 h-9 p-1 transition ease-in-out duration-900 rounded-full bg-[#EDB5BF] border-black hover:rounded"
     >
-      <h1 class="leckerli-one-regular text-[20px] lg:mr-10">Rob & Kija</h1>
+      <span class="pi pi-instagram m-auto"></span>
+    </div>
+  </nav>
 
-      <RouterLink to="/home">
-        <button class="btn-nav">
-          <span class="pi pi-home mr-2"></span>
-          Home
-        </button>
-      </RouterLink>
-
-      <RouterLink to="/aboutMe">
-        <button class="btn-nav">
-          <span class="pi pi-heart-fill mr-2"></span>
-          About Us
-        </button>
-      </RouterLink>
-
-      <div
-        class="absolute lg:relative flex justify-center items-center top-2 right-1 lg:top-0 lg:right-0 border lg:ml-auto w-9 h-9 p-1 transition ease-in-out duration-900 rounded-full bg-[#EDB5BF] border-black hover:rounded"
-      >
-        <span class="pi pi-instagram m-auto"></span>
-      </div>
-    </nav>
-
+  <Transition name="navbar-fadeIn" mode="out-in">
     <nav
-      v-else
+      v-if="!isScrolledUp"
       class="flex flex-col lg:flex-row justify-center lg:justify-start items-center h-auto lg:h-10 w-full fixed top-0 z-10 gap-0 lg:gap-4 px-10 shadow-lg rounded bg-white text-black bg-transparent"
     >
       <h1 class="leckerli-one-regular text-[15px] lg:mr-10">Rob & Kija</h1>
@@ -102,5 +109,6 @@ window.onscroll = () => {
 .navbar-fadeIn-leave-to {
   transform: translateY(20px);
   opacity: 0;
+  will-change: transform, opacity;
 }
 </style>

@@ -34,19 +34,20 @@ const isTabActive = (selectedTab: string) => {
     </figcaption>
     <hr class="w-full border-[3px] border-[#EDB5BF]" />
   </figure>
-  <Transition name="tab-fade">
+  <Transition name="tab-fade" mode="out-in">
     <slot :name="currentTab.replace(/\s+/g, '-')"></slot>
   </Transition>
 </template>
 
 <style lang="css">
 .tab-fade-enter-active {
-  transition: 0.2s ease-in-out;
+  transition: 0.3s ease-in-out;
+  will-change: transform, opacity;
 }
 
 .tab-fade-enter-from,
 .tab-fade-leave-to {
-  transform: translateY(60%);
+  transform: translateY(30%);
   opacity: 0;
 }
 </style>
