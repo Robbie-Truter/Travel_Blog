@@ -165,9 +165,9 @@ const articleHeadings = [
             id="emailAddress"
             type="email"
             placeholder="Your email address"
-            class="w-full lg:w-80 p-2 text-black rounded-full"
+            class="w-full lg:w-80 p-2 text-white rounded-full"
           />
-          <button class="w-36 p-2 bg-[#5b5a4f] rounded-full">Subscribe</button>
+          <button class="w-36 p-2 bg-[#5b5a4f] rounded-full hover:opacity-90">Subscribe</button>
         </div>
       </div>
     </div>
