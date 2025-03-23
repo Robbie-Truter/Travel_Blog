@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import Tab from "./ui/Tab.vue";
-import TurkeyTab from "./tabs/TurkeyTab.vue";
-import GeorgiaTab from "./tabs/GeorgiaTab.vue";
-import SouthAfricaTab from "./tabs/SouthAfricaTab.vue";
+import Tab from "../components/Tab.vue";
+import TurkeyTab from "../components//tabs/TurkeyTab.vue";
+import GeorgiaTab from "../components//tabs/GeorgiaTab.vue";
+import SouthAfricaTab from "../components/tabs/SouthAfricaTab.vue";
 import "primeicons/primeicons.css";
 
 const articleHeadings = [
