@@ -74,7 +74,7 @@ import NavBar from "./NavBar.vue";
     </div>
   </section>
 
-  <section class="flex flex-col mt-20 p-3 space-y-8">
+  <section class="flex flex-col mt-20 mb-20 p-3 space-y-8">
     <div class="flex flex-col sm:flex-row justify-center items-center gap-6 sm:gap-20">
       <div class="flex gap-4 w-full sm:w-96">
         <button class="self-start text-2xl text-[#99bfd7]">
