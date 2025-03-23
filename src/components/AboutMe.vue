@@ -31,7 +31,7 @@ import NavBar from "./NavBar.vue";
   </header>
 
   <section class="flex flex-col items-center justify-center gap-10 w-full mt-28">
-    <div class="flex flex-col sm:flex-row items-center gap-40 sm:gap-2 md:gap-20">
+    <div class="flex flex-col sm:flex-row items-center sm:items-baseline gap-40 sm:gap-2 md:gap-20">
       <figure
         class="relative h-64 w-64 p-5 text-center text-white bg-[#99bfd7] space-y-2 rounded-2xl"
       >
@@ -71,6 +71,121 @@ import NavBar from "./NavBar.vue";
           on floors if you need to. Experience how others live, eat, and cook’
         </p>
       </figure>
+    </div>
+  </section>
+
+  <section class="flex flex-col mt-20 p-3 space-y-8">
+    <div class="flex flex-col sm:flex-row justify-center items-center gap-6 sm:gap-20">
+      <div class="flex gap-4 w-full sm:w-96">
+        <button class="self-start text-2xl text-[#99bfd7]">
+          <span class="pi pi-question-circle"></span>
+        </button>
+
+        <div>
+          <h3>What's your all-time favorite destination?</h3>
+          <ul class="mt-2 space-y-3">
+            <li class="flex items-center gap-3">
+              <img
+                src="/about-me/kijaProfile.jpg"
+                class="h-[32px] w-[32px] object-cover rounded-full"
+              />
+              <span class="w-full">Kas, Antalya</span>
+            </li>
+            <li class="flex items-center gap-3">
+              <img
+                src="/about-me/robertProfile.jpg"
+                class="h-[32px] w-[32px] object-cover rounded-full"
+              />
+              <span class="w-full">Westendorf, Austria</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="flex gap-4 w-full sm:w-96">
+        <button class="self-start text-2xl text-[#99bfd7]">
+          <span class="pi pi-question-circle"></span>
+        </button>
+
+        <div>
+          <h3>How many countries or places have you explored so far?</h3>
+          <ul class="mt-2 space-y-3">
+            <li class="flex items-center gap-3">
+              <img
+                src="/about-me/kijaProfile.jpg"
+                class="h-[32px] w-[32px] object-cover rounded-full"
+              />
+              <span class="w-full">2, still a newbie!</span>
+            </li>
+            <li class="flex items-center gap-3">
+              <img
+                src="/about-me/robertProfile.jpg"
+                class="h-[32px] w-[32px] object-cover rounded-full"
+              />
+              <span class="w-full">12, fun fact my dad was a pilot!</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="flex flex-col sm:flex-row justify-center gap-6 sm:gap-20">
+      <div class="flex gap-4 w-full sm:w-96">
+        <button class="self-start text-2xl text-[#99bfd7]">
+          <span class="pi pi-question-circle"></span>
+        </button>
+
+        <div>
+          <h3>What’s the local dish you always crave?</h3>
+          <ul class="mt-2 space-y-3">
+            <li class="flex items-center gap-3">
+              <img
+                src="/about-me/kijaProfile.jpg"
+                class="h-[32px] w-[32px] object-cover rounded-full"
+              />
+              <span class="w-full">Manti, also knwon as Turkish Ravioli & Khinkhali!</span>
+            </li>
+            <li class="flex items-center gap-3">
+              <img
+                src="/about-me/robertProfile.jpg"
+                class="h-[32px] w-[32px] object-cover rounded-full"
+              />
+              <span class="w-full">Adana Durum</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="flex gap-4 w-full sm:w-96">
+        <button class="self-start text-2xl text-[#99bfd7]">
+          <span class="pi pi-question-circle"></span>
+        </button>
+
+        <div>
+          <h3>Bucket list travel idea / activity?</h3>
+          <ul class="mt-2 space-y-3">
+            <li class="flex items-center gap-3">
+              <img
+                src="/about-me/kijaProfile.jpg"
+                class="h-[32px] w-[32px] object-cover rounded-full"
+              />
+              <span class="w-full">
+                Hiking in summer in Switzerland or Austria. Visiting Pompei & Chernobyl or Russia
+              </span>
+            </li>
+            <li class="flex items-center gap-3">
+              <img
+                src="/about-me/robertProfile.jpg"
+                class="h-[32px] w-[32px] object-cover rounded-full"
+              />
+              <span class="w-full">
+                Japan & Chernobyl. Russia. Ski in Austria again. Europen Christmas market & midevil
+                fair
+              </span>
+            </li>
+          </ul>
+        </div>
+      </div>
     </div>
   </section>
 </template>
