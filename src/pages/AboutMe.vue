@@ -136,7 +136,7 @@ import NavBar from "../components/NavBar.vue";
         </button>
 
         <div>
-          <h3>What’s the local dish you always crave?</h3>
+          <h3>What’s the local dish you always crave ?</h3>
           <ul class="mt-2 space-y-3">
             <li class="flex items-center gap-3">
               <img
