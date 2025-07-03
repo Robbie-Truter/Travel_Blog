@@ -1,13 +1,9 @@
 <script setup lang="ts">
-import { ref } from "vue";
+import { computed, onMounted, ref } from "vue";
+import { getAllCountries } from "@/util/services/countries/getAllCountries";
 
-type TTab = {
-  tabHeaders: string[];
-  tabContent?: string[];
-};
-
-const tabProps = defineProps<TTab>();
-const currentTab = ref<string>(tabProps.tabHeaders[0] || "");
+const allCountries = ref<string[]>([]);
+const currentTab = ref<string | null>(null);
 
 const setActiveTab = (selectedTab: string) => {
   currentTab.value = selectedTab;
@@ -16,6 +12,16 @@ const setActiveTab = (selectedTab: string) => {
 const isTabActive = (selectedTab: string) => {
   return currentTab.value === selectedTab;
 };
+
+onMounted(async () => {
+  const allCountriesResponse = await getAllCountries();
+  allCountries.value = allCountriesResponse?.map((country) => country.country_name) || [];
+  currentTab.value = allCountries.value[0];
+});
+
+const tabHeaders = computed(() => {
+  return allCountries.value.map((country) => country);
+});
 </script>
 
 <template>
@@ -35,7 +41,7 @@ const isTabActive = (selectedTab: string) => {
     <hr class="w-full border-[3px] border-[#EDB5BF]" />
   </figure>
   <Transition name="tab-fade" mode="out-in">
-    <slot :name="currentTab.replace(/\s+/g, '-')"></slot>
+    <slot :name="currentTab?.replace(/\s+/g, '-')"></slot>
   </Transition>
 </template>
 

@@ -85,7 +85,7 @@ const articleHeadings = [
   </section>
 
   <section class="mb-20">
-    <Tab :tab-headers="['Türkiye', 'Georgia', 'South Africa']">
+    <Tab>
       <template v-slot:Türkiye>
         <TurkeyTab />
       </template>
