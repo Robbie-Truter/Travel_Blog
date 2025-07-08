@@ -1,8 +1,5 @@
 <script setup lang="ts">
-import Tab from "@/components/Tab.vue";
-import TurkeyTab from "@/components/tabs/TurkeyTab.vue";
-import GeorgiaTab from "@/components/tabs/GeorgiaTab.vue";
-import SouthAfricaTab from "@/components/tabs/SouthAfricaTab.vue";
+import CountryTabs from "@/components/CountryTabs.vue";
 import "primeicons/primeicons.css";
 
 const articleHeadings = [
@@ -85,19 +82,7 @@ const articleHeadings = [
   </section>
 
   <section class="mb-20">
-    <Tab>
-      <template v-slot:Türkiye>
-        <TurkeyTab />
-      </template>
-
-      <template v-slot:Georgia>
-        <GeorgiaTab />
-      </template>
-
-      <template v-slot:South-Africa>
-        <SouthAfricaTab />
-      </template>
-    </Tab>
+    <CountryTabs />
   </section>
 
   <section class="flex items-center justify-center h-96 mb-20">
