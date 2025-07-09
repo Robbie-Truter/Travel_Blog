@@ -45,6 +45,13 @@ onUnmounted(() => {
       </button>
     </RouterLink>
 
+    <RouterLink to="/Blogs">
+      <button class="btn-nav">
+        <span class="pi pi-camera mr-2"></span>
+        Blogs
+      </button>
+    </RouterLink>
+
     <div
       class="absolute lg:relative flex justify-center items-center top-2 right-1 lg:top-0 lg:right-0 border lg:ml-auto w-9 h-9 p-1 transition ease-in-out duration-900 rounded-full bg-[#EDB5BF] border-black hover:rounded"
     >
@@ -74,6 +81,15 @@ onUnmounted(() => {
         >
           <span class="pi pi-heart-fill mr-2"></span>
           About Us
+        </button>
+      </RouterLink>
+
+      <RouterLink to="/blogs">
+        <button
+          class="rounded-full transition duration-300 ease-in-out text-sm p-1 hover:bg-[#EDB5BF] hover:-translate-y-[2px] hover:opacity-80 hover:shadow-lg"
+        >
+          <span class="pi pi-camera mr-2"></span>
+          Blogs
         </button>
       </RouterLink>
 

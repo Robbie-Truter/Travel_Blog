@@ -1,12 +1,14 @@
 import { createRouter, createWebHistory } from "vue-router";
 import Home from "@/pages/Home.vue";
 import AboutMe from "@/pages/AboutMe.vue";
+import Blogs from "@/pages/Blogs.vue";
 import NotFound from "@/pages/NotFound.vue";
 
 const routes = [
   { path: "/", redirect: "/home" },
   { path: "/home", component: Home },
   { path: "/aboutMe", component: AboutMe },
+  { path: "/blogs", component: Blogs },
   { path: "/:catchAll(.*)", component: NotFound },
 ];
 
