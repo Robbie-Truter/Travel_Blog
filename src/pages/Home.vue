@@ -1,25 +1,7 @@
 <script setup lang="ts">
+import LatestPosts from "@/components/LatestPosts.vue";
 import CountryTabs from "@/components/CountryTabs.vue";
 import "primeicons/primeicons.css";
-
-const articleHeadings = [
-  {
-    path: "/articles/headings/KaleichiOldTown.jpg",
-    description: "Best locations to stay when visiting Antalya",
-  },
-  {
-    path: "/tabs/turkey/KasTownMonument.jpg",
-    description: "How to get from Antalya to Kas via public transport",
-  },
-  {
-    path: "/articles/headings/Khinkali.jpg",
-    description: "Dive into georgian cuisine in Tbilisi",
-  },
-  {
-    path: "/articles/headings/AdalarsBeach.jpg",
-    description: "Best beach spots near Antalaya's old town",
-  },
-];
 </script>
 
 <template>
@@ -45,45 +27,9 @@ const articleHeadings = [
     </div>
   </header>
 
-  <section
-    class="flex flex-col lg:flex-row justify-center gap-6 w-full mt-10 px-2 lg:px-20 xl:px-40 font-bold text-lg mb-20"
-  >
-    <article class="flex flex-col gap-2 w-full 2xl:w-auto">
-      <figure
-        v-for="(heading, index) in articleHeadings"
-        :key="index"
-        class="rounded cursor-pointer"
-      >
-        <aside
-          class="flex flex-row justify-start items-center gap-4 transition ease-in-out duration-100 hover:bg-gray-100 hover:shadow-md"
-        >
-          <img :src="heading.path" class="h-28 min-w-28 rounded-2xl object-cover" />
-          <p class="text-wrap">{{ heading.description }}</p>
-        </aside>
-        <hr v-if="articleHeadings[index + 1]" class="w-full my-3" />
-      </figure>
-    </article>
+  <LatestPosts />
 
-    <figure class="self-center relative">
-      <img
-        src="/articles/headings/KaleichiOldTown.jpg"
-        class="h-[20rem] lg:h-[30rem] w-[35rem] rounded-xl object-cover brightness-[.7]"
-      />
-      <figcaption
-        class="absolute top-5 left-5 p-3 text-xl rounded-full transition duration-100 ease-in-out cursor-pointer bg-color-primary text-white"
-      >
-        Latest Post
-      </figcaption>
-      <figcaption class="absolute top-20 left-7 text-white [text-shadow:_0_1px_0_rgb(0_0_0_/_40%)]">
-        Best locations to stay when <br />
-        visiting Antalya
-      </figcaption>
-    </figure>
-  </section>
-
-  <section class="mb-20">
-    <CountryTabs />
-  </section>
+  <CountryTabs />
 
   <section class="flex items-center justify-center h-96 mb-20">
     <div class="relative h-72 w-full lg:w-2/3 rounded-xl overflow-visible bg-[#99bfd7]">
