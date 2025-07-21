@@ -18,7 +18,7 @@ export default {
       ping: "ping 1s cubic-bezier(0, 0, 0.2, 1) infinite",
       pulse: "pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite",
       bounce: "bounce 1s infinite",
-      fadeInDown: "fade-in-down 1s ease-in 0.25s 1",
+      fadeInDown: "fade-in-down 3s ease-in 0.25s 1",
     },
     aria: {
       busy: 'busy="true"',
