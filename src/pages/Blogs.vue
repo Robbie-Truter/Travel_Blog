@@ -1,4 +1,24 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { onMounted, ref } from "vue";
+import { getAllPosts } from "@/util/services/posts/getAllPosts";
+
+const allPosts = ref<any>([]);
+
+onMounted(async () => {
+  const allPostsResponseData = await getAllPosts();
+  allPosts.value = allPostsResponseData;
+});
+</script>
+
+<!--
+top level selection:
+  call only locations (use location_name)
+  add filter for location by country
+
+  if I click location, get all posts in that location
+
+  some posts doesn't have location and just country?
+-->
 
 <template>
   <header class="space-y-7 mb-20">
@@ -34,44 +54,12 @@
         </div>
 
         <div
+          v-for="(post, index) in allPosts"
+          :key="index"
           class="space-x-0 lg:space-x-2 p-2 text-center rounded-full cursor-pointer bg-white bg-opacity-50 hover:bg-opacity-100"
         >
           <span class="mr-2 text-sm">TR</span>
-          <span>Türkiye</span>
-        </div>
-
-        <div
-          class="space-x-0 lg:space-x-2 p-2 text-center rounded-full cursor-pointer bg-white bg-opacity-50 hover:bg-opacity-100"
-        >
-          <span class="mr-2 text-sm">GE</span>
-          <span>Georgia</span>
-        </div>
-
-        <div
-          class="space-x-0 lg:space-x-2 p-2 text-center rounded-full cursor-pointer bg-white bg-opacity-50 hover:bg-opacity-100"
-        >
-          <span class="mr-2 text-sm">CZ</span>
-          <span>Czechia</span>
-        </div>
-
-        <div
-          class="h-11 space-x-0 lg:space-x-2 p-2 text-center rounded-full cursor-pointer bg-white bg-opacity-50 hover:bg-opacity-100"
-        >
-          <span class="mr-2 text-sm">GR</span>
-          <span>Greece</span>
-        </div>
-
-        <div
-          class="space-x-0 lg:space-x-2 p-2 text-center rounded-full cursor-pointer bg-white bg-opacity-50 hover:bg-opacity-100"
-        >
-          <span class="mr-2 text-sm">GR</span>
-          <span>Greece</span>
-        </div>
-        <div
-          class="space-x-0 lg:space-x-2 p-2 text-center rounded-full cursor-pointer bg-white bg-opacity-50 hover:bg-opacity-100"
-        >
-          <span class="mr-2 text-sm">GR</span>
-          <span>Greece</span>
+          <span>{{ post?.article_title }}</span>
         </div>
 
         <!--<span
