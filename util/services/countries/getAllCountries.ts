@@ -4,12 +4,12 @@ export const getAllCountries = async () => {
     const response = await fetch(`${baseUrl}/items/countries`);
 
     if (!response.ok) {
-      throw new Error("Failed to fetch countries");
+      throw new Error('Failed to fetch countries');
     }
 
     const responseData = await response.json();
     return responseData.data;
   } catch (error) {
-    throw new Error("Error fetching countries: " + error);
+    throw new Error('Error fetching countries: ' + error);
   }
 };

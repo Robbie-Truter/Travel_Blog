@@ -6,7 +6,7 @@ export const getTabPostsByCountry = async () => {
     );
 
     if (!response.ok) {
-      throw new Error("Failed to fetch tabbed countries");
+      throw new Error('Failed to fetch tabbed countries');
     }
 
     const responseData = await response.json();

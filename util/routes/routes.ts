@@ -1,15 +1,15 @@
-import { createRouter, createWebHistory } from "vue-router";
-import Home from "@/pages/Home.vue";
-import AboutMe from "@/pages/AboutMe.vue";
-import Blogs from "@/pages/Blogs.vue";
-import NotFound from "@/pages/NotFound.vue";
+import { createRouter, createWebHistory } from 'vue-router';
+import HomePage from '@/pages/HomePage.vue';
+import AboutMe from '@/pages/AboutMe.vue';
+import BlogPosts from '@/pages/BlogPosts.vue';
+import NotFound from '@/pages/NotFound.vue';
 
 const routes = [
-  { path: "/", redirect: "/home" },
-  { path: "/home", component: Home },
-  { path: "/aboutMe", component: AboutMe },
-  { path: "/blogs", component: Blogs },
-  { path: "/:catchAll(.*)", component: NotFound },
+  { path: '/', redirect: '/home' },
+  { path: '/home', component: HomePage },
+  { path: '/aboutMe', component: AboutMe },
+  { path: '/blogs', component: BlogPosts },
+  { path: '/:catchAll(.*)', component: NotFound },
 ];
 
 export const router = createRouter({

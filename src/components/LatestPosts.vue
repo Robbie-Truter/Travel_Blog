@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { onMounted, ref } from "vue";
-import { getLatestPostsByDate } from "@/util/services/posts/getLatestPostsByDate";
-import "primeicons/primeicons.css";
+import { onMounted, ref } from 'vue';
+import { getLatestPostsByDate } from '@/util/services/posts/getLatestPostsByDate';
+import 'primeicons/primeicons.css';
 
 const latestPosts = ref<any[]>([]);
 
@@ -17,8 +17,8 @@ onMounted(async () => {
   >
     <article class="flex flex-col gap-2 w-full 2xl:w-auto">
       <figure
-        v-if="latestPosts && latestPosts.length > 0"
         v-for="(post, index) in latestPosts"
+        v-if="latestPosts && latestPosts.length > 0"
         :key="index"
         class="rounded cursor-pointer"
       >

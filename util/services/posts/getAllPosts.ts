@@ -4,7 +4,7 @@ export const getAllPosts = async () => {
     const response = await fetch(`${baseUrl}/items/posts`);
 
     if (!response.ok) {
-      throw new Error("Failed to fetch latest posts");
+      throw new Error('Failed to fetch latest posts');
     }
 
     const responseData = await response.json();

@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { ref, onMounted, onUnmounted } from "vue";
-import "primeicons/primeicons.css";
+import { ref, onMounted, onUnmounted } from 'vue';
+import 'primeicons/primeicons.css';
 
 let isScrolledUp = ref<boolean>(true);
 
@@ -17,11 +17,11 @@ const handleScroll = () => {
 };
 
 onMounted(() => {
-  window.addEventListener("scroll", handleScroll);
+  window.addEventListener('scroll', handleScroll);
 });
 
 onUnmounted(() => {
-  window.removeEventListener("scroll", handleScroll);
+  window.removeEventListener('scroll', handleScroll);
 });
 </script>
 
@@ -105,10 +105,10 @@ onUnmounted(() => {
 </template>
 
 <style lang="css">
-@import url("https://fonts.googleapis.com/css2?family=Leckerli+One&family=Oswald:wght@200..700&family=Red+Hat+Display:ital,wght@0,300..900;1,300..900&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Leckerli+One&family=Oswald:wght@200..700&family=Red+Hat+Display:ital,wght@0,300..900;1,300..900&display=swap');
 
 .leckerli-one-regular {
-  font-family: "Leckerli One", cursive;
+  font-family: 'Leckerli One', cursive;
   font-weight: 400;
   font-style: normal;
 }

@@ -1,6 +1,4 @@
-<script setup>
-import NavBar from "@/components/NavBar.vue";
-</script>
+<script setup></script>
 
 <template>
   <header class="flex flex-col self-center items-center gap-10 w-full mt-10 p-5 text-center">
@@ -11,7 +9,7 @@ import NavBar from "@/components/NavBar.vue";
 
     <section class="w-80 sm:w-[600px] mt-5 space-y-5 font-bold tracking-wider break-keep">
       <p>
-        Hi! We're Kija & Robbie from Cape Town, South Africa. By day, we work in marketing and
+        Hi! We 're Kija & Robbie from Cape Town, South Africa. By day, we work in marketing and
         software development, and by night, we're dreaming of our next destination.
       </p>
 

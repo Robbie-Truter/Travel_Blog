@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { computed, onMounted, ref } from "vue";
-import { getTabPostsByCountry } from "@/util/services/posts/getTabPostsByCountry";
+import { computed, onMounted, ref } from 'vue';
+import { getTabPostsByCountry } from '@/util/services/posts/getTabPostsByCountry';
 
 const allTabCountries = ref<any[]>([]);
 const currentTab = ref<string | null>(null);
@@ -50,10 +50,8 @@ const tabContent = computed(() => {
         <span
           v-for="tab in tabHeaders"
           :key="tab"
+          :class="`${isTabActive(tab) && 'bg-[#EDB5BF] text-white'} min-w-36 text-center p-2 transition ease-in-out duration-200 cursor-pointer hover:text-white hover:bg-[#EDB5BF]`"
           @click="setActiveTab(tab)"
-          :class="`${
-            isTabActive(tab) && 'bg-[#EDB5BF] text-white'
-          } min-w-36 text-center p-2 transition ease-in-out duration-200 cursor-pointer hover:text-white hover:bg-[#EDB5BF]`"
         >
           {{ tab }}
         </span>
