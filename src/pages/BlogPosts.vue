@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue';
-import { getAllPosts } from '@/util/services/posts/getAllPosts';
+import { getAllPosts } from '@/services/posts/getAllPosts';
 
 const allPosts = ref<any>([]);
 

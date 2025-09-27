@@ -17,10 +17,9 @@
     "noFallthroughCasesInSwitch": true,
     "baseUrl": ".",
     "paths": {
-      "@/pages/*": ["./src/pages/*"],
-      "@/components/*": ["./src/components/*"],
-      "@/assets/*": ["./src/assets/*"],
-      "@/util/*": ["./util/*"]
+      "@/*": ["./src/*"],
+      "@/routes/*": ["./routes/*"],
+      "@/services/*": ["./services/*"]
     }
   },
   "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue", "util/**/*.ts"],

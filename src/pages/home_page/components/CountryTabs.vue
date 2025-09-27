@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, onMounted, ref } from 'vue';
-import { getTabPostsByCountry } from '@/util/services/posts/getTabPostsByCountry';
+import { getTabPostsByCountry } from '@/services/posts/getTabPostsByCountry';
 
 const allTabCountries = ref<any[]>([]);
 const currentTab = ref<string | null>(null);

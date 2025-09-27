@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue';
-import { getLatestPostsByDate } from '@/util/services/posts/getLatestPostsByDate';
+import { getLatestPostsByDate } from '@/services/posts/getLatestPostsByDate';
 import 'primeicons/primeicons.css';
 
 const latestPosts = ref<any[]>([]);

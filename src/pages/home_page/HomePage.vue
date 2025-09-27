@@ -1,14 +1,14 @@
 <script setup lang="ts">
-import LatestPosts from "@/components/LatestPosts.vue";
-import CountryTabs from "@/components/CountryTabs.vue";
-import "primeicons/primeicons.css";
+import LatestPosts from '@/pages/home_page/components/LatestPosts.vue';
+import CountryTabs from '@/pages/home_page/components/CountryTabs.vue';
+import 'primeicons/primeicons.css';
 </script>
 
 <template>
   <header class="relative">
     <img
       alt="Header Image"
-      src="../assets/HeaderImg.jpg"
+      src="../../assets/HeaderImg.jpg"
       class="w-full h-auto max-h-[700px] object-cover brightness-90"
     />
     <div
