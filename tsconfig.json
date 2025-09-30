@@ -19,9 +19,16 @@
     "paths": {
       "@/*": ["./src/*"],
       "@/routes/*": ["./routes/*"],
-      "@/services/*": ["./services/*"]
+      "@/services/*": ["./services/*"],
+      "@/api/*": ["./api/*"]
     }
   },
-  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue", "util/**/*.ts"],
-  "references": [{ "path": "./tsconfig.node.json" }]
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.d.ts",
+    "src/**/*.tsx",
+    "src/**/*.vue",
+    "util/**/*.ts",
+    "api/**/*.ts"
+  ]
 }
