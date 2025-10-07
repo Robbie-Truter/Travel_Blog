@@ -1,8 +1,10 @@
 <script setup lang="ts">
 import { computed, onMounted, ref } from 'vue';
-import { getTabPostsByCountry } from '@/services/posts/getTabPostsByCountry';
+import { useGetTabPosts } from '@/pages/home_page/composables/useGetTabPosts';
+import type { TTabPosts } from '@/types/posts';
 
-const allTabCountries = ref<any[]>([]);
+const { data: allTabCountries } = useGetTabPosts();
+
 const currentTab = ref<string | null>(null);
 
 const setActiveTab = (selectedTab: string) => {
@@ -14,12 +16,11 @@ const isTabActive = (selectedTab: string) => {
 };
 
 onMounted(async () => {
-  const allTabPosts = await getTabPostsByCountry();
-  allTabCountries.value = allTabPosts;
   currentTab.value = tabHeaders.value[0];
 });
 
 const tabHeaders = computed(() => {
+  if (!allTabCountries.value) return [];
   //remove duplicates
   const uniqueCountries = [
     ...new Set(allTabCountries.value.map((country) => country.country.country_name)),
@@ -28,8 +29,9 @@ const tabHeaders = computed(() => {
 });
 
 const tabContent = computed(() => {
+  if (!allTabCountries.value) return {};
   //group tab content by country
-  const groupedTabsByCountry = {};
+  const groupedTabsByCountry: Record<string, TTabPosts[]> = {};
 
   for (const tab of allTabCountries.value) {
     const country = tab.country.country_name;

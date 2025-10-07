@@ -8,7 +8,7 @@ import 'primeicons/primeicons.css';
   <header class="relative">
     <img
       alt="Header Image"
-      src="../../assets/HeaderImg.jpg"
+      src="@/assets/HeaderImg.jpg"
       class="w-full h-auto max-h-[700px] object-cover brightness-90"
     />
     <div

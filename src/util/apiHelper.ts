@@ -3,6 +3,7 @@ import axiosInstance from '@/api/axiosInstance';
 
 type TMethod = 'get' | 'post' | 'put' | 'delete';
 
+//generic api helper using axios instance for default configurations
 const apiHelper = async <TResponse, TPayload>(
   url: string,
   method: TMethod,
@@ -15,6 +16,13 @@ const apiHelper = async <TResponse, TPayload>(
       data,
     });
 
+    // Directus wraps collection responses in a `data` property.
+    // This checks for that wrapper and returns the inner array if it exists.
+    if (response.data && response.data.data) {
+      return response.data.data;
+    }
+
+    // Otherwise, return the response as is (for single items, etc.)
     return response.data;
   } catch (error) {
     console.error(`API error during ${method} request to ${url}:`, error);
@@ -22,6 +30,7 @@ const apiHelper = async <TResponse, TPayload>(
   }
 };
 
+//CRUD actions
 const get = <TResponse>(url: string) => apiHelper<TResponse, never>(url, 'get');
 
 const post = <TResponse, TPayload>(url: string, data: TPayload) =>
