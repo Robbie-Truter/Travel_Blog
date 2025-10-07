@@ -16,3 +16,17 @@ export type TTabPosts = {
     country_name: string;
   };
 };
+
+export type TAllPosts = {
+  id: string;
+  status: string;
+  article_title: string;
+  article_content: string;
+  cover_image: string;
+  featured: boolean;
+  is_tab: boolean;
+  date_created: string;
+  date_updated: string | null;
+  country: string;
+  location: string;
+};

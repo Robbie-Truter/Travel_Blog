@@ -1,13 +1,7 @@
 <script setup lang="ts">
-import { onMounted, ref } from 'vue';
-import { getAllPosts } from '@/pages/blog_posts/services/getAllPosts';
+import { useGetAllPosts } from '@/pages/blog_posts/composables/useGetAllPosts';
 
-const allPosts = ref<any>([]);
-
-onMounted(async () => {
-  const allPostsResponseData = await getAllPosts();
-  allPosts.value = allPostsResponseData;
-});
+const { data: allPosts } = useGetAllPosts();
 </script>
 
 <!--
@@ -20,6 +14,7 @@ top level selection:
   some posts doesn't have location and just country?
 -->
 
+<!-- maybe display the clicked posts underneath filter section? 07 october-->
 <template>
   <header class="space-y-7 mb-20">
     <h1 class="text-xl sm:text-2xl md:text-[50px] text-center font-bold mt-20">
