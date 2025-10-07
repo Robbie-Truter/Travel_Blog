@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, onMounted, ref } from 'vue';
+import { watch, computed, ref } from 'vue';
 import { useGetTabPosts } from '@/pages/home_page/composables/useGetTabPosts';
 import type { TTabPosts } from '@/types/posts';
 
@@ -14,10 +14,6 @@ const setActiveTab = (selectedTab: string) => {
 const isTabActive = (selectedTab: string) => {
   return currentTab.value === selectedTab;
 };
-
-onMounted(async () => {
-  currentTab.value = tabHeaders.value[0];
-});
 
 const tabHeaders = computed(() => {
   if (!allTabCountries.value) return [];
@@ -43,6 +39,16 @@ const tabContent = computed(() => {
 
   return groupedTabsByCountry;
 });
+
+watch(
+  tabHeaders,
+  (newHeaders) => {
+    if (newHeaders.length > 0 && !currentTab.value) {
+      currentTab.value = newHeaders[0];
+    }
+  },
+  { immediate: true }
+);
 </script>
 
 <template>
