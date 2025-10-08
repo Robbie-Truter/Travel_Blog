@@ -31,7 +31,7 @@ import 'primeicons/primeicons.css';
 
   <CountryTabs />
 
-  <section class="flex items-center justify-center h-96 mb-20">
+  <section v-animate-on-scroll class="flex items-center justify-center h-96 mb-20">
     <div class="relative h-72 w-full lg:w-2/3 rounded-xl overflow-visible bg-[#99bfd7]">
       <div
         class="flex flex-row justify-center items-center absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full"

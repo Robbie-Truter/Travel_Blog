@@ -9,6 +9,7 @@ const { data: latestPosts } = useGetLatestPosts();
 <template>
   <section
     v-if="latestPosts && latestPosts.length > 0"
+    v-animate-on-scroll
     class="flex flex-col lg:flex-row justify-center gap-6 w-full mt-12 mb-20 px-2 lg:mt-20 lg:px-20 xl:px-40 font-bold text-lg"
   >
     <article class="flex flex-col gap-2 w-full 2xl:w-auto">

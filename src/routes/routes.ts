@@ -7,7 +7,7 @@ import NotFound from '@/pages/NotFound.vue';
 const routes = [
   { path: '/', redirect: '/home' },
   { path: '/home', component: HomePage },
-  { path: '/aboutMe', component: AboutMe },
+  { path: '/about-us', component: AboutMe },
   { path: '/blogs', component: BlogPosts },
   { path: '/:catchAll(.*)', component: NotFound },
 ];

@@ -38,14 +38,14 @@ onUnmounted(() => {
       </button>
     </RouterLink>
 
-    <RouterLink to="/aboutMe">
+    <RouterLink to="/about-us">
       <button class="btn-nav">
         <span class="pi pi-heart-fill mr-2"></span>
         About Us
       </button>
     </RouterLink>
 
-    <RouterLink to="/Blogs">
+    <RouterLink to="/blogs">
       <button class="btn-nav">
         <span class="pi pi-camera mr-2"></span>
         Blogs

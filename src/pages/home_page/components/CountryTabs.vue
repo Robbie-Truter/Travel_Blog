@@ -52,7 +52,7 @@ watch(
 </script>
 
 <template>
-  <section class="mb-20">
+  <section v-if="allTabCountries" v-animate-on-scroll class="mb-20">
     <nav class="w-full mb-5" role="tablist">
       <div class="flex flex-row flex-wrap gap-7 justify-center w-full text-2xl">
         <span
