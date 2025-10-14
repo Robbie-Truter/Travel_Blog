@@ -2,8 +2,9 @@
 import { watch, computed, ref } from 'vue';
 import { useGetTabPosts } from '@/pages/home_page/composables/useGetTabPosts';
 import type { TTabPosts } from '@/types/posts';
+import CountryTabsSkeleton from '@/pages/home_page/components/CountryTabsSkeleton.vue';
 
-const { data: allTabCountries } = useGetTabPosts();
+const { data: allTabCountries, isFetching: isCountryTabsLoading } = useGetTabPosts();
 
 const currentTab = ref<string | null>(null);
 
@@ -52,7 +53,14 @@ watch(
 </script>
 
 <template>
-  <section v-if="allTabCountries" v-animate-on-scroll class="mb-20">
+  <section
+    v-if="isCountryTabsLoading"
+    class="flex justify-center mt-12 mb-20 px-10 lg:mt-20 lg:px-20 xl:px-40"
+  >
+    <CountryTabsSkeleton />
+  </section>
+
+  <section v-else-if="allTabCountries" v-animate-on-scroll class="mb-20">
     <nav class="w-full mb-5" role="tablist">
       <div class="flex flex-row flex-wrap gap-7 justify-center w-full text-2xl">
         <span
