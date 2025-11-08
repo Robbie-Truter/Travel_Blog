@@ -1,17 +1,29 @@
 <script setup lang="ts">
 import { useGetLatestPosts } from '@/pages/home_page/composables/useGetLatestPosts';
 import LatestPostsSkeleton from '@/pages/home_page/components/LatestPostsSkeleton.vue';
+import LatestPostsError from '@/pages/home_page/components/LatestPostsError.vue';
 import 'primeicons/primeicons.css';
 
 // Get latest posts
-const { data: latestPosts, isFetching: isLatestPostsLoading } = useGetLatestPosts();
+const {
+  data: latestPosts,
+  isFetching: isLatestPostsLoading,
+  isError: hasLatestPostsError,
+} = useGetLatestPosts();
 </script>
 
 <template>
+  <!--Loading state-->
   <section v-if="isLatestPostsLoading" class="mt-12 mb-20 px-10 lg:mt-20 lg:px-20 xl:px-40">
     <LatestPostsSkeleton />
   </section>
 
+  <!--Error state-->
+  <section v-else-if="hasLatestPostsError" class="mt-12 mb-20 px-2 lg:mt-20 lg:px-20 xl:px-40">
+    <LatestPostsError />
+  </section>
+
+  <!--Success state-->
   <section
     v-else-if="latestPosts && latestPosts.length > 0"
     v-animate-on-scroll
