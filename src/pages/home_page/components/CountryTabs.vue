@@ -53,6 +53,7 @@ watch(
 </script>
 
 <template>
+  <!--Loading state-->
   <section
     v-if="isCountryTabsLoading"
     class="flex justify-center mt-12 mb-20 px-10 lg:mt-20 lg:px-20 xl:px-40"
@@ -60,7 +61,8 @@ watch(
     <CountryTabsSkeleton />
   </section>
 
-  <section v-else-if="allTabCountries" v-animate-on-scroll class="mb-20">
+  <!--Success state-->
+  <section v-else-if="allTabCountries" class="mb-20">
     <nav class="w-full mb-5" role="tablist">
       <div class="flex flex-row flex-wrap gap-7 justify-center w-full text-2xl">
         <span

@@ -44,19 +44,7 @@
     @apply rounded-full transition duration-300 ease-in-out bg-[#EDB5BF] hover:text-white hover:-translate-y-1 hover:opacity-80 p-3 hover:shadow-lg;
   }
 
-  /* Animation styles for the v-animate-on-scroll directive */
-  .animate-on-scroll {
-    opacity: 0;
-    transform: translateY(30px);
-    transition:
-      opacity 0.3s ease-out,
-      transform 0.3s ease-out;
-  }
 
-  .animate-on-scroll.visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
 }
 
 @layer utilities {
