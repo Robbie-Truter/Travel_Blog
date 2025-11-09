@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted } from 'vue';
+import BaseButton from '@/components/BaseButton.vue';
 import 'primeicons/primeicons.css';
 
 let isScrolledUp = ref<boolean>(true);
@@ -27,29 +28,29 @@ onUnmounted(() => {
 
 <template>
   <nav
-    class="flex flex-col lg:flex-row justify-center lg:justify-start items-center h-auto lg:h-20 w-full z-10 gap-0 lg:gap-4 px-10 shadow-lg rounded bg-none text-black bg-transparent"
+    class="flex flex-col font-bold lg:flex-row justify-center lg:justify-start items-center h-auto lg:h-20 w-full z-10 gap-0 lg:gap-8 px-10 shadow-lg rounded bg-none text-black bg-transparent"
   >
     <h1 class="leckerli-one-regular text-[20px] lg:mr-10">Rob & Kija</h1>
 
     <RouterLink to="/home">
-      <button class="btn-nav">
+      <BaseButton>
         <span class="pi pi-home mr-2"></span>
         Home
-      </button>
+      </BaseButton>
     </RouterLink>
 
     <RouterLink to="/about-us">
-      <button class="btn-nav">
+      <BaseButton>
         <span class="pi pi-heart-fill mr-2"></span>
         About Us
-      </button>
+      </BaseButton>
     </RouterLink>
 
     <RouterLink to="/blogs">
-      <button class="btn-nav">
+      <BaseButton>
         <span class="pi pi-camera mr-2"></span>
         Blogs
-      </button>
+      </BaseButton>
     </RouterLink>
 
     <div
@@ -67,30 +68,24 @@ onUnmounted(() => {
       <h1 class="leckerli-one-regular text-[15px] lg:mr-10">Rob & Kija</h1>
 
       <RouterLink to="/home">
-        <button
-          class="rounded-full transition duration-300 ease-in-out text-sm p-1 hover:bg-[#EDB5BF] hover:-translate-y-[2px] hover:opacity-80 hover:shadow-lg"
-        >
+        <BaseButton size="sm">
           <span class="pi pi-home mr-2"></span>
           Home
-        </button>
+        </BaseButton>
       </RouterLink>
 
-      <RouterLink to="/aboutMe">
-        <button
-          class="rounded-full transition duration-300 ease-in-out text-sm p-1 hover:bg-[#EDB5BF] hover:-translate-y-[2px] hover:opacity-80 hover:shadow-lg"
-        >
+      <RouterLink to="/about-us">
+        <BaseButton size="sm">
           <span class="pi pi-heart-fill mr-2"></span>
           About Us
-        </button>
+        </BaseButton>
       </RouterLink>
 
       <RouterLink to="/blogs">
-        <button
-          class="rounded-full transition duration-300 ease-in-out text-sm p-1 hover:bg-[#EDB5BF] hover:-translate-y-[2px] hover:opacity-80 hover:shadow-lg"
-        >
+        <BaseButton size="sm">
           <span class="pi pi-camera mr-2"></span>
           Blogs
-        </button>
+        </BaseButton>
       </RouterLink>
 
       <div
