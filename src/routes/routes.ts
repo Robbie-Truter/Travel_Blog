@@ -4,6 +4,7 @@ import AboutMe from '@/pages/AboutMe.vue';
 import BlogPosts from '@/pages/blog_posts/BlogPosts.vue';
 import NotFound from '@/pages/NotFound.vue';
 
+//Page routes
 const routes = [
   { path: '/', redirect: '/home' },
   { path: '/home', component: HomePage },

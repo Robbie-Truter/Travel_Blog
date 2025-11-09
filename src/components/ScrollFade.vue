@@ -21,7 +21,7 @@ withDefaults(
     :in-view="{ opacity: 1, y: 0, filter: 'blur(0px)' }"
     :transition="transition"
     :in-view-options="{ once: true }"
-    :viewport="{ amount: 0.7 }"
+    :viewport="{ amount: 1 }"
   >
     <slot></slot>
   </motion.div>
