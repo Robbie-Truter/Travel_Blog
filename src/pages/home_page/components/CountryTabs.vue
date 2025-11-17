@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { watch, computed, ref } from 'vue';
+import CountryTabsSkeleton from '@/pages/home_page/components/CountryTabsSkeleton.vue';
 import { useGetTabPosts } from '@/pages/home_page/composables/useGetTabPosts';
 import type { TTabPosts } from '@/types/posts';
-import CountryTabsSkeleton from '@/pages/home_page/components/CountryTabsSkeleton.vue';
+import { computed, ref, watch } from 'vue';
 
 const { data: allTabCountries, isFetching: isCountryTabsLoading } = useGetTabPosts();
 

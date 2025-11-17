@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import LatestPosts from '@/pages/home_page/components/LatestPosts.vue';
-import CountryTabs from '@/pages/home_page/components/CountryTabs.vue';
 import ScrollFade from '@/components/ScrollFade.vue';
+import CountryTabs from '@/pages/home_page/components/CountryTabs.vue';
+import LatestPosts from '@/pages/home_page/components/LatestPosts.vue';
 import 'primeicons/primeicons.css';
 </script>
 

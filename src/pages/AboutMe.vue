@@ -1,5 +1,3 @@
-<script setup></script>
-
 <template>
   <div>
     <header class="flex flex-col self-center items-center gap-10 w-full mt-10 p-5 text-center">
@@ -30,7 +28,9 @@
     </header>
 
     <section class="flex flex-col items-center justify-center gap-10 w-full mt-28">
-      <div class="flex flex-col sm:flex-row items-center sm:items-baseline gap-40 sm:gap-2 md:gap-20">
+      <div
+        class="flex flex-col sm:flex-row items-center sm:items-baseline gap-40 sm:gap-2 md:gap-20"
+      >
         <figure
           class="relative h-64 w-64 p-5 text-center text-white bg-[#99bfd7] space-y-2 rounded-2xl"
         >
@@ -54,8 +54,8 @@
           />
           <h2 class="p-1 mx-4 text-xl font-bold bg-[#3e3c3c] mt-7">The Planner</h2>
           <p class="font-bold text-sm tracking-wider drop-shadow-2xl">
-            I’m Kija, a 21-year-old social media coordinator by day, and in my downtime, I’m probably
-            browsing Google Flights for our next adventure!
+            I’m Kija, a 21-year-old social media coordinator by day, and in my downtime, I’m
+            probably browsing Google Flights for our next adventure!
           </p>
           <p class="font-bold text-sm tracking-wider drop-shadow-2xl">
             Slow travel is how I like to explore—learning a few new words in a foreign language,
@@ -178,8 +178,8 @@
                   class="h-[32px] w-[32px] object-cover rounded-full"
                 />
                 <span class="w-full">
-                  Japan & Chernobyl. Russia. Ski in Austria again. Europen Christmas market & midevil
-                  fair
+                  Japan & Chernobyl. Russia. Ski in Austria again. Europen Christmas market &
+                  midevil fair
                 </span>
               </li>
             </ul>

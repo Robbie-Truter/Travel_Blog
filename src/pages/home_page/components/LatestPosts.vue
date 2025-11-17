@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { useGetLatestPosts } from '@/pages/home_page/composables/useGetLatestPosts';
-import LatestPostsSkeleton from '@/pages/home_page/components/LatestPostsSkeleton.vue';
 import LatestPostsError from '@/pages/home_page/components/LatestPostsError.vue';
+import LatestPostsSkeleton from '@/pages/home_page/components/LatestPostsSkeleton.vue';
+import { useGetLatestPosts } from '@/pages/home_page/composables/useGetLatestPosts';
 import 'primeicons/primeicons.css';
 
 // Get latest posts

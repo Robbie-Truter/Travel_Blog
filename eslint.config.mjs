@@ -1,10 +1,10 @@
 // @ts-check
 
 import eslint from '@eslint/js';
-import tseslint from 'typescript-eslint';
-import vue from 'eslint-plugin-vue';
 import prettier from 'eslint-config-prettier';
+import vue from 'eslint-plugin-vue';
 import globals from 'globals';
+import tseslint from 'typescript-eslint';
 
 export default [
   eslint.configs.recommended,
