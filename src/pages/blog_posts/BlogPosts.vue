@@ -26,8 +26,8 @@ top level selection:
         class="w-2/3 lg:max-w-[900px] py-2 px-5 m-auto text-sm md:text-xl text-center rounded-xl sm:rounded-full bg-color-secondary"
       >
         <p>
-          Join us as we explore new countries, sharing all the tips and tricks we wish we knew to make
-          your travels easier!
+          Join us as we explore new countries, sharing all the tips and tricks we wish we knew to
+          make your travels easier!
         </p>
       </div>
     </header>
