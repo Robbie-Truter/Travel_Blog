@@ -1,23 +1,28 @@
 <script setup lang="ts">
+import PostCard from '@/pages/blog_posts/components/PostCard.vue';
 import { useGetAllPosts } from '@/pages/blog_posts/composables/useGetAllPosts';
 
-const { data: allPosts } = useGetAllPosts();
+// #NOTE: when clicking on Antalya on home page, navigate the blogs with search populated with antalya
+// ------------ PostCards should not have locations like Antalya when navigating from home and you click Antalya, it should display posts under Antalya
+// #NOTE: Add Country and date posted over PostCard image
+// #NOTE: Download prime vue
+// ------------ Use MultiSelect
+// ------------ Use Paginator for the blog posts
+// ------------ Maybe use Card ?
+// #NOTE: Use the blog inspiration to replace "Ready for next side quest" with Mythia
+// ------------ Put filters inside it like in screenshot
+
+// --- Get all posts hook ---
+const {
+  data: allPosts,
+  //isFetching: isLatestPostsLoading,
+  //isError: hasLatestPostsError,
+} = useGetAllPosts();
 </script>
 
-<!--
-top level selection:
-  call only locations (use location_name)
-  add filter for location by country
-
-  if I click location, get all posts in that location
-
-  some posts doesn't have location and just country?
--->
-
-<!-- maybe display the clicked posts underneath filter section? 07 october-->
 <template>
   <div>
-    <header class="space-y-7 mb-20">
+    <header class="space-y-7 mb-15">
       <h1 class="text-xl sm:text-2xl md:text-[50px] text-center font-bold mt-20">
         Ready for the next side quest?
       </h1>
@@ -33,34 +38,25 @@ top level selection:
     </header>
 
     <section class="mb-20 space-y-5">
-      <div class="flex flex-col gap-2 m-auto w-4/5 md:max-w-[800px]">
-        <input
+      <div class="flex flex-col gap-2 m-auto w-full">
+        <!--Change this to a a dropdown with all countries visited-->
+        <!--<input
           id="filterBlogs"
           type="text"
           placeholder="Search Blogs"
-          class="w-full md:w-80 p-2 text-white rounded-full"
-        />
+          class="w-full md:w-80 p-2 text-black bg-color-secondary rounded-full"
+        />-->
         <div
-          class="relative flex flex-wrap gap-5 justify-center h-auto py-4 px-8 text-sm md:text-xl text-center overflow-hidden rounded-xl sm:rounded-2xl bg-color-secondary"
+          class="relative flex flex-wrap gap-10 justify-center h-auto p-8 text-sm md:text-xl text-center overflow-visible rounded-xl sm:rounded-2xl"
         >
-          <div
-            class="w-20 p-2 text-center rounded-full cursor-pointer bg-white bg-opacity-50 hover:bg-opacity-100"
-          >
-            <span>All</span>
-          </div>
-
-          <div
+          <PostCard
             v-for="(post, index) in allPosts"
             :key="index"
-            class="space-x-0 lg:space-x-2 p-2 text-center rounded-full cursor-pointer bg-white bg-opacity-50 hover:bg-opacity-100"
-          >
-            <span class="mr-2 text-sm">TR</span>
-            <span>{{ post?.article_title }}</span>
-          </div>
-
-          <!--<span
-          class="absolute right-3 bottom-8 text-[14px] cursor-pointer tra hover:text-[16px] pi pi-arrow-circle-down"
-        ></span>-->
+            :title="post?.article_title"
+            :cover-img="post?.cover_image"
+            :country-name="post?.country.country_name"
+            :date-created="post?.date_created"
+          />
         </div>
       </div>
     </section>

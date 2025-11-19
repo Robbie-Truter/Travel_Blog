@@ -27,6 +27,8 @@ export type TAllPosts = {
   is_tab: boolean;
   date_created: string;
   date_updated: string | null;
-  country: string;
+  country: {
+    country_name: string;
+  };
   location: string;
 };

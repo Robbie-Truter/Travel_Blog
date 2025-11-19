@@ -4,7 +4,7 @@ import LatestPostsSkeleton from '@/pages/home_page/components/LatestPostsSkeleto
 import { useGetLatestPosts } from '@/pages/home_page/composables/useGetLatestPosts';
 import 'primeicons/primeicons.css';
 
-// Get latest posts
+// --- Get latest posts ---
 const {
   data: latestPosts,
   isFetching: isLatestPostsLoading,
@@ -40,7 +40,7 @@ const {
           />
           <p class="text-wrap">{{ post.article_title }}</p>
         </aside>
-        <hr v-if="latestPosts[index + 1]" class="w-full my-3" />
+        <hr v-if="latestPosts[index + 1]" class="w-full my-3 text-gray-200" />
       </figure>
     </article>
 
