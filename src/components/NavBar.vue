@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { ref, onMounted, onUnmounted } from 'vue';
 import BaseButton from '@/components/BaseButton.vue';
 import 'primeicons/primeicons.css';
+import { onMounted, onUnmounted, ref } from 'vue';
 
 let isScrolledUp = ref<boolean>(true);
 
@@ -33,21 +33,21 @@ onUnmounted(() => {
     <h1 class="leckerli-one-regular text-[20px] lg:mr-10">Rob & Kija</h1>
 
     <RouterLink to="/home">
-      <BaseButton>
+      <BaseButton custom-class="rounded-2xl hover:bg-[#EDB5BF]">
         <span class="pi pi-home mr-2"></span>
         Home
       </BaseButton>
     </RouterLink>
 
     <RouterLink to="/about-us">
-      <BaseButton>
+      <BaseButton custom-class="rounded-2xl hover:bg-[#EDB5BF]">
         <span class="pi pi-heart-fill mr-2"></span>
         About Us
       </BaseButton>
     </RouterLink>
 
     <RouterLink to="/blogs">
-      <BaseButton>
+      <BaseButton custom-class="rounded-2xl hover:bg-[#EDB5BF]">
         <span class="pi pi-camera mr-2"></span>
         Blogs
       </BaseButton>
@@ -68,21 +68,21 @@ onUnmounted(() => {
       <h1 class="leckerli-one-regular text-[15px] lg:mr-10">Rob & Kija</h1>
 
       <RouterLink to="/home">
-        <BaseButton size="sm">
+        <BaseButton size="sm" custom-class="rounded-2xl hover:bg-[#EDB5BF]">
           <span class="pi pi-home mr-2"></span>
           Home
         </BaseButton>
       </RouterLink>
 
       <RouterLink to="/about-us">
-        <BaseButton size="sm">
+        <BaseButton size="sm" custom-class="rounded-2xl hover:bg-[#EDB5BF]">
           <span class="pi pi-heart-fill mr-2"></span>
           About Us
         </BaseButton>
       </RouterLink>
 
       <RouterLink to="/blogs">
-        <BaseButton size="sm">
+        <BaseButton size="sm" custom-class="rounded-2xl hover:bg-[#EDB5BF]">
           <span class="pi pi-camera mr-2"></span>
           Blogs
         </BaseButton>

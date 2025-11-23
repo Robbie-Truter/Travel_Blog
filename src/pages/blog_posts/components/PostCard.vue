@@ -12,6 +12,9 @@ defineProps<{
 
 <template>
   <motion.article
+    :aria-label="`Open blog post: ${title}`"
+    role="button"
+    tabindex="0"
     :while-hover="{ scale: 1.04 }"
     :while-press="{ scale: 1, transition: { type: 'spring', duration: 0.3 } }"
     :transition="{ type: 'spring', bounce: 0.6, duration: 0.8 }"

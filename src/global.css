@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&family=Red+Hat+Display:ital,wght@0,300..900;1,300..900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap');
 @config "../tailwind.config.js";
-@import "tailwindcss";
+@import 'tailwindcss';
 
 @layer base {
   :root {
@@ -32,16 +32,24 @@
   body::-webkit-scrollbar {
     display: none;
   }
+
+  h1 {
+    font-size: 2.25rem; /* 36px */
+    line-height: 2.5rem; /* 40px */
+  }
+
+  h2 {
+    font-size: 1.875rem; /* 30px */
+    line-height: 2.25rem; /* 36px */
+  }
+
+  h3 {
+    font-size: 1.5rem; /* 24px */
+    line-height: 2rem; /* 32px */
+  }
 }
 
 @layer components {
-  .btn-nav {
-    @apply rounded-2xl hover:bg-[#EDB5BF];
-  }
-
-  .btn-generic {
-    @apply rounded-full transition duration-300 ease-in-out bg-[#EDB5BF] hover:text-white hover:-translate-y-1 hover:opacity-80 p-3 hover:shadow-lg;
-  }
 }
 
 @layer utilities {
