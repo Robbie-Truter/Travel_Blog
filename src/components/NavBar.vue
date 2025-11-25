@@ -1,4 +1,7 @@
 <script setup lang="ts">
+// #NOTE: Move About Us to the right
+// #NOTE: Create styling for active route
+
 import BaseButton from '@/components/BaseButton.vue';
 import 'primeicons/primeicons.css';
 import { onMounted, onUnmounted, ref } from 'vue';

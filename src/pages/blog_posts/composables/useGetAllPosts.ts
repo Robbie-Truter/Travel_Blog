@@ -2,7 +2,11 @@ import { useFetch } from '@/composables/useFetch';
 import type { TAllPosts } from '@/types/posts';
 
 export const useGetAllPosts = () => {
-  return useFetch<TAllPosts[]>('items/posts?fields=*,country.country_name', 'allPosts', {
-    staleTime: 1000 * 60 * 5, // 5 minutes
-  });
+  return useFetch<TAllPosts[]>(
+    'items/posts?fields=*,country.country_name,location.location_name',
+    'allPosts',
+    {
+      staleTime: 1000 * 60 * 5, // 5 minutes
+    }
+  );
 };

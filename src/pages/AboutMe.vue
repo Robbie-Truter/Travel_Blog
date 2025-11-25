@@ -1,5 +1,6 @@
 <template>
   <div>
+    <!--#NOTE: add blue and pink border around robbie/kija icon-->
     <header class="flex flex-col self-center items-center gap-10 w-full mt-10 p-5 text-center">
       <div class="w-80 relative">
         <h1 class="text-[35px] p-1 z-20 font-bold">We're Kija & Robert</h1>

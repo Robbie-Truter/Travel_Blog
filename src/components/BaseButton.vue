@@ -6,7 +6,7 @@ type SizeVariants = 'sm' | 'md';
 withDefaults(
   defineProps<{
     size?: SizeVariants;
-    customClass?: string;
+    customClass?: string | string[];
   }>(),
   {
     size: 'md',
@@ -31,7 +31,7 @@ const sizeVariants: Record<SizeVariants, string> = {
     }"
     :while-press="{ scale: 1, transition: { duration: 0.2, ease: 'easeInOut' } }"
     :transition="{ type: 'spring', bounce: 0.7, duration: 1 }"
-    :class="`${sizeVariants[size]} ${customClass} flex gap-1 items-center cursor-pointer`"
+    :class="[sizeVariants[size], customClass, 'flex gap-1 items-center cursor-pointer']"
   >
     <slot></slot>
   </motion.button>

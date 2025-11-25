@@ -30,5 +30,7 @@ export type TAllPosts = {
   country: {
     country_name: string;
   };
-  location: string;
+  location: {
+    location_name: string;
+  };
 };
