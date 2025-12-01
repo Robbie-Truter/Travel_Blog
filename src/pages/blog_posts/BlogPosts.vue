@@ -29,7 +29,7 @@ const {
   //isError: hasLatestPostsError,
 } = useGetAllPosts();
 
-// --- Computed ---
+// --- Computed Properties ---
 const countryFilters = computed(() => {
   // Get all unique country names with the total count and display as filters
   const allFilters: Record<string, number> = {};
@@ -68,10 +68,43 @@ const locationFilters = computed(() => {
   return {};
 });
 
+const filteredBlogPosts = computed(() => {
+  if (!allPosts.value) return [];
+
+  let filteredPosts = allPosts.value;
+
+  // Country and Location filtering
+  if (selectedCountryFilter.value !== 'All') {
+    filteredPosts = filteredPosts.filter((post) => {
+      const countryMatch = post.country.country_name === selectedCountryFilter.value;
+      const locationMatch =
+        !selectedLocationFilter.value ||
+        post.location.location_name === selectedLocationFilter.value;
+      return countryMatch && locationMatch;
+    });
+  }
+
+  // Search filtering
+  if (postSearch.value) {
+    const searchTerm = postSearch.value.toLowerCase().trim();
+    if (searchTerm) {
+      filteredPosts = filteredPosts.filter((post) =>
+        post.article_title.toLowerCase().includes(searchTerm)
+      );
+    }
+  }
+
+  return filteredPosts;
+});
+
 // --- Methods ---
 const applyCountryFilter = (type: 'country' | 'location', selectedFilter: string) => {
-  if (type === 'country') selectedCountryFilter.value = selectedFilter;
-  else selectedLocationFilter.value = selectedFilter;
+  if (type === 'country') {
+    selectedCountryFilter.value = selectedFilter;
+  } else {
+    if (selectedLocationFilter.value === selectedFilter) selectedLocationFilter.value = '';
+    else selectedLocationFilter.value = selectedFilter;
+  }
 };
 </script>
 
@@ -189,7 +222,7 @@ const applyCountryFilter = (type: 'country' | 'location', selectedFilter: string
           class="relative flex flex-wrap gap-10 justify-center h-auto p-8 text-sm md:text-xl text-center overflow-visible rounded-xl sm:rounded-2xl"
         >
           <PostCard
-            v-for="(post, index) in allPosts"
+            v-for="(post, index) in filteredBlogPosts"
             :key="index"
             :title="post?.article_title"
             :cover-img="post?.cover_image"
