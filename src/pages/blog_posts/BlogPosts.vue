@@ -17,7 +17,7 @@ import { useGetAllPosts } from '@/pages/blog_posts/composables/useGetAllPosts';
 import { motion } from 'motion-v';
 import { computed, ref } from 'vue';
 
-// --- ref ---
+// --- Ref ---
 const selectedCountryFilter = ref<string>('All');
 const selectedLocationFilter = ref<string>('');
 const postSearch = ref<string>('');
@@ -30,7 +30,7 @@ const {
 } = useGetAllPosts();
 
 // --- Computed ---
-const postFilters = computed(() => {
+const countryFilters = computed(() => {
   // Get all unique country names with the total count and display as filters
   const allFilters: Record<string, number> = {};
 
@@ -46,22 +46,32 @@ const postFilters = computed(() => {
 });
 
 const locationFilters = computed(() => {
+  if (!allPosts.value) return null;
+
+  const allFilters: Record<string, number> = {};
   const selectedCountry = selectedCountryFilter.value;
+
   if (selectedCountry !== 'All') {
     const filteredPosts = allPosts.value?.filter(
       (post) => post.country.country_name === selectedCountryFilter.value
     );
-    const filteredLocations = filteredPosts?.map((post) => post.location.location_name);
 
-    return filteredLocations;
+    filteredPosts?.forEach((post) => {
+      const locationName = post.location?.location_name;
+
+      if (locationName) allFilters[locationName] = (allFilters[locationName] ?? 0) + 1;
+    });
+
+    return allFilters;
   }
 
-  return [];
+  return {};
 });
 
 // --- Methods ---
-const applyCountryFilter = (selectedCountry: string) => {
-  selectedCountryFilter.value = selectedCountry;
+const applyCountryFilter = (type: 'country' | 'location', selectedFilter: string) => {
+  if (type === 'country') selectedCountryFilter.value = selectedFilter;
+  else selectedLocationFilter.value = selectedFilter;
 };
 </script>
 
@@ -82,7 +92,6 @@ const applyCountryFilter = (selectedCountry: string) => {
             bounce: 0.6,
           }"
         >
-          {{ postFilters }}
           <h1 class="text-color-primary font-bold">Ready for the next side quest?</h1>
           <p class="text-color-secondary font-bold">
             Join us as we explore new countries, sharing all the tips and tricks we wish we knew to
@@ -95,32 +104,69 @@ const applyCountryFilter = (selectedCountry: string) => {
         <div class="flex flex-wrap gap-3 justify-between h-full">
           <div class="flex flex-col justify-center w-1/3 gap-4">
             <h2 class="text-color-secondary">Filters</h2>
-            <div class="flex flex-wrap gap-4">
-              <BaseButton
-                :custom-class="[
-                  selectedCountryFilter === 'All' ? 'bg-color-primary' : 'bg-color-secondary',
-                  'p-2 w-fit rounded-full font-bold text-[15px] shadow-xl text-black hover:bg-color-primary',
-                ]"
-                @click="applyCountryFilter('All')"
+            <div class="flex flex-wrap gap-4 mb-3">
+              <motion.div
+                :initial="{ opacity: 0, y: 20 }"
+                :animate="{ opacity: 1, y: 0 }"
+                :transition="{ delay: 0.1, duration: 0.3 }"
               >
-                <p class="">All</p>
-                <i class="pi pi-circle-fill text-[5px]"></i>
-                <p class="text-[10px]">{{ postFilters.totalPosts }}</p>
-              </BaseButton>
-              <BaseButton
-                v-for="(value, key) in postFilters.allFilters"
+                <BaseButton
+                  :custom-class="[
+                    selectedCountryFilter === 'All' ? 'bg-color-primary' : 'bg-color-secondary',
+                    'p-2 w-fit rounded-full font-bold text-[15px] shadow-xl text-black hover:bg-color-primary',
+                  ]"
+                  @click="applyCountryFilter('country', 'All')"
+                >
+                  <p class="">All</p>
+                  <i class="pi pi-circle-fill text-[5px]"></i>
+                  <p class="text-[10px]">{{ countryFilters.totalPosts }}</p>
+                </BaseButton>
+              </motion.div>
+              <motion.div
+                v-for="(value, key, index) in countryFilters.allFilters"
                 :key="key"
-                :custom-class="[
-                  selectedCountryFilter === key ? 'bg-color-primary' : 'bg-color-secondary',
-                  'p-2 w-fit rounded-full font-bold text-[15px] shadow-xl text-black hover:bg-color-primary',
-                ]"
-                @click="applyCountryFilter(key)"
+                :initial="{ opacity: 0, y: 20 }"
+                :animate="{ opacity: 1, y: 0 }"
+                :transition="{ delay: 0.1 + index * 0.05, duration: 0.3 }"
               >
-                <p class="">{{ key }}</p>
-                <i class="pi pi-circle-fill text-[5px]"></i>
-                <p class="text-[10px]">{{ value }}</p>
-              </BaseButton>
+                <BaseButton
+                  :custom-class="[
+                    selectedCountryFilter === key ? 'bg-color-primary' : 'bg-color-secondary',
+                    'p-2 w-fit rounded-full font-bold text-[15px] shadow-xl text-black hover:bg-color-primary',
+                  ]"
+                  @click="applyCountryFilter('country', key)"
+                >
+                  <p class="">{{ key }}</p>
+                  <i class="pi pi-circle-fill text-[5px]"></i>
+                  <p class="text-[10px]">{{ value }}</p>
+                </BaseButton>
+              </motion.div>
             </div>
+
+            <AnimatePresence>
+              <div class="flex flex-wrap gap-4">
+                <motion.div
+                  v-for="(value, key, index) in locationFilters"
+                  :key="key"
+                  :initial="{ opacity: 0, y: 20 }"
+                  :animate="{ opacity: 1, y: 0 }"
+                  :exit="{ opacity: 0, y: 20 }"
+                  :transition="{ delay: 0.1 + index * 0.05, duration: 0.3 }"
+                >
+                  <BaseButton
+                    :custom-class="[
+                      selectedLocationFilter === key ? 'bg-color-primary' : 'bg-color-secondary',
+                      'p-2 w-fit rounded-full font-bold text-[15px] shadow-xl text-black hover:bg-color-primary',
+                    ]"
+                    @click="applyCountryFilter('location', key)"
+                  >
+                    <p class="">{{ key }}</p>
+                    <i class="pi pi-circle-fill text-[5px]"></i>
+                    <p class="text-[10px]">{{ value }}</p>
+                  </BaseButton>
+                </motion.div>
+              </div>
+            </AnimatePresence>
           </div>
 
           <div class="flex items-center">
