@@ -14,7 +14,7 @@ import BaseButton from '@/components/BaseButton.vue';
 import BaseInput from '@/components/BaseInput.vue';
 import PostCard from '@/pages/blog_posts/components/PostCard.vue';
 import { useGetAllPosts } from '@/pages/blog_posts/composables/useGetAllPosts';
-import { motion } from 'motion-v';
+import { AnimatePresence, motion } from 'motion-v';
 import { computed, ref } from 'vue';
 
 // --- Ref ---
@@ -100,6 +100,7 @@ const filteredBlogPosts = computed(() => {
 // --- Methods ---
 const applyCountryFilter = (type: 'country' | 'location', selectedFilter: string) => {
   if (type === 'country') {
+    selectedLocationFilter.value = '';
     selectedCountryFilter.value = selectedFilter;
   } else {
     if (selectedLocationFilter.value === selectedFilter) selectedLocationFilter.value = '';
@@ -218,18 +219,27 @@ const applyCountryFilter = (type: 'country' | 'location', selectedFilter: string
 
     <section class="mb-20 space-y-5">
       <div class="flex flex-col gap-2 m-auto w-full">
-        <div
-          class="relative flex flex-wrap gap-10 justify-center h-auto p-8 text-sm md:text-xl text-center overflow-visible rounded-xl sm:rounded-2xl"
-        >
-          <PostCard
-            v-for="(post, index) in filteredBlogPosts"
-            :key="index"
-            :title="post?.article_title"
-            :cover-img="post?.cover_image"
-            :country-name="post?.country.country_name"
-            :date-created="post?.date_created"
-          />
-        </div>
+        <AnimatePresence>
+          <div
+            class="flex flex-wrap gap-10 justify-center h-auto p-8 text-sm md:text-xl text-center overflow-visible rounded-xl sm:rounded-2xl"
+          >
+            <motion.div
+              v-for="(post, index) in filteredBlogPosts"
+              :key="post.id"
+              :initial="{ opacity: 0 }"
+              :animate="{ opacity: 1 }"
+              :exit="{ opacity: 0 }"
+              :transition="{ delay: index * 0.05, duration: 0.5 }"
+            >
+              <PostCard
+                :title="post?.article_title"
+                :cover-img="post?.cover_image"
+                :country-name="post?.country.country_name"
+                :date-created="post?.date_created"
+              />
+            </motion.div>
+          </div>
+        </AnimatePresence>
       </div>
     </section>
   </div>

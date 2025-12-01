@@ -17,7 +17,7 @@ defineProps<{
     tabindex="0"
     :while-hover="{ scale: 1.04 }"
     :while-press="{ scale: 1, transition: { type: 'spring', duration: 0.3 } }"
-    :transition="{ type: 'spring', bounce: 0.6, duration: 0.8 }"
+    :transition="{ type: 'spring', duration: 0.8 }"
     class="w-96 bg-white h-120 shadow hover:shadow-xl cursor-pointer rounded-md"
   >
     <figure class="relative w-full h-[80%] overflow-clip">
