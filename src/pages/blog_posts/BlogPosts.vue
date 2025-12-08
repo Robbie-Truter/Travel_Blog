@@ -1,26 +1,24 @@
 <script setup lang="ts">
 // #NOTE: when clicking on Antalya on home page, navigate the blogs with search populated with antalya
 // ------------ PostCards should not have locations like Antalya when navigating from home and you click Antalya, it should display posts under Antalya
-// #NOTE: Add Country and date posted over PostCard image
 // #NOTE: Download prime vue
 // ------------ Use MultiSelect
-// ------------ Use Paginator for the blog posts
 // ------------ Maybe use Card ?
-// #NOTE: Use the blog inspiration to replace "Ready for next side quest" with Mythia
-// ------------ Put filters inside it like in screenshot
-// #NOTE: Animate header and blog posts from top to bottom
 
 import BaseButton from '@/components/BaseButton.vue';
 import BaseInput from '@/components/BaseInput.vue';
 import PostCard from '@/pages/blog_posts/components/PostCard.vue';
 import { useGetAllPosts } from '@/pages/blog_posts/composables/useGetAllPosts';
 import { AnimatePresence, motion } from 'motion-v';
+import { PageState } from 'primevue/paginator';
 import { computed, ref } from 'vue';
+import PostPagination from './components/PostPagination.vue';
 
 // --- Ref ---
 const selectedCountryFilter = ref<string>('All');
 const selectedLocationFilter = ref<string>('');
 const postSearch = ref<string>('');
+const currentPage = ref<number>(0);
 
 // --- Composable ---
 const {
@@ -97,6 +95,10 @@ const filteredBlogPosts = computed(() => {
   return filteredPosts;
 });
 
+const paginatedPosts = computed(() => {
+  return filteredBlogPosts.value.slice(currentPage.value, currentPage.value + 5);
+});
+
 // --- Methods ---
 const applyCountryFilter = (type: 'country' | 'location', selectedFilter: string) => {
   if (type === 'country') {
@@ -106,6 +108,10 @@ const applyCountryFilter = (type: 'country' | 'location', selectedFilter: string
     if (selectedLocationFilter.value === selectedFilter) selectedLocationFilter.value = '';
     else selectedLocationFilter.value = selectedFilter;
   }
+};
+
+const updatePagination = (event: PageState) => {
+  currentPage.value = event.first;
 };
 </script>
 
@@ -214,6 +220,10 @@ const applyCountryFilter = (type: 'country' | 'location', selectedFilter: string
             />
           </div>
         </div>
+        <PostPagination
+          :data-length="filteredBlogPosts.length"
+          @on-page-change="updatePagination"
+        />
       </div>
     </header>
 
@@ -224,7 +234,7 @@ const applyCountryFilter = (type: 'country' | 'location', selectedFilter: string
             class="flex flex-wrap gap-10 justify-center h-auto p-8 text-sm md:text-xl text-center overflow-visible rounded-xl sm:rounded-2xl"
           >
             <motion.div
-              v-for="(post, index) in filteredBlogPosts"
+              v-for="(post, index) in paginatedPosts"
               :key="post.id"
               :initial="{ opacity: 0 }"
               :animate="{ opacity: 1 }"
