@@ -132,7 +132,7 @@ const updatePagination = (event: PageState) => {
             bounce: 0.6,
           }"
         >
-          <h1 class="text-color-primary font-bold">Ready for the next side quest?</h1>
+          <h1 class="text-color-primary font-bold mb-5">Ready for the next side quest?</h1>
           <p class="text-color-secondary font-bold">
             Join us as we explore new countries, sharing all the tips and tricks we wish we knew to
             make your travels easier!
@@ -141,8 +141,8 @@ const updatePagination = (event: PageState) => {
 
         <hr class="border text-white mt-5" />
 
-        <div class="flex flex-wrap gap-3 justify-between h-full">
-          <div class="flex flex-col justify-center w-1/3 gap-4">
+        <div class="flex flex-wrap gap-3 justify-between w-full h-full">
+          <div class="flex flex-col justify-center w-full lg:w-1/3 gap-4">
             <h2 class="text-color-secondary">Filters</h2>
             <div class="flex flex-wrap gap-4 mb-3">
               <motion.div
@@ -172,7 +172,7 @@ const updatePagination = (event: PageState) => {
                 <BaseButton
                   :custom-class="[
                     selectedCountryFilter === key ? 'bg-color-primary' : 'bg-color-secondary',
-                    'p-2 w-fit rounded-full font-bold text-[15px] shadow-xl text-black hover:bg-color-primary',
+                    'w-fit rounded-full font-bold shadow-xl text-black hover:bg-color-primary',
                   ]"
                   @click="applyCountryFilter('country', key)"
                 >
@@ -194,9 +194,10 @@ const updatePagination = (event: PageState) => {
                   :transition="{ delay: 0.1 + index * 0.05, duration: 0.3 }"
                 >
                   <BaseButton
+                    size="xsm"
                     :custom-class="[
                       selectedLocationFilter === key ? 'bg-color-primary' : 'bg-color-secondary',
-                      'p-2 w-fit rounded-full font-bold text-[15px] shadow-xl text-black hover:bg-color-primary',
+                      'w-fit rounded-full font-bold shadow-xl text-black hover:bg-color-primary',
                     ]"
                     @click="applyCountryFilter('location', key)"
                   >
@@ -209,21 +210,33 @@ const updatePagination = (event: PageState) => {
             </AnimatePresence>
           </div>
 
-          <div class="flex items-center">
+          <motion.div class="flex items-center mt-4 w-full sm:w-96">
             <BaseInput
               id="blogPostSearch"
               v-model="postSearch"
               label="Search posts"
               type="text"
               placeholder="Search posts.."
-              class-name="w-96 bg-white"
+              class-name="bg-white"
             />
-          </div>
+          </motion.div>
         </div>
-        <PostPagination
-          :data-length="filteredBlogPosts.length"
-          @on-page-change="updatePagination"
-        />
+
+        <AnimatePresence>
+          <motion.div
+            v-if="filteredBlogPosts.length > 5"
+            :initial="{ opacity: 0, x: 20 }"
+            :animate="{ opacity: 1, x: 0 }"
+            :exit="{ opacity: 0, x: 20 }"
+            :transition="{ duration: 0.3 }"
+          >
+            <PostPagination
+              class="mt-10 lg:mt-0"
+              :data-length="filteredBlogPosts.length"
+              @on-page-change="updatePagination"
+            />
+          </motion.div>
+        </AnimatePresence>
       </div>
     </header>
 
@@ -231,7 +244,7 @@ const updatePagination = (event: PageState) => {
       <div class="flex flex-col gap-2 m-auto w-full">
         <AnimatePresence>
           <div
-            class="flex flex-wrap gap-10 justify-center h-auto p-8 text-sm md:text-xl text-center overflow-visible rounded-xl sm:rounded-2xl"
+            class="flex flex-wrap gap-10 justify-center h-auto p-1 md:p-8 text-sm md:text-xl text-center overflow-visible rounded-xl sm:rounded-2xl"
           >
             <motion.div
               v-for="(post, index) in paginatedPosts"

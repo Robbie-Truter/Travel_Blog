@@ -22,7 +22,7 @@ defineEmits(['onPageChange']);
       pages: { class: 'space-x-2' },
       page: ({ context }) => ({
         class: [
-          'px-2 rounded-full cursor-pointer select-none font-medium',
+          'w-[30px] rounded-full cursor-pointer select-none font-medium',
           context.active
             ? 'bg-color-primary text-black'
             : 'bg-color-secondary text-black hover:opacity-[0.8]',

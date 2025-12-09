@@ -13,7 +13,7 @@ defineProps<{
 </script>
 
 <template>
-  <div class="flex flex-col gap-2">
+  <div class="flex flex-col gap-2 w-full">
     <label class="ml-[3px] text-color-secondary font-bold" :for="id">{{ label }}</label>
     <input
       :id="id"

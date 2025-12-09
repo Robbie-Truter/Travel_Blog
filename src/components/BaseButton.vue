@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { motion } from 'motion-v';
 
-type SizeVariants = 'sm' | 'md';
+type SizeVariants = 'xsm' | 'sm' | 'md';
 
 withDefaults(
   defineProps<{
@@ -15,8 +15,9 @@ withDefaults(
 );
 
 const sizeVariants: Record<SizeVariants, string> = {
+  xsm: 'text-[11px] p-2',
   sm: 'text-[13px] p-1',
-  md: 'p-3',
+  md: 'text-md p-3',
 };
 </script>
 
