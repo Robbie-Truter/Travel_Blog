@@ -12,6 +12,7 @@ import { useGetAllPosts } from '@/pages/blog_posts/composables/useGetAllPosts';
 import { AnimatePresence, motion } from 'motion-v';
 import { PageState } from 'primevue/paginator';
 import { computed, ref } from 'vue';
+import { useRouter } from 'vue-router';
 import PostPagination from './components/PostPagination.vue';
 
 // --- Ref ---
@@ -26,6 +27,8 @@ const {
   //isFetching: isLatestPostsLoading,
   //isError: hasLatestPostsError,
 } = useGetAllPosts();
+
+const router = useRouter();
 
 // --- Computed Properties ---
 const countryFilters = computed(() => {
@@ -112,6 +115,12 @@ const applyCountryFilter = (type: 'country' | 'location', selectedFilter: string
 
 const updatePagination = (event: PageState) => {
   currentPage.value = event.first;
+};
+
+const selectPost = (postTitle: string) => {
+  if (postTitle) {
+    router.push(`/blogs/${postTitle}`);
+  }
 };
 </script>
 
@@ -253,6 +262,7 @@ const updatePagination = (event: PageState) => {
               :animate="{ opacity: 1 }"
               :exit="{ opacity: 0 }"
               :transition="{ delay: index * 0.05, duration: 0.5 }"
+              @click="selectPost(post?.article_title)"
             >
               <PostCard
                 :title="post?.article_title"
