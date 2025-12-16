@@ -21,11 +21,12 @@ const selectedLocationFilter = ref<string>('');
 const postSearch = ref<string>('');
 const currentPage = ref<number>(0);
 
-// --- Composable ---
+// --- Composables ---
 const {
   data: allPosts,
-  //isFetching: isLatestPostsLoading,
-  //isError: hasLatestPostsError,
+  isFetching: isAllPostsLoading,
+  isError: hasAllPostsError,
+  refetch: refetchAllPosts,
 } = useGetAllPosts();
 
 const router = useRouter();
@@ -150,10 +151,21 @@ const selectPost = (postTitle: string) => {
 
         <hr class="border text-white mt-5" />
 
+        <!-- Post filters -->
         <div class="flex flex-wrap gap-3 justify-between w-full h-full">
           <div class="flex flex-col justify-center w-full lg:w-1/3 gap-4">
             <h2 class="text-color-secondary">Filters</h2>
-            <div class="flex flex-wrap gap-4 mb-3">
+
+            <!-- Handle filter loading -->
+            <div
+              v-if="isAllPostsLoading || hasAllPostsError"
+              class="flex flex-wrap gap-4 mb-3 animate-pulse"
+            >
+              <div v-for="index in 4" :key="index" class="w-24 h-10 rounded-full bg-gray-500"></div>
+            </div>
+
+            <!-- Handle filter populated -->
+            <div v-else class="flex flex-wrap gap-4 mb-3">
               <motion.div
                 :initial="{ opacity: 0, y: 20 }"
                 :animate="{ opacity: 1, y: 0 }"
@@ -249,10 +261,70 @@ const selectPost = (postTitle: string) => {
       </div>
     </header>
 
+    <!-- Post list view -->
     <section class="mb-20 space-y-5">
       <div class="flex flex-col gap-2 m-auto w-full">
         <AnimatePresence>
+          <!-- Handle post loading -->
           <div
+            v-if="isAllPostsLoading"
+            class="flex flex-wrap gap-10 justify-center h-auto p-1 md:p-8 text-sm md:text-xl text-center overflow-visible rounded-xl sm:rounded-2xl"
+          >
+            <motion.div
+              v-for="index in 5"
+              :key="index"
+              :initial="{ opacity: 0 }"
+              :animate="{ opacity: 1 }"
+              :exit="{ opacity: 0 }"
+              :transition="{ delay: index * 0.05, duration: 0.5 }"
+            >
+              <div
+                class="bg-gray-300 animate-pulse w-72 sm:w-80 lg:w-96 h-72 sm:h-80 lg:h-120 rounded-lg shadow-lg"
+              ></div>
+            </motion.div>
+          </div>
+
+          <!-- Handle post error -->
+          <motion.div
+            v-else-if="hasAllPostsError"
+            :initial="{ opacity: 0, scale: 0.9 }"
+            :animate="{
+              opacity: 1,
+              scale: 1,
+              transition: { delay: 0.3, ease: 'easeInOut', duration: 0.3 },
+            }"
+            class="relative flex gap-2 self-center w-[90%] md:w-1/2 h-32 p-4 justify-center items-center mb-30 bg-color-secondary rounded-md border shadow-md"
+          >
+            <h3 class="text-shadow-sm font-bold">Something went wrong, please try again</h3>
+            <span
+              class="text-shadow-sm text-color-primary pi pi-exclamation-triangle text-2xl"
+            ></span>
+            <BaseButton
+              custom-class="absolute top-0 right-0 mr-[-1px] mt-[-1px] w-fit rounded-r-md border p-[5px]! font-bold shadow-xl bg-color-primary"
+              @click="refetchAllPosts"
+            >
+              <span class="text-shadow-sm pi pi-refresh text-[12px]"></span>
+            </BaseButton>
+          </motion.div>
+
+          <!-- Handle post empty -->
+          <motion.div
+            v-else-if="!isAllPostsLoading && filteredBlogPosts.length === 0"
+            :animate="{
+              opacity: 1,
+              scale: 1,
+              transition: { delay: 0.3, ease: 'easeInOut', duration: 0.3 },
+            }"
+            :initial="{ opacity: 0, scale: 0.9 }"
+            class="flex gap-2 self-center p-2 justify-center items-center mb-30 rounded-md border w-56 shadow-md bg-color-secondary"
+          >
+            <h3 class="text-shadow-sm font-bold">No posts found</h3>
+            <span class="text-shadow-sm text-color-primary pi pi-search-minus"></span>
+          </motion.div>
+
+          <!-- Handle post populated -->
+          <div
+            v-else
             class="flex flex-wrap gap-10 justify-center h-auto p-1 md:p-8 text-sm md:text-xl text-center overflow-visible rounded-xl sm:rounded-2xl"
           >
             <motion.div
@@ -260,7 +332,6 @@ const selectPost = (postTitle: string) => {
               :key="post.id"
               :initial="{ opacity: 0 }"
               :animate="{ opacity: 1 }"
-              :exit="{ opacity: 0 }"
               :transition="{ delay: index * 0.05, duration: 0.5 }"
               @click="selectPost(post?.article_title)"
             >
