@@ -23,6 +23,7 @@ export default [
     },
     rules: {
       'no-unused-vars': 'error',
+      'vue/no-v-html': 'off',
     },
   },
 ];

@@ -1,9 +1,8 @@
 <script setup lang="ts">
 // #NOTE: when clicking on Antalya on home page, navigate the blogs with search populated with antalya
 // ------------ PostCards should not have locations like Antalya when navigating from home and you click Antalya, it should display posts under Antalya
-// #NOTE: Download prime vue
-// ------------ Use MultiSelect
-// ------------ Maybe use Card ?
+
+// #NOTE: Fix bug: No posts displayed if I change filter with pagination > 1
 
 import BaseButton from '@/components/BaseButton.vue';
 import BaseInput from '@/components/BaseInput.vue';
@@ -173,8 +172,10 @@ const selectPost = (postTitle: string) => {
               >
                 <BaseButton
                   :custom-class="[
-                    selectedCountryFilter === 'All' ? 'bg-color-primary' : 'bg-color-secondary',
-                    'p-2 w-fit rounded-full font-bold text-[15px] shadow-xl text-black hover:bg-color-primary',
+                    selectedCountryFilter === 'All'
+                      ? 'bg-color-primary/85 text-white shadow-lg'
+                      : 'bg-white/80 text-slate-900 shadow-md',
+                    'flex items-center gap-2 px-4 py-2 rounded-full font-semibold backdrop-blur',
                   ]"
                   @click="applyCountryFilter('country', 'All')"
                 >
@@ -192,8 +193,10 @@ const selectPost = (postTitle: string) => {
               >
                 <BaseButton
                   :custom-class="[
-                    selectedCountryFilter === key ? 'bg-color-primary' : 'bg-color-secondary',
-                    'w-fit rounded-full font-bold shadow-xl text-black hover:bg-color-primary',
+                    selectedCountryFilter === key
+                      ? 'bg-color-primary/85 text-white shadow-lg'
+                      : 'bg-white/80 text-slate-900 shadow-md',
+                    'flex items-center gap-2 px-4 py-2 rounded-full font-semibold backdrop-blur',
                   ]"
                   @click="applyCountryFilter('country', key)"
                 >
@@ -217,8 +220,10 @@ const selectPost = (postTitle: string) => {
                   <BaseButton
                     size="xsm"
                     :custom-class="[
-                      selectedLocationFilter === key ? 'bg-color-primary' : 'bg-color-secondary',
-                      'w-fit rounded-full font-bold shadow-xl text-black hover:bg-color-primary',
+                      selectedLocationFilter === key
+                        ? 'bg-color-primary/70 text-white shadow-md'
+                        : 'bg-white/70 text-slate-700 shadow-sm',
+                      'flex items-center gap-2 px-3 py-1.5 rounded-full font-medium backdrop-blur',
                     ]"
                     @click="applyCountryFilter('location', key)"
                   >
