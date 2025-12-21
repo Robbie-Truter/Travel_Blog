@@ -15,7 +15,7 @@ const postData = computed(() => data?.value?.[0]);
 <template>
   <div>
     <header
-      class="mx-auto mt-20 flex h-112 w-6xl overflow-hidden rounded-4xl bg-color-primary shadow-xl"
+      class="mx-auto my-20 flex h-112 w-6xl overflow-hidden rounded-4xl bg-color-primary shadow-xl"
     >
       <div class="flex flex-1 items-center px-12">
         <div class="max-w-lg">
@@ -29,7 +29,7 @@ const postData = computed(() => data?.value?.[0]);
         </div>
       </div>
 
-      <figure class="relative flex-[1.7]">
+      <figure class="relative flex-[2.3]">
         <div
           class="pointer-events-none absolute inset-0 z-10 bg-linear-to-t from-black/40 via-black/10 to-transparent"
         ></div>
@@ -57,7 +57,7 @@ const postData = computed(() => data?.value?.[0]);
         />
       </figure>
     </header>
-    <section v-if="postData?.article_content">
+    <section v-if="postData?.article_content" class="my-20">
       <article class="blog-content" v-html="postData?.article_content"></article>
     </section>
   </div>
@@ -65,6 +65,8 @@ const postData = computed(() => data?.value?.[0]);
 
 <style lang="css">
 .blog-content {
-  color: red;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 </style>

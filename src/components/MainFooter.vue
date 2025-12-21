@@ -1,5 +1,5 @@
 <template>
-  <section class="flex items-center w-full min-h-80 p-2 sm:p-5 lg:p-20 bg-black text-white">
+  <section class="flex items-center w-full min-h-80 p-2 sm:p-5 lg:p-20 mt-40 bg-black text-white">
     <div class="flex justify-between gap-10 lg:gap-0 w-full lg:w-[calc(50%+250px)] h-[200px]">
       <div>
         <ul class="space-y-5 text-nowrap cursor-pointer">

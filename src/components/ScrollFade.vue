@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { motion } from 'motion-v';
 import type { Transition } from 'motion-v';
+import { motion } from 'motion-v';
 
 withDefaults(
   defineProps<{
@@ -9,7 +9,12 @@ withDefaults(
   }>(),
   {
     className: '',
-    transition: () => ({ delay: 0.5, type: 'spring', duration: 0.5, bounce: 0.3, ease: 'easeIn' }),
+    transition: () => ({
+      duration: 0.4,
+      delay: 0.4,
+      type: 'spring',
+      bounce: 0.4,
+    }),
   }
 );
 </script>
@@ -17,11 +22,11 @@ withDefaults(
 <template>
   <motion.div
     :class="className"
-    :initial="{ opacity: 0, y: 50, filter: 'blur(5px)' }"
-    :in-view="{ opacity: 1, y: 0, filter: 'blur(0px)' }"
+    :initial="{ opacity: 0, y: 10 }"
+    :in-view="{ opacity: 1, y: 0 }"
     :transition="transition"
     :in-view-options="{ once: true }"
-    :viewport="{ amount: 1 }"
+    :viewport="{ amount: 0.8, once: true }"
   >
     <slot></slot>
   </motion.div>

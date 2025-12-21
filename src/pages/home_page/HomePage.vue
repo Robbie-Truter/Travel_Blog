@@ -1,23 +1,28 @@
 <script setup lang="ts">
+import BaseButton from '@/components/BaseButton.vue';
 import ScrollFade from '@/components/ScrollFade.vue';
 import CountryTabs from '@/pages/home_page/components/CountryTabs.vue';
 import LatestPosts from '@/pages/home_page/components/LatestPosts.vue';
 import 'primeicons/primeicons.css';
+import { useRouter } from 'vue-router';
+
+const router = useRouter();
 </script>
 
 <template>
-  <div>
+  <div class="space-y-40">
+    <!-- Header section -->
     <header class="relative">
       <img
         alt="Header Image"
         src="@/assets/HeaderImg.jpg"
-        class="w-full h-[100vh] object-cover brightness-90"
+        class="w-full h-screen object-cover brightness-90"
       />
       <div
         class="flex flex-col gap-4 items-center absolute top-[45%] left-1/2 -translate-x-1/2 -translate-y-1/2 text-white"
       >
-        <h1 class="text-sm lg:text-4xl [text-shadow:_0_1px_0_rgb(0_0_0_/_40%)]">Hi we're</h1>
-        <h2 class="font-bold text-md lg:text-6xl [text-shadow:_0_1px_0_rgb(0_0_0_/_40%)]">
+        <h1 class="text-sm lg:text-4xl [text-shadow:0_1px_0_rgb(0_0_0/40%)]">Hi we're</h1>
+        <h2 class="font-bold text-md lg:text-6xl [text-shadow:0_1px_0_rgb(0_0_0/40%)]">
           Robert & Kija
         </h2>
         <div class="p-1 lg:p-4 rounded-lg text-center shadow-lg text-[#5b5a4f] bg-[#ebf0f2]">
@@ -29,50 +34,77 @@ import 'primeicons/primeicons.css';
       </div>
     </header>
 
+    <!-- Featured posts -->
     <ScrollFade>
       <LatestPosts />
     </ScrollFade>
 
+    <!-- Top destination (countries)-->
     <ScrollFade>
       <CountryTabs />
     </ScrollFade>
 
-    <section class="mb-20">
-      <ScrollFade class="flex items-center justify-center h-96">
-        <div class="relative h-72 w-full lg:w-2/3 rounded-xl overflow-visible bg-[#99bfd7]">
-          <div
-            class="flex flex-row justify-center items-center absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full"
+    <!-- About us summary -->
+    <ScrollFade>
+      <section class="px-6 lg:px-20 xl:px-40">
+        <header class="mb-12 flex flex-col gap-4 justify-center items-center">
+          <h1 class="text-3xl font-bold tracking-tight mb-2">About Us</h1>
+
+          <p class="text-sm text-neutral-500">A little more about the people behind the journey</p>
+
+          <BaseButton
+            custom-class="p-3 font-bold bg-color-primary rounded-full"
+            size="sm"
+            @click="router.push('/about-us')"
           >
-            <div
-              class="flex flex-col gap-6 items-center text-center min-h-72 min-md:h-80 lg:h-96 w-72 lg:w-80 z-20 p-5 bg-[#ebf0f2]"
-            >
-              <h2 class="text-2xl font-bold leading-10">
-                Welcome, we're Robert and
-                <span class="p-2 rounded-full text-white bg-color-primary">Kija!</span>
-              </h2>
+            Read Our Story
+          </BaseButton>
 
-              <p>
-                We're both in our early 20's and working in tech fulltime, we try to travel as much
-                as possible while balancing our careers.
-              </p>
+          <div class="flex justify-center">
+            <span class="h-[3px] w-10 rounded-full bg-[#EDB5BF]" />
+          </div>
+        </header>
 
-              <p>
-                We love slow travel and focus on inspiring the ordinary to make travel a priority
-              </p>
-              <div class="space-x-2">
-                <span class="pi pi-facebook cursor-pointer"></span>
-                <span class="pi pi-instagram cursor-pointer"></span>
+        <div class="flex justify-center">
+          <div
+            class="relative w-full lg:w-2/3 rounded-xl bg-linear-to-t from-[#99bfd7] to-indigo-400 p-6 lg:p-10"
+          >
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-8">
+              <div
+                class="flex flex-col gap-6 items-center text-center w-72 lg:w-80 p-6 bg-[#ebf0f2] rounded-xl shadow-lg z-10"
+              >
+                <h2 class="text-2xl font-bold leading-snug">
+                  Welcome, we're Robert and
+                  <span class="inline-block px-3 py-1 rounded-full text-white bg-color-primary">
+                    Kija!
+                  </span>
+                </h2>
+
+                <p class="text-sm text-neutral-700 leading-relaxed">
+                  We're both in our early 20's and working in tech full-time, traveling as much as
+                  possible while balancing our career.
+                </p>
+
+                <p class="text-sm leading-relaxed text-neutral-700">
+                  We love slow travel and focus on inspiring the ordinary to make travel a priority.
+                </p>
+
+                <div class="flex gap-3 text-xl text-neutral-700">
+                  <span class="pi pi-facebook cursor-pointer hover:text-color-primary" />
+                  <span class="pi pi-instagram cursor-pointer hover:text-color-primary" />
+                </div>
               </div>
-            </div>
 
-            <img
-              src="/footer/CampsBay.jpg"
-              class="footerImg hidden sm:inline scale-[0.7] sm:scale-[1.1] lg:scale-[1.3] w-96 ml-[-30px] z-10"
-            />
+              <img
+                src="/footer/CampsBay.jpg"
+                alt="Camps Bay"
+                class="hidden sm:block w-80 lg:w-96 rounded-xl shadow-xl object-cover"
+              />
+            </div>
           </div>
         </div>
-      </ScrollFade>
-    </section>
+      </section>
+    </ScrollFade>
   </div>
 </template>
 

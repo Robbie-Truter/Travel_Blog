@@ -12,40 +12,31 @@ const setActiveTab = (selectedTab: string) => {
   currentTab.value = selectedTab;
 };
 
-const isTabActive = (selectedTab: string) => {
-  return currentTab.value === selectedTab;
-};
+const isTabActive = (selectedTab: string) => currentTab.value === selectedTab;
 
 const tabHeaders = computed(() => {
   if (!allTabCountries.value) return [];
-  //remove duplicates
-  const uniqueCountries = [
-    ...new Set(allTabCountries.value.map((country) => country.country.country_name)),
-  ];
-  return uniqueCountries.map((country) => country);
+  return [...new Set(allTabCountries.value.map((c) => c.country.country_name))];
 });
 
 const tabContent = computed(() => {
   if (!allTabCountries.value) return {};
-  //group tab content by country
-  const groupedTabsByCountry: Record<string, TTabPosts[]> = {};
+  const grouped: Record<string, TTabPosts[]> = {};
 
   for (const tab of allTabCountries.value) {
     const country = tab.country.country_name;
-    if (!groupedTabsByCountry[country]) {
-      groupedTabsByCountry[country] = [];
-    }
-    groupedTabsByCountry[country].push(tab);
+    if (!grouped[country]) grouped[country] = [];
+    grouped[country].push(tab);
   }
 
-  return groupedTabsByCountry;
+  return grouped;
 });
 
 watch(
   tabHeaders,
-  (newHeaders) => {
-    if (newHeaders.length > 0 && !currentTab.value) {
-      currentTab.value = newHeaders[0];
+  (headers) => {
+    if (headers.length && !currentTab.value) {
+      currentTab.value = headers[0];
     }
   },
   { immediate: true }
@@ -53,30 +44,46 @@ watch(
 </script>
 
 <template>
-  <!--Loading state-->
+  <!-- Countries loading -->
   <section
     v-if="isCountryTabsLoading"
-    class="flex justify-center mt-12 mb-20 px-10 lg:mt-20 lg:px-20 xl:px-40"
+    class="flex justify-center mt-12 mb-20 px-6 lg:px-20 xl:px-40"
   >
     <CountryTabsSkeleton />
   </section>
 
-  <!--Success state-->
-  <section v-else-if="allTabCountries" class="mb-20">
-    <nav class="w-full mb-5" role="tablist">
-      <div class="flex flex-row flex-wrap gap-7 justify-center w-full text-2xl">
+  <!-- Countries populated -->
+  <section v-else-if="allTabCountries" class="px-6 lg:px-20 xl:px-40">
+    <!-- Tabs -->
+    <nav class="w-full mb-12 text-center" role="tablist">
+      <h1 class="text-3xl font-bold tracking-tight mb-2">Top Destinations</h1>
+      <p class="text-sm text-neutral-500 mb-8">
+        Explore popular countries and their latest articles
+      </p>
+
+      <div class="flex flex-wrap justify-center gap-3">
         <span
           v-for="tab in tabHeaders"
           :key="tab"
-          :class="`${isTabActive(tab) && 'bg-[#EDB5BF] text-white'} min-w-36 text-center p-2 transition ease-in-out duration-200 cursor-pointer hover:text-white hover:bg-[#EDB5BF]`"
+          class="relative px-5 py-2 text-base font-medium rounded-full cursor-pointer transition-all duration-200"
+          :class="
+            isTabActive(tab)
+              ? 'bg-[#EDB5BF]/20 text-[#EDB5BF]'
+              : 'text-neutral-600 hover:text-[#EDB5BF]'
+          "
           @click="setActiveTab(tab)"
         >
           {{ tab }}
+
+          <span
+            v-if="isTabActive(tab)"
+            class="absolute left-1/2 -bottom-2 h-[3px] w-8 -translate-x-1/2 rounded-full bg-[#EDB5BF]"
+          ></span>
         </span>
       </div>
-      <hr class="w-full border-[3px] border-[#EDB5BF]" />
     </nav>
 
+    <!-- Tab Content -->
     <Transition name="tab-fade" mode="out-in">
       <article
         v-if="currentTab && tabContent[currentTab]"
@@ -86,16 +93,17 @@ watch(
         <figure
           v-for="(image, index) in tabContent[currentTab]"
           :key="index"
-          class="flex flex-col gap-10 items-center"
+          class="group flex flex-col items-center gap-4 cursor-pointer"
         >
           <img
             v-if="image.cover_image"
             :src="`http://localhost:8055/assets/${image.cover_image}?width=400&quality=80&format=webp`"
             :alt="image.article_title"
-            class="object-cover transition duration-200 ease-in-out h-80 w-80 rounded-lg hover:scale-105 hover:shadow-2xl"
+            class="h-80 w-80 rounded-xl object-cover transition-transform duration-300 group-hover:scale-105 group-hover:shadow-xl"
           />
+
           <figcaption
-            class="p-3 text-xl rounded-full transition duration-100 ease-in-out cursor-pointer bg-color-secondary hover:bg-color-primary hover:text-white"
+            class="px-5 py-2 text-lg font-medium rounded-full bg-color-secondary transition-colors duration-200 group-hover:bg-color-primary group-hover:text-white cursor-pointer"
           >
             {{ image.article_title }}
           </figcaption>
@@ -106,14 +114,15 @@ watch(
 </template>
 
 <style lang="css">
-.tab-fade-enter-active {
+.tab-fade-enter-active,
+.tab-fade-leave-active {
   transition: 0.3s ease-in-out;
   will-change: transform, opacity;
 }
 
 .tab-fade-enter-from,
 .tab-fade-leave-to {
-  transform: translateY(30%);
+  transform: translateY(12px);
   opacity: 0;
 }
 </style>

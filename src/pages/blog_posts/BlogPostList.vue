@@ -31,6 +31,7 @@ const {
 const router = useRouter();
 
 // --- Computed Properties ---
+// Retrieve list of countries for filters
 const countryFilters = computed(() => {
   // Get all unique country names with the total count and display as filters
   const allFilters: Record<string, number> = {};
@@ -46,6 +47,7 @@ const countryFilters = computed(() => {
   return { allFilters, totalPosts };
 });
 
+// Retrieve list of locations for filters
 const locationFilters = computed(() => {
   if (!allPosts.value) return null;
 
@@ -69,6 +71,7 @@ const locationFilters = computed(() => {
   return {};
 });
 
+// Filtered results
 const filteredBlogPosts = computed(() => {
   if (!allPosts.value) return [];
 
@@ -85,7 +88,7 @@ const filteredBlogPosts = computed(() => {
     });
   }
 
-  // Search filtering
+  // Search filtering for input
   if (postSearch.value) {
     const searchTerm = postSearch.value.toLowerCase().trim();
     if (searchTerm) {
@@ -98,6 +101,7 @@ const filteredBlogPosts = computed(() => {
   return filteredPosts;
 });
 
+// Paginated results (used for the mapping)
 const paginatedPosts = computed(() => {
   return filteredBlogPosts.value.slice(currentPage.value, currentPage.value + 5);
 });
@@ -128,7 +132,7 @@ const selectPost = (postTitle: string) => {
   <div>
     <header class="space-y-7 mt-20 mb-15">
       <div
-        class="flex flex-col gap-5 mx-auto w-[90%] bg-black min-h-fit p-7 rounded-4xl shadow-2xl"
+        class="flex flex-col gap-7 mx-auto w-[90%] p-7 rounded-4xl shadow-2xl bg-linear-to-br from-[#121212] via-[#1a1a1a] to-[#222222]"
       >
         <motion.div
           :initial="{ opacity: 0, y: -50, filter: 'blur(10px)' }"
@@ -141,30 +145,32 @@ const selectPost = (postTitle: string) => {
             bounce: 0.6,
           }"
         >
-          <h1 class="text-color-primary font-bold mb-5">Ready for the next side quest?</h1>
-          <p class="text-color-secondary font-bold">
+          <h1 class="text-color-primary font-bold mb-3 text-left drop-shadow-md">
+            Ready for the next side quest?
+          </h1>
+          <p class="text-color-secondary font-bold text-left drop-shadow-sm">
             Join us as we explore new countries, sharing all the tips and tricks we wish we knew to
             make your travels easier!
           </p>
         </motion.div>
 
-        <hr class="border text-white mt-5" />
+        <hr class="border-white/25 mt-5" />
 
-        <!-- Post filters -->
         <div class="flex flex-wrap gap-3 justify-between w-full h-full">
-          <div class="flex flex-col justify-center w-full lg:w-1/3 gap-4">
+          <div class="flex flex-col justify-start w-full lg:w-1/3 gap-4">
             <h2 class="text-color-secondary">Filters</h2>
 
-            <!-- Handle filter loading -->
+            <!-- Filter loading -->
             <div
               v-if="isAllPostsLoading || hasAllPostsError"
               class="flex flex-wrap gap-4 mb-3 animate-pulse"
             >
-              <div v-for="index in 4" :key="index" class="w-24 h-10 rounded-full bg-gray-500"></div>
+              <div v-for="index in 4" :key="index" class="w-24 h-10 rounded-full bg-white/20"></div>
             </div>
 
-            <!-- Handle filter populated -->
+            <!-- Filter populated -->
             <div v-else class="flex flex-wrap gap-4 mb-3">
+              <!-- Country filters -->
               <motion.div
                 :initial="{ opacity: 0, y: 20 }"
                 :animate="{ opacity: 1, y: 0 }"
@@ -174,16 +180,17 @@ const selectPost = (postTitle: string) => {
                   :custom-class="[
                     selectedCountryFilter === 'All'
                       ? 'bg-color-primary/85 text-white shadow-lg'
-                      : 'bg-white/80 text-slate-900 shadow-md',
+                      : 'bg-white/20 text-white/90 shadow-md',
                     'flex items-center gap-2 px-4 py-2 rounded-full font-semibold backdrop-blur',
                   ]"
                   @click="applyCountryFilter('country', 'All')"
                 >
-                  <p class="">All</p>
+                  <p>All</p>
                   <i class="pi pi-circle-fill text-[5px]"></i>
                   <p class="text-[10px]">{{ countryFilters.totalPosts }}</p>
                 </BaseButton>
               </motion.div>
+
               <motion.div
                 v-for="(value, key, index) in countryFilters.allFilters"
                 :key="key"
@@ -195,69 +202,72 @@ const selectPost = (postTitle: string) => {
                   :custom-class="[
                     selectedCountryFilter === key
                       ? 'bg-color-primary/85 text-white shadow-lg'
-                      : 'bg-white/80 text-slate-900 shadow-md',
+                      : 'bg-white/20 text-white/90 shadow-md',
                     'flex items-center gap-2 px-4 py-2 rounded-full font-semibold backdrop-blur',
                   ]"
                   @click="applyCountryFilter('country', key)"
                 >
-                  <p class="">{{ key }}</p>
+                  <p>{{ key }}</p>
                   <i class="pi pi-circle-fill text-[5px]"></i>
                   <p class="text-[10px]">{{ value }}</p>
                 </BaseButton>
               </motion.div>
             </div>
 
-            <AnimatePresence>
-              <div class="flex flex-wrap gap-4">
-                <motion.div
-                  v-for="(value, key, index) in locationFilters"
-                  :key="key"
-                  :initial="{ opacity: 0, y: 20 }"
-                  :animate="{ opacity: 1, y: 0 }"
-                  :exit="{ opacity: 0, y: 20 }"
-                  :transition="{ delay: 0.1 + index * 0.05, duration: 0.3 }"
-                >
-                  <BaseButton
-                    size="xsm"
-                    :custom-class="[
-                      selectedLocationFilter === key
-                        ? 'bg-color-primary/70 text-white shadow-md'
-                        : 'bg-white/70 text-slate-700 shadow-sm',
-                      'flex items-center gap-2 px-3 py-1.5 rounded-full font-medium backdrop-blur',
-                    ]"
-                    @click="applyCountryFilter('location', key)"
+            <!-- Location Filters -->
+            <div>
+              <AnimatePresence>
+                <div class="flex flex-wrap gap-4">
+                  <motion.div
+                    v-for="(value, key, index) in locationFilters"
+                    :key="key"
+                    :initial="{ opacity: 0, y: 20 }"
+                    :animate="{ opacity: 1, y: 0 }"
+                    :exit="{ opacity: 0, y: 20 }"
+                    :transition="{ delay: 0.1 + index * 0.05, duration: 0.3 }"
                   >
-                    <p class="">{{ key }}</p>
-                    <i class="pi pi-circle-fill text-[5px]"></i>
-                    <p class="text-[10px]">{{ value }}</p>
-                  </BaseButton>
-                </motion.div>
-              </div>
-            </AnimatePresence>
+                    <BaseButton
+                      size="xsm"
+                      :custom-class="[
+                        selectedLocationFilter === key
+                          ? 'bg-color-primary/70 text-white shadow-md'
+                          : 'bg-white/20 text-white/90 shadow-sm',
+                        'flex items-center gap-2 px-3 py-1.5 rounded-full font-medium backdrop-blur',
+                      ]"
+                      @click="applyCountryFilter('location', key)"
+                    >
+                      <p>{{ key }}</p>
+                      <i class="pi pi-circle-fill text-[5px]"></i>
+                      <p class="text-[10px]">{{ value }}</p>
+                    </BaseButton>
+                  </motion.div>
+                </div>
+              </AnimatePresence>
+            </div>
           </div>
 
+          <!-- Right: Search -->
           <motion.div class="flex items-center mt-4 w-full sm:w-96">
             <BaseInput
               id="blogPostSearch"
               v-model="postSearch"
               label="Search posts"
               type="text"
-              placeholder="Search posts.."
-              class-name="bg-white"
+              placeholder="Search posts..."
+              class-name="bg-white/90 rounded-xl"
             />
           </motion.div>
         </div>
 
+        <!-- Pagination -->
         <AnimatePresence>
           <motion.div
             v-if="filteredBlogPosts.length > 5"
             :initial="{ opacity: 0, x: 20 }"
             :animate="{ opacity: 1, x: 0 }"
-            :exit="{ opacity: 0, x: 20 }"
             :transition="{ duration: 0.3 }"
           >
             <PostPagination
-              class="mt-10 lg:mt-0"
               :data-length="filteredBlogPosts.length"
               @on-page-change="updatePagination"
             />
@@ -270,7 +280,7 @@ const selectPost = (postTitle: string) => {
     <section class="mb-20 space-y-5">
       <div class="flex flex-col gap-2 m-auto w-full">
         <AnimatePresence>
-          <!-- Handle post loading -->
+          <!-- Post loading -->
           <div
             v-if="isAllPostsLoading"
             class="flex flex-wrap gap-10 justify-center h-auto p-1 md:p-8 text-sm md:text-xl text-center overflow-visible rounded-xl sm:rounded-2xl"
@@ -289,7 +299,7 @@ const selectPost = (postTitle: string) => {
             </motion.div>
           </div>
 
-          <!-- Handle post error -->
+          <!-- Post error -->
           <motion.div
             v-else-if="hasAllPostsError"
             :initial="{ opacity: 0, scale: 0.9 }"
@@ -312,7 +322,7 @@ const selectPost = (postTitle: string) => {
             </BaseButton>
           </motion.div>
 
-          <!-- Handle post empty -->
+          <!-- Post empty -->
           <motion.div
             v-else-if="!isAllPostsLoading && filteredBlogPosts.length === 0"
             :animate="{
@@ -327,7 +337,7 @@ const selectPost = (postTitle: string) => {
             <span class="text-shadow-sm text-color-primary pi pi-search-minus"></span>
           </motion.div>
 
-          <!-- Handle post populated -->
+          <!-- Post populated -->
           <div
             v-else
             class="flex flex-wrap gap-10 justify-center h-auto p-1 md:p-8 text-sm md:text-xl text-center overflow-visible rounded-xl sm:rounded-2xl"
