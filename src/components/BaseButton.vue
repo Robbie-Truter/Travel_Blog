@@ -5,10 +5,14 @@ type SizeVariants = 'xsm' | 'sm' | 'md';
 
 withDefaults(
   defineProps<{
+    ariaLabel?: string;
+    ariaHidden?: boolean;
     size?: SizeVariants;
     customClass?: string | string[];
   }>(),
   {
+    ariaLabel: '',
+    ariaHidden: false,
     size: 'md',
     customClass: '',
   }
@@ -23,6 +27,8 @@ const sizeVariants: Record<SizeVariants, string> = {
 
 <template>
   <motion.button
+    :aria-label="ariaLabel"
+    :aria-hidden="ariaHidden"
     :while-hover="{
       scale: 1.1,
       y: -2,

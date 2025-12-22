@@ -135,14 +135,13 @@ const selectPost = (postTitle: string) => {
         class="flex flex-col gap-7 mx-auto w-[90%] p-7 rounded-4xl shadow-2xl bg-linear-to-br from-[#121212] via-[#1a1a1a] to-[#222222]"
       >
         <motion.div
-          :initial="{ opacity: 0, y: -50, filter: 'blur(10px)' }"
-          :animate="{ opacity: 1, y: 0, filter: 'blur(0px)' }"
+          :initial="{ opacity: 0, y: -16 }"
+          :animate="{ opacity: 1, y: 0 }"
           :transition="{
-            ease: 'easeInOut',
             type: 'spring',
-            duration: 0.9,
-            delay: 0.3,
-            bounce: 0.6,
+            stiffness: 180,
+            damping: 20,
+            delay: 0.2,
           }"
         >
           <h1 class="text-color-primary font-bold mb-3 text-left drop-shadow-md">
@@ -172,9 +171,14 @@ const selectPost = (postTitle: string) => {
             <div v-else class="flex flex-wrap gap-4 mb-3">
               <!-- Country filters -->
               <motion.div
-                :initial="{ opacity: 0, y: 20 }"
-                :animate="{ opacity: 1, y: 0 }"
-                :transition="{ delay: 0.1, duration: 0.3 }"
+                :initial="{ opacity: 0, y: 12, scale: 0.98 }"
+                :animate="{ opacity: 1, y: 0, scale: 1 }"
+                :transition="{
+                  type: 'spring',
+                  stiffness: 220,
+                  damping: 24,
+                  delay: 0.1,
+                }"
               >
                 <BaseButton
                   :custom-class="[
@@ -186,7 +190,7 @@ const selectPost = (postTitle: string) => {
                   @click="applyCountryFilter('country', 'All')"
                 >
                   <p>All</p>
-                  <i class="pi pi-circle-fill text-[5px]"></i>
+                  <i class="pi pi-circle-fill text-[5px]!"></i>
                   <p class="text-[10px]">{{ countryFilters.totalPosts }}</p>
                 </BaseButton>
               </motion.div>
@@ -194,9 +198,14 @@ const selectPost = (postTitle: string) => {
               <motion.div
                 v-for="(value, key, index) in countryFilters.allFilters"
                 :key="key"
-                :initial="{ opacity: 0, y: 20 }"
-                :animate="{ opacity: 1, y: 0 }"
-                :transition="{ delay: 0.1 + index * 0.05, duration: 0.3 }"
+                :initial="{ opacity: 0, y: 12, scale: 0.98 }"
+                :animate="{ opacity: 1, y: 0, scale: 1 }"
+                :transition="{
+                  type: 'spring',
+                  stiffness: 220,
+                  damping: 24,
+                  delay: 0.12 + index * 0.04,
+                }"
               >
                 <BaseButton
                   :custom-class="[
@@ -208,7 +217,7 @@ const selectPost = (postTitle: string) => {
                   @click="applyCountryFilter('country', key)"
                 >
                   <p>{{ key }}</p>
-                  <i class="pi pi-circle-fill text-[5px]"></i>
+                  <i class="pi pi-circle-fill text-[5px]!"></i>
                   <p class="text-[10px]">{{ value }}</p>
                 </BaseButton>
               </motion.div>
@@ -224,7 +233,7 @@ const selectPost = (postTitle: string) => {
                     :initial="{ opacity: 0, y: 20 }"
                     :animate="{ opacity: 1, y: 0 }"
                     :exit="{ opacity: 0, y: 20 }"
-                    :transition="{ delay: 0.1 + index * 0.05, duration: 0.3 }"
+                    :transition="{ delay: 0.1 + index * 0.06, duration: 0.3 }"
                   >
                     <BaseButton
                       size="xsm"
@@ -237,7 +246,7 @@ const selectPost = (postTitle: string) => {
                       @click="applyCountryFilter('location', key)"
                     >
                       <p>{{ key }}</p>
-                      <i class="pi pi-circle-fill text-[5px]"></i>
+                      <i class="pi pi-circle-fill text-[5px]!"></i>
                       <p class="text-[10px]">{{ value }}</p>
                     </BaseButton>
                   </motion.div>

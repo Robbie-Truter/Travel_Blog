@@ -12,23 +12,26 @@ const router = useRouter();
 <template>
   <div class="space-y-40">
     <!-- Header section -->
-    <header class="relative">
+    <header class="relative h-screen w-full overflow-hidden">
       <img
         alt="Header Image"
         src="@/assets/HeaderImg.jpg"
-        class="w-full h-screen object-cover brightness-90"
+        class="absolute inset-0 h-full w-full object-cover"
       />
+
+      <div class="absolute inset-0 bg-linear-to-b from-black/10 via-black/10 to-black/10"></div>
+
       <div
-        class="flex flex-col gap-4 items-center absolute top-[45%] left-1/2 -translate-x-1/2 -translate-y-1/2 text-white"
+        class="relative z-10 flex flex-col items-center gap-5 px-6 text-center text-white top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full"
       >
-        <h1 class="text-sm lg:text-4xl [text-shadow:0_1px_0_rgb(0_0_0/40%)]">Hi we're</h1>
-        <h2 class="font-bold text-md lg:text-6xl [text-shadow:0_1px_0_rgb(0_0_0/40%)]">
-          Robert & Kija
-        </h2>
-        <div class="p-1 lg:p-4 rounded-lg text-center shadow-lg text-[#5b5a4f] bg-[#ebf0f2]">
-          <p class="text-[12px] lg:text-2xl">
-            Slow travel is is our favorite way of traveling. We share inspiring travel blogs and
-            tips to show you that planning doesn't have to be overwhelming
+        <h1 class="tracking-wide opacity-90">Hi, we’re</h1>
+
+        <h2 class="font-bold text-3xl sm:text-5xl lg:text-6xl leading-tight">Robert & Kija</h2>
+
+        <div class="mt-2 max-w-xl rounded-xl bg-[#ebf0f2]/85 p-4 sm:p-6 shadow-xl text-[#5b5a4f]">
+          <p class="text-sm sm:text-lg leading-relaxed">
+            Slow travel is our favorite way of exploring the world. We share inspiring travel blogs
+            and practical tips to show that planning doesn’t have to feel overwhelming.
           </p>
         </div>
       </div>

@@ -46,12 +46,12 @@ defineProps<{
       </figcaption>
     </figure>
 
-    <div class="flex items-center justify-center px-4 h-[20%] w-full">
-      <figcaption
+    <figcaption class="flex items-center justify-center px-4 h-[20%] w-full">
+      <div
         class="p-3 text-sm lg:text-lg font-bold rounded-md transition duration-100 ease-in-out cursor-pointer text-shadow-sm"
       >
         {{ title }}
-      </figcaption>
-    </div>
+      </div>
+    </figcaption>
   </motion.article>
 </template>

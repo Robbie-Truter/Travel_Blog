@@ -1,11 +1,18 @@
 <script setup lang="ts">
 import MainFooter from '@/components/MainFooter.vue';
-import NavBar from '@/components/NavBar.vue';
+import NavBarDesktop from '@/components/NavBarDesktop.vue';
+import NavBarMobile from '@/components/NavBarMobile.vue';
 import { VueQueryDevtools } from '@tanstack/vue-query-devtools';
 </script>
 
 <template>
-  <NavBar />
+  <div class="hidden sm:block">
+    <NavBarDesktop />
+  </div>
+  <div class="block sm:hidden">
+    <NavBarMobile />
+  </div>
+
   <main>
     <RouterView v-slot="{ Component }">
       <transition name="fade" mode="out-in">
@@ -19,13 +26,25 @@ import { VueQueryDevtools } from '@tanstack/vue-query-devtools';
 
 <!--Page transition animation-->
 <style lang="css">
-.fade-enter-active,
-.fade-leave-active {
-  transition: opacity 0.2s ease;
+.fade-enter-active {
+  transition:
+    opacity 0.2s ease-out,
+    transform 0.2s ease-out;
 }
 
-.fade-enter-from,
+.fade-leave-active {
+  transition:
+    opacity 0.15s ease-in,
+    transform 0.15s ease-in;
+}
+
+.fade-enter-from {
+  opacity: 0;
+  transform: translateY(6px);
+}
+
 .fade-leave-to {
   opacity: 0;
+  transform: translateY(-6px);
 }
 </style>

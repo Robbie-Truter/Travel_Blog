@@ -17,6 +17,7 @@ defineEmits(['onPageChange']);
     :total-records="dataLength"
     class="text-white"
     template="PrevPageLink PageLinks NextPageLink "
+    unstyled
     :pt="{
       root: { class: 'flex gap-4 items-center' },
       pages: { class: 'space-x-2' },
