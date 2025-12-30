@@ -29,6 +29,7 @@ export type TAllPosts = {
   date_updated: string | null;
   country: {
     country_name: string;
+    flag_emoji: string;
   };
   location: {
     location_name: string;

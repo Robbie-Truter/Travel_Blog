@@ -363,6 +363,7 @@ const selectPost = (postTitle: string) => {
                 :title="post?.article_title"
                 :cover-img="post?.cover_image"
                 :country-name="post?.country.country_name"
+                :country-flag="post?.country?.flag_emoji"
                 :date-created="post?.date_created"
               />
             </motion.div>
