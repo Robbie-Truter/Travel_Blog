@@ -4,6 +4,9 @@ import { formatDate } from '@/util/formatDate';
 import { computed } from 'vue';
 import { useRoute } from 'vue-router';
 
+// Base URL
+const DIRECTUS_URL = import.meta.env.VITE_API_BASE_URL;
+
 // --- Composables ---
 const router = useRoute();
 const { data } = useGetPostByArticle(router.params.id as string);
@@ -51,7 +54,7 @@ const postData = computed(() => data?.value?.[0]);
         </figcaption>
 
         <img
-          :src="`http://localhost:8055/assets/${postData?.cover_image}`"
+          :src="`${DIRECTUS_URL}/assets/${postData?.cover_image}`"
           :alt="postData?.article_title ?? 'Blog post image'"
           class="h-full w-full object-cover"
         />
@@ -67,9 +70,9 @@ const postData = computed(() => data?.value?.[0]);
 .blog-content {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: start;
   margin: auto;
-  max-width: 720px;
+  max-width: 1152px;
   width: 100%;
   font-family: 'Red Hat Display', sans-serif;
   font-size: 1rem;
@@ -85,7 +88,6 @@ const postData = computed(() => data?.value?.[0]);
   margin-top: 2rem;
   margin-bottom: 1rem;
   line-height: 1.3;
-  text-align: center;
 }
 
 .blog-content p {
@@ -97,11 +99,18 @@ const postData = computed(() => data?.value?.[0]);
   text-decoration: underline;
 }
 
-.blog-content ul,
-.blog-content ol {
+.blog-content ul {
+  list-style-type: disc;
   margin-left: 1.5rem;
   margin-bottom: 1.25rem;
-  padding-left: 1rem;
+  padding-left: 1.5rem;
+}
+
+.blog-content ol {
+  list-style-type: decimal;
+  margin-left: 1.5rem;
+  margin-bottom: 1.25rem;
+  padding-left: 1.5rem;
 }
 
 .blog-content blockquote {
