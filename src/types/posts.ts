@@ -34,4 +34,5 @@ export type TAllPosts = {
   location: {
     location_name: string;
   };
+  slug: string;
 };

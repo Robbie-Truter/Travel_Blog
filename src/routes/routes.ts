@@ -11,7 +11,7 @@ const routes = [
   { path: '/home', component: HomePage },
   { path: '/about-us', component: AboutMe },
   { path: '/blogs', component: BlogPostList },
-  { path: '/blogs/:id', component: BlogPostView },
+  { path: '/blogs/:slug', component: BlogPostView },
   { path: '/:catchAll(.*)', component: NotFound },
 ];
 

@@ -121,9 +121,9 @@ const updatePagination = (event: PageState) => {
   currentPage.value = event.first;
 };
 
-const selectPost = (postTitle: string) => {
-  if (postTitle) {
-    router.push(`/blogs/${postTitle}`);
+const selectPost = (postSlug: string) => {
+  if (postSlug) {
+    router.push(`/blogs/${postSlug}`);
   }
 };
 </script>
@@ -357,7 +357,7 @@ const selectPost = (postTitle: string) => {
               :initial="{ opacity: 0 }"
               :animate="{ opacity: 1 }"
               :transition="{ delay: index * 0.05, duration: 0.5 }"
-              @click="selectPost(post?.article_title)"
+              @click="selectPost(post?.slug)"
             >
               <PostCard
                 :title="post?.article_title"

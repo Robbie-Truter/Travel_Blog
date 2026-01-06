@@ -9,7 +9,7 @@ const DIRECTUS_URL = import.meta.env.VITE_API_BASE_URL;
 
 // --- Composables ---
 const router = useRoute();
-const { data } = useGetPostByArticle(router.params.id as string);
+const { data } = useGetPostByArticle(router.params.slug as string);
 
 // --- Computed Properties ---
 const postData = computed(() => data?.value?.[0]);
