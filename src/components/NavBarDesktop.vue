@@ -26,6 +26,7 @@ const isActive = (path: string) => route.path === path;
 </script>
 
 <template>
+  <!-- Navbar before scrolling -->
   <nav
     class="flex flex-row justify-between items-center h-20 w-full z-10 gap-8 px-10 shadow-md rounded bg-white text-black"
   >
@@ -78,10 +79,11 @@ const isActive = (path: string) => route.path === path;
     </div>
   </nav>
 
+  <!-- Navbar after scrolling -->
   <Transition name="navbar-fadeIn" mode="out-in">
     <nav
       v-if="!isScrolledUp"
-      class="flex flex-row justify-between items-center h-14 w-full fixed top-0 left-0 right-0 px-10 shadow-md bg-white z-50 gap-4"
+      class="flex flex-row justify-between items-center h-14 w-full fixed top-0 left-0 right-0 px-10 opacity-90 shadow-md bg-white z-50 gap-4"
     >
       <div class="flex items-center gap-4">
         <h1 class="leckerli-one-regular text-[15px] lg:mr-4">Rob & Kija</h1>

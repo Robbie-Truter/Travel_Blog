@@ -4,38 +4,77 @@ import ScrollFade from '@/components/ScrollFade.vue';
 import CountryTabs from '@/pages/home_page/components/CountryTabs.vue';
 import LatestPosts from '@/pages/home_page/components/LatestPosts.vue';
 import 'primeicons/primeicons.css';
+import Carousel from 'primevue/carousel';
+import { ref } from 'vue';
 import { useRouter } from 'vue-router';
 
 const router = useRouter();
+
+const headerImages = ref([
+  {
+    id: '1',
+    title: 'Robert & Kija',
+    subtitle: 'Slow travel, real stories',
+    summary:
+      'Slow travel is our favorite way of exploring the world. We share inspiring travel blogs and practical tips to show that planning doesn’t have to feel overwhelming.',
+    image: new URL('@/assets/HeaderImg.jpg', import.meta.url).href,
+  },
+  {
+    id: '2',
+    title: 'Discover Together',
+    subtitle: 'Moments from around the world',
+    summary:
+      'From cobbled old towns to quiet coastal escapes, we capture the moments that make traveling together meaningful and memorable.',
+    image: new URL('@/assets/CeskyKrumlov.jpg', import.meta.url).href,
+  },
+  {
+    id: '3',
+    title: 'Travel Slowly',
+    subtitle: 'Less rushing, more living',
+    summary:
+      'We believe travel is about depth, not distance. Staying longer, moving slower, and creating space for real experiences.',
+    image: new URL('@/assets/Brasov.jpg', import.meta.url).href,
+  },
+]);
 </script>
 
 <template>
   <div class="space-y-40">
-    <!-- Header section -->
-    <header class="relative h-screen w-full overflow-hidden">
-      <img
-        alt="Header Image"
-        src="@/assets/HeaderImg.jpg"
-        class="absolute inset-0 h-full w-full object-cover"
-      />
+    <!-- Header Section Carousal -->
+    <Carousel
+      :value="headerImages"
+      :num-visible="1"
+      :num-scroll="1"
+      circular
+      :autoplay-interval="7000"
+      :show-indicators="false"
+      :show-navigators="false"
+      class="hero-carousel"
+    >
+      <template #item="slotProps">
+        <section class="hero-slide">
+          <img :src="slotProps.data.image" :alt="slotProps.data.title" class="hero-image" />
 
-      <div class="absolute inset-0 bg-linear-to-b from-black/10 via-black/10 to-black/10"></div>
+          <div class="hero-overlay"></div>
 
-      <div
-        class="relative z-10 flex flex-col items-center gap-5 px-6 text-center text-white top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full"
-      >
-        <h1 class="tracking-wide opacity-90">Hi, we’re</h1>
+          <div class="hero-content">
+            <h1 class="tracking-wide opacity-90">
+              {{ slotProps.data.subtitle }}
+            </h1>
 
-        <h2 class="font-bold text-3xl sm:text-5xl lg:text-6xl leading-tight">Robert & Kija</h2>
+            <h2 class="font-bold text-3xl sm:text-5xl lg:text-6xl">
+              {{ slotProps.data.title }}
+            </h2>
 
-        <div class="mt-2 max-w-xl rounded-xl bg-[#ebf0f2]/85 p-4 sm:p-6 shadow-xl text-[#5b5a4f]">
-          <p class="text-sm sm:text-lg leading-relaxed">
-            Slow travel is our favorite way of exploring the world. We share inspiring travel blogs
-            and practical tips to show that planning doesn’t have to feel overwhelming.
-          </p>
-        </div>
-      </div>
-    </header>
+            <div class="hero-card">
+              <p>
+                {{ slotProps.data.summary }}
+              </p>
+            </div>
+          </div>
+        </section>
+      </template>
+    </Carousel>
 
     <!-- Featured posts -->
     <ScrollFade>
@@ -114,5 +153,58 @@ const router = useRouter();
 <style lang="css">
 .footerImg {
   -webkit-mask: url(https://i.ibb.co/mBrmH0k/Mf15d.png) center/contain no-repeat;
+}
+
+.hero-carousel {
+  width: 100vw;
+  margin-left: calc(50% - 50vw); /* breaks out of page container */
+}
+
+.hero-carousel .p-carousel-item {
+  width: 100vw !important;
+}
+
+.hero-slide {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.hero-image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.25));
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.25rem;
+  padding: 1.5rem;
+  text-align: center;
+  color: white;
+}
+
+.hero-card {
+  max-width: 42rem;
+  background: rgba(235, 240, 242, 0.85);
+  color: #5b5a4f;
+  padding: 1.5rem;
+  border-radius: 1rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
 }
 </style>
