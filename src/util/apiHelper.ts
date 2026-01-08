@@ -1,5 +1,5 @@
-import { AxiosResponse } from 'axios';
 import axiosInstance from '@/api/axiosInstance';
+import { AxiosResponse } from 'axios';
 
 type TMethod = 'get' | 'post' | 'put' | 'delete';
 
@@ -41,4 +41,4 @@ const put = <TResponse, TPayload>(url: string, data: TPayload) =>
 
 const del = <TResponse>(url: string) => apiHelper<TResponse, never>(url, 'delete');
 
-export { get, post, put, del };
+export { del, get, post, put };

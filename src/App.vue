@@ -26,25 +26,20 @@ import { VueQueryDevtools } from '@tanstack/vue-query-devtools';
 
 <!--Page transition animation-->
 <style lang="css">
-.fade-enter-active {
-  transition:
-    opacity 0.2s ease-out,
-    transform 0.2s ease-out;
-}
-
+.fade-enter-active,
 .fade-leave-active {
   transition:
-    opacity 0.15s ease-in,
-    transform 0.15s ease-in;
+    opacity 0.25s cubic-bezier(0.23, 1, 0.32, 1),
+    transform 0.25s cubic-bezier(0.23, 1, 0.32, 1);
 }
 
 .fade-enter-from {
   opacity: 0;
-  transform: translateY(6px);
+  transform: translateY(10px);
 }
 
 .fade-leave-to {
   opacity: 0;
-  transform: translateY(-6px);
+  transform: translateY(-10px);
 }
 </style>

@@ -17,7 +17,7 @@ defineProps<{
   <motion.article
     v-tooltip.bottom="{
       value: 'Click to view post',
-      showDelay: 1500,
+      showDelay: 1100,
       pt: {
         text: 'bg-linear-to-br! from-[#121212]! !via-[#1a1a1a] to-[#222222]! text-primary-contrast! font-medium!',
       },
@@ -28,7 +28,7 @@ defineProps<{
     :while-hover="{ scale: 1.04 }"
     :while-press="{ scale: 1, transition: { type: 'spring', duration: 0.3 } }"
     :transition="{ type: 'spring', duration: 0.8 }"
-    class="group w-72 sm:w-80 lg:w-96 bg-white h-72 sm:h-80 lg:h-120 shadow hover:shadow-xl cursor-pointer rounded-md"
+    class="group w-72 sm:w-80 lg:w-96 bg-white h-72 sm:h-80 lg:h-120 overflow-hidden shadow hover:shadow-xl cursor-pointer rounded-md"
   >
     <figure class="relative h-[80%] w-full overflow-hidden rounded-t-md">
       <div
@@ -36,7 +36,7 @@ defineProps<{
       ></div>
 
       <img
-        :src="`http://localhost:8055/assets/${coverImg}`"
+        :src="`http://localhost:8055/assets/${coverImg}?width=400&height=400&quality=80&fit=cover`"
         :alt="title ?? 'Blog post image'"
         class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
       />

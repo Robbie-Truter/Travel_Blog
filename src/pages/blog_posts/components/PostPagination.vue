@@ -23,17 +23,17 @@ defineEmits(['onPageChange']);
       pages: { class: 'space-x-2' },
       page: ({ context }) => ({
         class: [
-          'w-[30px] rounded-full cursor-pointer select-none font-medium',
+          'w-10 p-2 rounded-full cursor-pointer select-none font-medium',
           context.active
             ? 'bg-color-primary text-black'
             : 'bg-color-secondary text-black hover:opacity-[0.8]',
         ],
       }),
       prev: {
-        class: 'px-2 cursor-pointer',
+        class: 'mr-2 cursor-pointer',
       },
       next: {
-        class: 'px-2 cursor-pointer',
+        class: 'ml-2 cursor-pointer',
       },
     }"
     @page="(e) => $emit('onPageChange', e)"

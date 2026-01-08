@@ -28,7 +28,7 @@ const isActive = (path: string) => route.path === path;
 <template>
   <!-- Navbar before scrolling -->
   <nav
-    class="flex flex-row justify-between items-center h-20 w-full z-10 gap-8 px-10 shadow-md rounded bg-white text-black"
+    class="flex flex-row justify-between items-center h-20 w-full z-10 gap-8 px-10 shadow-sm bg-white/95 text-black"
   >
     <div class="flex items-center gap-6">
       <h1 class="leckerli-one-regular text-[20px] lg:mr-4">Rob & Kija</h1>
@@ -36,8 +36,8 @@ const isActive = (path: string) => route.path === path;
       <RouterLink to="/home">
         <BaseButton
           :custom-class="[
-            'rounded-2xl hover:bg-color-primary hover:text-white hover:opacity-[0.7]',
-            isActive('/home') ? 'bg-color-primary text-white' : '',
+            'rounded-md font-semibold !p-2 transition-colors duration-300',
+            isActive('/home') ? 'text-color-primary' : 'text-gray-600 hover:text-color-primary/80',
           ]"
         >
           <span class="pi pi-home mr-2"></span>
@@ -48,8 +48,8 @@ const isActive = (path: string) => route.path === path;
       <RouterLink to="/blogs">
         <BaseButton
           :custom-class="[
-            'rounded-2xl hover:bg-color-primary hover:text-white hover:opacity-[0.7]',
-            isActive('/blogs') ? 'bg-color-primary text-white' : '',
+            'rounded-md font-semibold !p-2 transition-colors duration-300',
+            isActive('/blogs') ? 'text-color-primary' : 'text-gray-600 hover:text-color-primary/80',
           ]"
         >
           <span class="pi pi-camera mr-2"></span>
@@ -62,8 +62,10 @@ const isActive = (path: string) => route.path === path;
       <RouterLink to="/about-us">
         <BaseButton
           :custom-class="[
-            'rounded-2xl hover:bg-color-primary hover:text-white hover:opacity-[0.7]',
-            isActive('/about-us') ? 'bg-color-primary text-white' : '',
+            'rounded-md font-semibold !p-2 transition-colors duration-300',
+            isActive('/about-us')
+              ? 'text-color-primary'
+              : 'text-gray-600 hover:text-color-primary/80',
           ]"
         >
           <span class="pi pi-heart-fill mr-2"></span>
@@ -71,10 +73,16 @@ const isActive = (path: string) => route.path === path;
         </BaseButton>
       </RouterLink>
 
-      <div
-        class="flex justify-center items-center w-9 h-9 p-1 rounded-full bg-[#EDB5BF] border border-black"
-      >
-        <span class="pi pi-instagram text-base"></span>
+      <div class="flex items-center gap-4 text-gray-600">
+        <span
+          class="pi pi-instagram text-lg cursor-pointer hover:text-color-primary/80 transition-colors"
+        ></span>
+        <span
+          class="pi pi-facebook text-lg cursor-pointer hover:text-color-primary/80 transition-colors"
+        ></span>
+        <span
+          class="pi pi-pinterest text-lg cursor-pointer hover:text-color-primary/80 transition-colors"
+        ></span>
       </div>
     </div>
   </nav>
@@ -83,7 +91,7 @@ const isActive = (path: string) => route.path === path;
   <Transition name="navbar-fadeIn" mode="out-in">
     <nav
       v-if="!isScrolledUp"
-      class="flex flex-row justify-between items-center h-14 w-full fixed top-0 left-0 right-0 px-10 opacity-90 shadow-md bg-white z-50 gap-4"
+      class="flex flex-row justify-between items-center h-14 w-full fixed top-0 left-0 right-0 px-10 shadow-md bg-white/80 backdrop-blur-md z-50 gap-4"
     >
       <div class="flex items-center gap-4">
         <h1 class="leckerli-one-regular text-[15px] lg:mr-4">Rob & Kija</h1>
@@ -92,8 +100,10 @@ const isActive = (path: string) => route.path === path;
           <BaseButton
             size="sm"
             :custom-class="[
-              'rounded-lg hover:bg-color-primary hover:text-white hover:opacity-[0.7]',
-              isActive('/home') ? 'bg-color-primary text-white' : '',
+              'rounded-md font-semibold !p-2 transition-colors duration-300',
+              isActive('/home')
+                ? 'text-color-primary'
+                : 'text-gray-600 hover:text-color-primary/80',
             ]"
           >
             <span class="pi pi-home mr-2"></span>
@@ -105,8 +115,10 @@ const isActive = (path: string) => route.path === path;
           <BaseButton
             size="sm"
             :custom-class="[
-              'rounded-lg hover:bg-color-primary hover:text-white hover:opacity-[0.7]',
-              isActive('/blogs') ? 'bg-color-primary text-white' : '',
+              'rounded-md font-semibold !p-2 transition-colors duration-300',
+              isActive('/blogs')
+                ? 'text-color-primary'
+                : 'text-gray-600 hover:text-color-primary/80',
             ]"
           >
             <span class="pi pi-camera mr-2"></span>
@@ -120,8 +132,10 @@ const isActive = (path: string) => route.path === path;
           <BaseButton
             size="sm"
             :custom-class="[
-              'rounded-lg hover:bg-color-primary hover:text-white hover:opacity-[0.7]',
-              isActive('/about-us') ? 'bg-color-primary text-white' : '',
+              'rounded-md font-semibold !p-2 transition-colors duration-300',
+              isActive('/about-us')
+                ? 'text-color-primary'
+                : 'text-gray-600 hover:text-color-primary/80',
             ]"
           >
             <span class="pi pi-heart-fill mr-2"></span>
@@ -129,10 +143,16 @@ const isActive = (path: string) => route.path === path;
           </BaseButton>
         </RouterLink>
 
-        <div
-          class="flex justify-center items-center w-8 h-8 rounded-full bg-[#EDB5BF] border border-black"
-        >
-          <span class="pi pi-instagram text-sm"></span>
+        <div class="flex items-center gap-4 text-gray-600">
+          <span
+            class="pi pi-instagram text-base cursor-pointer hover:text-color-primary/80 transition-colors"
+          ></span>
+          <span
+            class="pi pi-facebook text-base cursor-pointer hover:text-color-primary/80 transition-colors"
+          ></span>
+          <span
+            class="pi pi-pinterest text-base cursor-pointer hover:text-color-primary/80 transition-colors"
+          ></span>
         </div>
       </div>
     </nav>

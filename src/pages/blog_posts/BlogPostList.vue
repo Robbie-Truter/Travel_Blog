@@ -157,7 +157,7 @@ const selectPost = (postSlug: string) => {
 
         <div class="flex flex-wrap gap-3 justify-between w-full h-full">
           <div class="flex flex-col justify-start w-full lg:w-1/3 gap-4">
-            <h2 class="text-color-secondary">Filters</h2>
+            <h2 class="text-color-secondary text-[23px] ml-1">Filters</h2>
 
             <!-- Filter loading -->
             <div
@@ -285,6 +285,22 @@ const selectPost = (postSlug: string) => {
       </div>
     </header>
 
+    <motion.div
+      :initial="{ opacity: 0, y: -20 }"
+      :animate="{ opacity: 1, y: 0 }"
+      :transition="{ type: 'spring', stiffness: 180, damping: 20, delay: 0.2 }"
+      class="mt-20 px-6 lg:px-20 xl:px-40"
+    >
+      <header class="mb-12 text-center">
+        <h1 class="text-3xl font-bold tracking-tight mb-2">Blog Posts</h1>
+        <p class="text-sm text-neutral-500 mb-6">Explore our latest travel adventures and tips</p>
+
+        <div class="flex justify-center">
+          <span class="h-[3px] w-10 rounded-full bg-[#EDB5BF]"></span>
+        </div>
+      </header>
+    </motion.div>
+
     <!-- Post list view -->
     <section class="mb-20 space-y-5">
       <div class="flex flex-col gap-2 m-auto w-full">
@@ -354,9 +370,9 @@ const selectPost = (postSlug: string) => {
             <motion.div
               v-for="(post, index) in paginatedPosts"
               :key="post.id"
-              :initial="{ opacity: 0 }"
-              :animate="{ opacity: 1 }"
-              :transition="{ delay: index * 0.05, duration: 0.5 }"
+              :initial="{ opacity: 0, y: 20, scale: 0.98 }"
+              :animate="{ opacity: 1, y: 0, scale: 1 }"
+              :transition="{ type: 'spring', stiffness: 250, damping: 25, delay: index * 0.06 }"
               @click="selectPost(post?.slug)"
             >
               <PostCard

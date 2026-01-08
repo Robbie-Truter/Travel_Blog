@@ -14,10 +14,10 @@ const isActive = (path: string) => route.path === path;
 <template>
   <BaseButton
     aria-label="toggle navigation bar"
-    class="fixed top-4 left-3 z-1000 rounded-full bg-color-primary shadow-xl"
+    class="fixed top-4 left-3 z-1000 rounded-full bg-white/80 backdrop-blur-md shadow-lg"
     @click="isOpen = true"
   >
-    <span class="pi pi-bars"></span>
+    <span class="pi pi-bars text-color-primary"></span>
   </BaseButton>
 
   <Drawer
@@ -27,14 +27,14 @@ const isActive = (path: string) => route.path === path;
     :dismissable="true"
     :show-close-icon="true"
     append-to="body"
-    class="bg-white!"
+    class="bg-white/90! backdrop-blur-lg"
   >
     <div class="flex flex-col gap-5 mt-5">
       <RouterLink to="/home">
         <BaseButton
           :custom-class="[
-            'w-full rounded-2xl hover:bg-color-primary hover:text-white hover:opacity-[0.7]',
-            isActive('/home') ? 'bg-color-primary text-white' : 'bg-transparent text-black',
+            'w-full rounded-md font-semibold !p-2 transition-colors duration-300',
+            isActive('/home') ? 'text-color-primary' : 'text-gray-600 hover:text-color-primary/80',
           ]"
         >
           <span class="pi pi-home mr-2"></span>
@@ -45,8 +45,8 @@ const isActive = (path: string) => route.path === path;
       <RouterLink to="/blogs">
         <BaseButton
           :custom-class="[
-            'w-full rounded-2xl hover:bg-color-primary hover:text-white hover:opacity-[0.7]',
-            isActive('/blogs') ? 'bg-color-primary text-white' : 'bg-transparent text-black',
+            'w-full rounded-md font-semibold !p-2 transition-colors duration-300',
+            isActive('/blogs') ? 'text-color-primary' : 'text-gray-600 hover:text-color-primary/80',
           ]"
         >
           <span class="pi pi-camera mr-2"></span>
@@ -57,14 +57,34 @@ const isActive = (path: string) => route.path === path;
       <RouterLink to="/about-us">
         <BaseButton
           :custom-class="[
-            'w-full rounded-2xl hover:bg-color-primary hover:text-white hover:opacity-[0.7]',
-            isActive('/about-us') ? 'bg-color-primary text-white' : 'bg-transparent text-black',
+            'w-full rounded-md font-semibold !p-2 transition-colors duration-300',
+            isActive('/about-us')
+              ? 'text-color-primary'
+              : 'text-gray-600 hover:text-color-primary/80',
           ]"
         >
           <span class="pi pi-heart-fill mr-2"></span>
           About Us
         </BaseButton>
       </RouterLink>
+    </div>
+
+    <div class="absolute bottom-4 left-8 flex items-center gap-4 text-gray-600">
+      <a href="#" target="_blank" rel="noopener noreferrer">
+        <span
+          class="pi pi-instagram text-lg cursor-pointer hover:text-color-primary/80 transition-colors"
+        ></span>
+      </a>
+      <a href="#" target="_blank" rel="noopener noreferrer">
+        <span
+          class="pi pi-facebook text-lg cursor-pointer hover:text-color-primary/80 transition-colors"
+        ></span>
+      </a>
+      <a href="#" target="_blank" rel="noopener noreferrer">
+        <span
+          class="pi pi-pinterest text-lg cursor-pointer hover:text-color-primary/80 transition-colors"
+        ></span>
+      </a>
     </div>
   </Drawer>
 </template>
