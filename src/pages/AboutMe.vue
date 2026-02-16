@@ -85,7 +85,7 @@ const funFacts = [
     <!-- Header Section -->
     <motion.div
       :initial="{ opacity: 0, y: -20 }"
-      :animate="{ opacity: 1, y: 0 }"
+      :in-view="{ opacity: 1, y: 0 }"
       :transition="{ type: 'spring', stiffness: 180, damping: 20, delay: 0.2 }"
       class="mt-20 px-6 lg:px-20 xl:px-40"
     >
@@ -99,56 +99,64 @@ const funFacts = [
       </header>
     </motion.div>
 
-    <ScrollFade class="my-40">
-      <section class="flex justify-center px-6">
-        <div class="flex flex-col sm:flex-row gap-24 sm:gap-16">
-          <!-- ROBERT -->
-          <figure class="relative w-72 rounded-3xl bg-white p-6 pt-20 text-center shadow-xl">
-            <img
-              src="/about-me/robertProfile.jpg"
-              class="absolute -top-16 left-1/2 h-32 w-32 -translate-x-1/2 rounded-full object-cover ring-4 ring-white"
-            />
-            <h2
-              class="mt-4 inline-block rounded-md bg-[#99bfd7] px-4 py-1 text-lg font-bold text-white"
-            >
-              The Researcher
-            </h2>
-            <p class="mt-4 text-sm leading-relaxed text-gray-700">
-              Hi, I’m Robbie, a software developer who spends most of my days coding and
-              problem-solving. Travel gives me the chance to experience different cultures.
-            </p>
-          </figure>
+    <section class="flex justify-center px-6 my-40">
+      <div class="flex flex-col sm:flex-row gap-24 sm:gap-16">
+        <!-- ROBERT -->
+        <motion.figure
+          class="relative w-72 rounded-3xl bg-white p-6 pt-20 text-center shadow-xl"
+          :initial="{ opacity: 0, x: -50 }"
+          :in-view="{ opacity: 1, x: 0 }"
+          :transition="{ type: 'spring', stiffness: 100, damping: 20, delay: 0.2 }"
+        >
+          <img
+            src="/about-me/robertProfile.jpg"
+            class="absolute -top-16 left-1/2 h-32 w-32 -translate-x-1/2 rounded-full object-cover ring-4 ring-white"
+          />
+          <h2
+            class="mt-4 inline-block rounded-md bg-[#99bfd7] px-4 py-1 text-lg font-bold text-white"
+          >
+            The Researcher
+          </h2>
+          <p class="mt-4 text-sm leading-relaxed text-gray-700">
+            Hi, I’m Robbie, a software developer who spends most of my days coding and
+            problem-solving. Travel gives me the chance to experience different cultures.
+          </p>
+        </motion.figure>
 
-          <!-- KIJA -->
-          <figure class="relative w-[350px] rounded-3xl bg-white p-6 pt-20 text-center shadow-xl">
-            <img
-              src="/about-me/kijaProfile.jpg"
-              class="absolute -top-16 left-1/2 h-32 w-32 -translate-x-1/2 rounded-full object-cover ring-4 ring-white"
-            />
-            <h2
-              class="mt-4 inline-block rounded-md bg-color-primary px-4 py-1 text-lg font-bold text-white"
-            >
-              The Planner
-            </h2>
-            <p class="mt-4 text-sm leading-relaxed text-gray-700">
-              I’m Kija, a 21-year-old social media coordinator by day, and in my downtime, I’m
-              probably browsing Google Flights for our next adventure!
-            </p>
-            <p class="mt-3 text-sm leading-relaxed text-gray-700">
-              Slow travel is how I like to explore—learning a few new words in a foreign language,
-              browsing local grocery stores, and figuring out dinner plans with unknown ingredients.
-            </p>
-            <p class="mt-3 text-sm font-semibold text-gray-800">
-              My motto comes from Anthony Bourdain:
-            </p>
-            <p class="mt-2 text-xs italic text-gray-600">
-              “If you’re twenty-two, fit, and eager to learn, travel as far and wide as you can.
-              Sleep on floors if you need to…”
-            </p>
-          </figure>
-        </div>
-      </section>
-    </ScrollFade>
+        <!-- KIJA -->
+        <motion.figure
+          class="relative w-[350px] rounded-3xl bg-white p-6 pt-20 text-center shadow-xl"
+          :initial="{ opacity: 0, x: 50 }"
+          :in-view="{ opacity: 1, x: 0 }"
+          :transition="{ type: 'spring', stiffness: 100, damping: 20, delay: 0.4 }"
+        >
+          <img
+            src="/about-me/kijaProfile.jpg"
+            class="absolute -top-16 left-1/2 h-32 w-32 -translate-x-1/2 rounded-full object-cover ring-4 ring-white"
+          />
+          <h2
+            class="mt-4 inline-block rounded-md bg-color-primary px-4 py-1 text-lg font-bold text-white"
+          >
+            The Planner
+          </h2>
+          <p class="mt-4 text-sm leading-relaxed text-gray-700">
+            I’m Kija, a 21-year-old social media coordinator by day, and in my downtime, I’m
+            probably browsing Google Flights for our next adventure!
+          </p>
+          <p class="mt-3 text-sm leading-relaxed text-gray-700">
+            Slow travel is how I like to explore—learning a few new words in a foreign language,
+            browsing local grocery stores, and figuring out dinner plans with unknown ingredients.
+          </p>
+          <p class="mt-3 text-sm font-semibold text-gray-800">
+            My motto comes from Anthony Bourdain:
+          </p>
+          <p class="mt-2 text-xs italic text-gray-600">
+            “If you’re twenty-two, fit, and eager to learn, travel as far and wide as you can. Sleep
+            on floors if you need to…”
+          </p>
+        </motion.figure>
+      </div>
+    </section>
 
     <!-- FUN FACTS / Q&A -->
     <ScrollFade class="my-40">
@@ -170,10 +178,15 @@ const funFacts = [
             v-for="(fact, index) in funFacts"
             :key="index"
             class="rounded-2xl bg-white p-6 shadow-lg transition-shadow hover:shadow-xl"
-            :initial="{ opacity: 0, y: 20 }"
-            :while-in-view="{ opacity: 1, y: 0 }"
+            :initial="{ opacity: 0, y: 50, scale: 0.95 }"
+            :while-in-view="{ opacity: 1, y: 0, scale: 1 }"
             :viewport="{ once: true }"
-            :transition="{ duration: 0.5, delay: index * 0.1 }"
+            :transition="{
+              type: 'spring',
+              stiffness: 100,
+              damping: 20,
+              delay: index * 0.2,
+            }"
           >
             <h3 class="text-lg font-semibold mb-4">{{ fact.title }}</h3>
             <div class="space-y-4">

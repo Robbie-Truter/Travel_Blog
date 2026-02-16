@@ -6,13 +6,15 @@ withDefaults(
   defineProps<{
     className?: string;
     transition?: Transition;
+    viewportAmount?: number;
   }>(),
   {
     className: '',
     transition: () => ({
-      delay: 0.2,
+      delay: 0.7,
       duration: 0.45,
     }),
+    viewportAmount: 0.2,
   }
 );
 </script>
@@ -24,7 +26,7 @@ withDefaults(
     :while-in-view="{ opacity: 1, y: 0 }"
     :transition="transition"
     :in-view-options="{ once: true }"
-    :viewport="{ amount: 0.8, once: true }"
+    :viewport="{ amount: viewportAmount }"
   >
     <slot></slot>
   </motion.div>

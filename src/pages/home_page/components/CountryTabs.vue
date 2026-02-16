@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import ScrollFade from '@/components/ScrollFade.vue';
 import CountryTabsSkeleton from '@/pages/home_page/components/CountryTabsSkeleton.vue';
 import { useGetTabPosts } from '@/pages/home_page/composables/useGetTabPosts';
 import type { TTabPosts } from '@/types/posts';
@@ -84,32 +85,34 @@ watch(
     </nav>
 
     <!-- Tab Content -->
-    <Transition name="tab-fade" mode="out-in">
-      <article
-        v-if="currentTab && tabContent[currentTab]"
-        :key="currentTab"
-        class="flex flex-row flex-wrap justify-center gap-10 w-full"
-      >
-        <figure
-          v-for="(image, index) in tabContent[currentTab]"
-          :key="index"
-          class="group flex flex-col items-center gap-4 cursor-pointer"
+    <ScrollFade :viewport-amount="0.2">
+      <Transition name="tab-fade" mode="out-in">
+        <article
+          v-if="currentTab && tabContent[currentTab]"
+          :key="currentTab"
+          class="flex flex-row flex-wrap justify-center gap-10 w-full"
         >
-          <img
-            v-if="image.cover_image"
-            :src="`http://localhost:8055/assets/${image.cover_image}?width=400&quality=80&format=webp`"
-            :alt="image.article_title"
-            class="h-80 w-80 rounded-xl object-cover transition-transform duration-300 group-hover:scale-105 group-hover:shadow-xl"
-          />
-
-          <figcaption
-            class="px-5 py-2 text-lg font-medium rounded-full bg-color-secondary transition-colors duration-200 group-hover:bg-color-primary group-hover:text-white cursor-pointer"
+          <figure
+            v-for="(image, index) in tabContent[currentTab]"
+            :key="index"
+            class="group flex flex-col items-center gap-4 cursor-pointer"
           >
-            {{ image.article_title }}
-          </figcaption>
-        </figure>
-      </article>
-    </Transition>
+            <img
+              v-if="image.cover_image"
+              :src="`http://localhost:8055/assets/${image.cover_image}?width=400&quality=80&format=webp`"
+              :alt="image.article_title"
+              class="h-80 w-80 rounded-xl object-cover transition-transform duration-300 group-hover:scale-105 group-hover:shadow-xl"
+            />
+
+            <figcaption
+              class="px-5 py-2 text-lg font-medium rounded-full bg-color-secondary transition-colors duration-200 group-hover:bg-color-primary group-hover:text-white cursor-pointer"
+            >
+              {{ image.article_title }}
+            </figcaption>
+          </figure>
+        </article>
+      </Transition>
+    </ScrollFade>
   </section>
 </template>
 

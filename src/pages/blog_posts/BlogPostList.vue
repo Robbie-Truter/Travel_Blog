@@ -370,9 +370,14 @@ const selectPost = (postSlug: string) => {
             <motion.div
               v-for="(post, index) in paginatedPosts"
               :key="post.id"
-              :initial="{ opacity: 0, y: 20, scale: 0.98 }"
+              :initial="{ opacity: 0, y: 50, scale: 0.95 }"
               :animate="{ opacity: 1, y: 0, scale: 1 }"
-              :transition="{ type: 'spring', stiffness: 250, damping: 25, delay: index * 0.06 }"
+              :transition="{
+                type: 'spring',
+                stiffness: 300,
+                damping: 25,
+                delay: index * 0.1,
+              }"
               @click="selectPost(post?.slug)"
             >
               <PostCard

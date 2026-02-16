@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { useGetPostByArticle } from '@/pages/blog_posts/composables/useGetPostByArticle';
 import { formatDate } from '@/util/formatDate';
+import { motion } from 'motion-v';
 import { computed } from 'vue';
 import { useRoute } from 'vue-router';
 
@@ -17,7 +18,10 @@ const postData = computed(() => data?.value?.[0]);
 
 <template>
   <div>
-    <header
+    <motion.header
+      :initial="{ opacity: 0, y: -50 }"
+      :animate="{ opacity: 1, y: 0 }"
+      :transition="{ duration: 0.5, delay: 0.2 }"
       class="mx-auto my-20 flex h-112 w-6xl overflow-hidden rounded-4xl bg-color-primary shadow-xl"
     >
       <div class="flex flex-1 items-center px-12">
@@ -59,10 +63,16 @@ const postData = computed(() => data?.value?.[0]);
           class="h-full w-full object-cover"
         />
       </figure>
-    </header>
-    <section v-if="postData?.article_content" class="mx-auto my-20">
+    </motion.header>
+    <motion.section
+      v-if="postData?.article_content"
+      class="mx-auto my-20"
+      :initial="{ opacity: 0 }"
+      :in-view="{ opacity: 1 }"
+      :transition="{ duration: 0.5, delay: 0.2 }"
+    >
       <article class="blog-content" v-html="postData?.article_content"></article>
-    </section>
+    </motion.section>
   </div>
 </template>
 

@@ -3,6 +3,7 @@ import BaseButton from '@/components/BaseButton.vue';
 import ScrollFade from '@/components/ScrollFade.vue';
 import CountryTabs from '@/pages/home_page/components/CountryTabs.vue';
 import LatestPosts from '@/pages/home_page/components/LatestPosts.vue';
+import { motion } from 'motion-v';
 import 'primeicons/primeicons.css';
 import Carousel from 'primevue/carousel';
 import { ref } from 'vue';
@@ -39,7 +40,7 @@ const headerImages = ref([
 </script>
 
 <template>
-  <div class="space-y-40">
+  <div class="space-y-50">
     <!-- Header Section Carousal -->
     <Carousel
       :value="headerImages"
@@ -57,7 +58,13 @@ const headerImages = ref([
 
           <div class="hero-overlay"></div>
 
-          <div class="hero-content">
+          <motion.div
+            :key="slotProps.data.id"
+            class="hero-content"
+            :initial="{ opacity: 0, y: -50 }"
+            :animate="{ opacity: 1, y: 0 }"
+            :transition="{ type: 'spring', stiffness: 150, damping: 20, duration: 0.6, delay: 0.2 }"
+          >
             <h1 class="tracking-wide opacity-90">
               {{ slotProps.data.subtitle }}
             </h1>
@@ -71,42 +78,38 @@ const headerImages = ref([
                 {{ slotProps.data.summary }}
               </p>
             </div>
-          </div>
+          </motion.div>
         </section>
       </template>
     </Carousel>
 
     <!-- Featured posts -->
-    <ScrollFade>
-      <LatestPosts />
-    </ScrollFade>
+    <LatestPosts />
 
     <!-- Top destination (countries)-->
-    <ScrollFade>
-      <CountryTabs />
-    </ScrollFade>
+    <CountryTabs />
 
     <!-- About us summary -->
-    <ScrollFade>
-      <section class="px-6 lg:px-20 xl:px-40">
-        <header class="mb-12 flex flex-col gap-4 justify-center items-center">
-          <h1 class="text-3xl font-bold tracking-tight mb-2">About Us</h1>
+    <section class="px-6 lg:px-20 xl:px-40">
+      <header class="mb-12 flex flex-col gap-4 justify-center items-center">
+        <h1 class="text-3xl font-bold tracking-tight mb-2">About Us</h1>
 
-          <p class="text-sm text-neutral-500">A little more about the people behind the journey</p>
+        <p class="text-sm text-neutral-500">A little more about the people behind the journey</p>
 
-          <BaseButton
-            custom-class="p-3 font-bold bg-color-primary rounded-full"
-            size="sm"
-            @click="router.push('/about-us')"
-          >
-            Read Our Story
-          </BaseButton>
+        <BaseButton
+          custom-class="p-3 font-bold bg-color-primary rounded-full"
+          size="sm"
+          @click="router.push('/about-us')"
+        >
+          Read Our Story
+        </BaseButton>
 
-          <div class="flex justify-center">
-            <span class="h-[3px] w-10 rounded-full bg-[#EDB5BF]" />
-          </div>
-        </header>
+        <div class="flex justify-center">
+          <span class="h-[3px] w-10 rounded-full bg-[#EDB5BF]" />
+        </div>
+      </header>
 
+      <ScrollFade :viewport-amount="0.2">
         <div class="flex justify-center">
           <div
             class="relative w-full lg:w-2/3 rounded-xl bg-linear-to-t from-[#99bfd7] to-indigo-400 p-6 lg:p-10"
@@ -145,8 +148,8 @@ const headerImages = ref([
             </div>
           </div>
         </div>
-      </section>
-    </ScrollFade>
+      </ScrollFade>
+    </section>
   </div>
 </template>
 
