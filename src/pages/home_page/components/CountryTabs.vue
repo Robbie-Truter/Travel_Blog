@@ -4,6 +4,9 @@ import CountryTabsSkeleton from '@/pages/home_page/components/CountryTabsSkeleto
 import { useGetTabPosts } from '@/pages/home_page/composables/useGetTabPosts';
 import type { TTabPosts } from '@/types/posts';
 import { computed, ref, watch } from 'vue';
+import { useRouter } from 'vue-router';
+
+const router = useRouter();
 
 const { data: allTabCountries, isFetching: isCountryTabsLoading } = useGetTabPosts();
 
@@ -32,6 +35,10 @@ const tabContent = computed(() => {
 
   return grouped;
 });
+
+const navigateToBlog = (country: string, location?: string) => {
+  router.push({ path: '/blogs', state: { country: country, location: location } });
+};
 
 watch(
   tabHeaders,
@@ -96,6 +103,7 @@ watch(
             v-for="(image, index) in tabContent[currentTab]"
             :key="index"
             class="group flex flex-col items-center gap-4 cursor-pointer"
+            @click="navigateToBlog(image.country.country_name, image.location?.location_name)"
           >
             <img
               v-if="image.cover_image"

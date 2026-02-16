@@ -15,6 +15,9 @@ export type TTabPosts = {
     slug: string;
     country_name: string;
   };
+  location?: {
+    location_name: string;
+  };
 };
 
 export type TAllPosts = {

@@ -1,16 +1,11 @@
 <script setup lang="ts">
-// #NOTE: when clicking on Antalya on home page, navigate the blogs with search populated with antalya
-// ------------ PostCards should not have locations like Antalya when navigating from home and you click Antalya, it should display posts under Antalya
-
-// #NOTE: Fix bug: No posts displayed if I change filter with pagination > 1
-
 import BaseButton from '@/components/BaseButton.vue';
 import BaseInput from '@/components/BaseInput.vue';
 import PostCard from '@/pages/blog_posts/components/PostCard.vue';
 import { useGetAllPosts } from '@/pages/blog_posts/composables/useGetAllPosts';
 import { AnimatePresence, motion } from 'motion-v';
 import { PageState } from 'primevue/paginator';
-import { computed, ref } from 'vue';
+import { computed, onMounted, ref } from 'vue';
 import { useRouter } from 'vue-router';
 import PostPagination from './components/PostPagination.vue';
 
@@ -29,6 +24,14 @@ const {
 } = useGetAllPosts();
 
 const router = useRouter();
+
+onMounted(() => {
+  const historyState = window.history.state;
+  if (historyState && historyState.country) {
+    selectedCountryFilter.value = historyState.country as string;
+    selectedLocationFilter.value = (historyState.location as string) || '';
+  }
+});
 
 // --- Computed Properties ---
 // Retrieve list of countries for filters
@@ -115,6 +118,7 @@ const applyCountryFilter = (type: 'country' | 'location', selectedFilter: string
     if (selectedLocationFilter.value === selectedFilter) selectedLocationFilter.value = '';
     else selectedLocationFilter.value = selectedFilter;
   }
+  currentPage.value = 0;
 };
 
 const updatePagination = (event: PageState) => {
@@ -147,7 +151,7 @@ const selectPost = (postSlug: string) => {
           <h1 class="text-color-primary font-bold mb-3 text-left drop-shadow-md">
             Ready for the next side quest?
           </h1>
-          <p class="text-color-secondary font-bold text-left drop-shadow-sm">
+          <p class="text-sm text-neutral-500 mb-8">
             Join us as we explore new countries, sharing all the tips and tricks we wish we knew to
             make your travels easier!
           </p>
