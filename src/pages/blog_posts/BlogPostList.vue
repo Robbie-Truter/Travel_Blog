@@ -29,6 +29,8 @@ const toast = useToast();
 const router = useRouter();
 
 onMounted(() => {
+  document.title = 'Explore Adventures | Travel Blog';
+
   const historyState = window.history.state;
   if (historyState && historyState.country) {
     selectedCountryFilter.value = historyState.country as string;

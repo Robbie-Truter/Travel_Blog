@@ -3,7 +3,7 @@ import BaseButton from '@/components/BaseButton.vue';
 import { useGetPostByArticle } from '@/pages/blog_posts/composables/useGetPostByArticle';
 import { formatDate } from '@/util/formatDate';
 import { AnimatePresence, motion } from 'motion-v';
-import { computed } from 'vue';
+import { computed, watch } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import ReadingProgressBar from './components/ReadingProgressBar.vue';
 import BlogPostViewSkeleton from './components/skeletons/BlogPostViewSkeleton.vue';
@@ -25,6 +25,15 @@ const readingTime = computed(() => {
   const words = content.replace(/<[^>]*>/g, '').split(/\s+/).length;
   return Math.ceil(words / 200);
 });
+
+// --- Watchers ---
+watch(
+  () => postData.value?.article_title,
+  (newTitle) => {
+    if (newTitle) document.title = `${newTitle} | Travel Blog`;
+  },
+  { immediate: true }
+);
 </script>
 
 <template>
