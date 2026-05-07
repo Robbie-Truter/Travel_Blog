@@ -148,7 +148,7 @@ const selectPost = (post: TAllPosts) => {
   <div>
     <header class="space-y-7 mt-20 mb-15">
       <div
-        class="flex flex-col gap-7 mx-auto w-[90%] p-7 rounded-4xl shadow-2xl bg-linear-to-br from-[#121212] via-[#1a1a1a] to-[#222222]"
+        class="flex flex-col gap-7 mx-auto w-[92%] p-5 rounded-3xl shadow-2xl bg-linear-to-br from-[#121212] via-[#1a1a1a] to-[#222222] sm:w-[90%] sm:p-7 sm:rounded-4xl"
       >
         <motion.div
           :initial="{ opacity: 0, y: -16 }"
@@ -160,7 +160,7 @@ const selectPost = (post: TAllPosts) => {
             delay: 0.2,
           }"
         >
-          <h1 class="text-color-primary font-bold mb-3 text-left drop-shadow-md">
+          <h1 class="text-color-primary font-bold mb-3 text-left drop-shadow-md text-xl md:text-2xl">
             Ready for the next side quest?
           </h1>
           <p class="text-sm text-neutral-500 mb-8">
@@ -381,7 +381,7 @@ const selectPost = (post: TAllPosts) => {
           <!-- Post populated -->
           <div
             v-else
-            class="flex flex-wrap gap-10 justify-center h-auto p-1 md:p-8 text-sm md:text-xl text-center overflow-visible rounded-xl sm:rounded-2xl"
+            class="flex flex-wrap gap-6 justify-center h-auto p-4 md:p-8 text-sm md:text-xl text-center overflow-visible rounded-xl sm:rounded-2xl"
           >
             <motion.div
               v-for="(post, index) in paginatedPosts"

@@ -40,7 +40,7 @@ const headerImages = ref([
 </script>
 
 <template>
-  <div class="space-y-50">
+  <div class="space-y-24 md:space-y-40 lg:space-y-50">
     <!-- Header Section Carousal -->
     <Carousel
       :value="headerImages"
@@ -69,7 +69,7 @@ const headerImages = ref([
               {{ slotProps.data.subtitle }}
             </h1>
 
-            <h2 class="font-bold text-3xl sm:text-5xl lg:text-6xl">
+            <h2 class="font-bold text-4xl sm:text-5xl lg:text-6xl">
               {{ slotProps.data.title }}
             </h2>
 
@@ -116,7 +116,7 @@ const headerImages = ref([
           >
             <div class="flex flex-col sm:flex-row items-center justify-center gap-8">
               <div
-                class="flex flex-col gap-6 items-center text-center w-72 lg:w-80 p-6 bg-[#ebf0f2] rounded-xl shadow-lg z-10"
+                class="flex flex-col gap-6 items-center text-center w-full max-w-xs lg:max-w-80 p-6 bg-[#ebf0f2] rounded-xl shadow-lg z-10"
               >
                 <h2 class="text-2xl font-bold leading-snug">
                   Welcome, we're Robert and
