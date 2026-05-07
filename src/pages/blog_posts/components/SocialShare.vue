@@ -20,7 +20,7 @@ const copyLink = () => {
   <motion.div
     v-tooltip.left="{
       value: 'Copy link to share',
-      showDelay: 1100,
+      showDelay: 200,
       pt: {
         text: 'bg-linear-to-br! from-[#121212]! !via-[#1a1a1a] to-[#222222]! text-primary-contrast! font-medium!',
       },
