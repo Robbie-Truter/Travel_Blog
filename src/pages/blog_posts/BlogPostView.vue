@@ -4,15 +4,16 @@ import { useGetPostByArticle } from '@/pages/blog_posts/composables/useGetPostBy
 import { formatDate } from '@/util/formatDate';
 import { AnimatePresence, motion } from 'motion-v';
 import { computed } from 'vue';
-import { useRoute } from 'vue-router';
+import { useRoute, useRouter } from 'vue-router';
 import BlogPostViewSkeleton from './components/skeletons/BlogPostViewSkeleton.vue';
 
 // Base URL
 const DIRECTUS_URL = import.meta.env.VITE_API_BASE_URL;
 
 // --- Composables ---
-const router = useRoute();
-const { data, isFetching, isError, refetch } = useGetPostByArticle(router.params.slug as string);
+const route = useRoute();
+const router = useRouter();
+const { data, isFetching, isError, refetch } = useGetPostByArticle(route.params.slug as string);
 
 // --- Computed Properties ---
 const postData = computed(() => data?.value?.[0]);
@@ -68,6 +69,22 @@ const postData = computed(() => data?.value?.[0]);
           :transition="{ duration: 0.8, ease: 'easeInOut' }"
           class="relative mb-20 flex h-[55vh] w-full items-center justify-center"
         >
+          <!-- Back Button -->
+          <motion.div
+            :initial="{ opacity: 0, x: -20 }"
+            :animate="{ opacity: 1, x: 0 }"
+            :transition="{ delay: 0.5, type: 'spring', stiffness: 100 }"
+            class="absolute top-8 left-8 z-30"
+          >
+            <BaseButton
+              custom-class="flex items-center gap-2 rounded-2xl border border-white/20 bg-white/10 px-5 py-2.5 text-md font-bold text-white shadow-xl backdrop-blur-md transition-all hover:bg-white/25 active:scale-95"
+              @click="router.push('/blogs')"
+            >
+              <i class="pi pi-arrow-left text-md"></i>
+              Back to Blogs
+            </BaseButton>
+          </motion.div>
+
           <!-- Background Image -->
           <img
             :src="`${DIRECTUS_URL}/assets/${postData?.cover_image}?quality=80&format=webp`"
