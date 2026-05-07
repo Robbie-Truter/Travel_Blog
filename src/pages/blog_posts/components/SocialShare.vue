@@ -28,7 +28,7 @@ const copyLink = () => {
     :initial="{ opacity: 0, x: 20 }"
     :animate="{ opacity: 1, x: 0 }"
     :transition="{ delay: 0.2, duration: 0.5 }"
-    class="fixed right-4 md:right-8 top-1/2 z-100 -translate-y-1/2"
+    class="fixed right-4 md:right-8 top-1/2 z-100 hidden -translate-y-1/2 flex-col gap-4 md:flex"
   >
     <button
       title="Copy Link"
