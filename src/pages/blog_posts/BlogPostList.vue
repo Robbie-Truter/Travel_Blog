@@ -3,8 +3,10 @@ import BaseButton from '@/components/BaseButton.vue';
 import BaseInput from '@/components/BaseInput.vue';
 import PostCard from '@/pages/blog_posts/components/PostCard.vue';
 import { useGetAllPosts } from '@/pages/blog_posts/composables/useGetAllPosts';
+import { TAllPosts } from '@/types/posts';
 import { AnimatePresence, motion } from 'motion-v';
 import { PageState } from 'primevue/paginator';
+import { useToast } from 'primevue/usetoast';
 import { computed, onMounted, ref } from 'vue';
 import { useRouter } from 'vue-router';
 import PostPagination from './components/PostPagination.vue';
@@ -23,6 +25,7 @@ const {
   refetch: refetchAllPosts,
 } = useGetAllPosts();
 
+const toast = useToast();
 const router = useRouter();
 
 onMounted(() => {
@@ -121,13 +124,20 @@ const applyCountryFilter = (type: 'country' | 'location', selectedFilter: string
   currentPage.value = 0;
 };
 
-const updatePagination = (event: PageState) => {
-  currentPage.value = event.first;
-};
+const updatePagination = (event: PageState) => (currentPage.value = event.first);
 
-const selectPost = (postSlug: string) => {
-  if (postSlug) {
-    router.push(`/blogs/${postSlug}`);
+const selectPost = (post: TAllPosts) => {
+  if (post?.slug) {
+    router.push(`/blogs/${post.slug}`);
+  } else {
+    console.error('Failed to navigate: slug is missing for post:', post);
+    toast.add({
+      severity: 'error',
+      summary: 'Post Unavailable',
+      detail: `"${post?.article_title || 'This post'}" could not be opened. Please try another.`,
+      life: 3000,
+      group: 'tr',
+    });
   }
 };
 </script>
@@ -337,33 +347,33 @@ const selectPost = (postSlug: string) => {
               scale: 1,
               transition: { delay: 0.3, ease: 'easeInOut', duration: 0.3 },
             }"
-            class="relative flex gap-2 self-center w-[90%] md:w-1/2 h-32 p-4 justify-center items-center mb-30 bg-color-secondary rounded-md border shadow-md"
+            class="relative mx-auto my-32 flex h-40 w-[90%] max-w-lg flex-col items-center justify-center gap-3 rounded-2xl border bg-color-secondary p-6 text-center shadow-lg"
           >
             <h3 class="text-shadow-sm font-bold">Something went wrong, please try again</h3>
             <span
-              class="text-shadow-sm text-color-primary pi pi-exclamation-triangle text-2xl"
+              class="pi pi-exclamation-triangle text-2xl text-color-primary text-shadow-sm"
             ></span>
             <BaseButton
-              custom-class="absolute top-0 right-0 mr-[-1px] mt-[-1px] w-fit rounded-r-md border p-[5px]! font-bold shadow-xl bg-color-primary"
+              custom-class="absolute top-0 right-0 mr-[-1px] mt-[-1px] w-fit rounded-r-2xl border p-[5px]! font-bold shadow-xl bg-color-primary"
               @click="refetchAllPosts"
             >
-              <span class="text-shadow-sm pi pi-refresh text-[12px]"></span>
+              <span class="pi pi-refresh text-[12px] text-shadow-sm"></span>
             </BaseButton>
           </motion.div>
 
           <!-- Post empty -->
           <motion.div
             v-else-if="!isAllPostsLoading && filteredBlogPosts.length === 0"
+            :initial="{ opacity: 0, scale: 0.9 }"
             :animate="{
               opacity: 1,
               scale: 1,
               transition: { delay: 0.3, ease: 'easeInOut', duration: 0.3 },
             }"
-            :initial="{ opacity: 0, scale: 0.9 }"
-            class="flex gap-2 self-center p-2 justify-center items-center mb-30 rounded-md border w-56 shadow-md bg-color-secondary"
+            class="my-32 mx-auto flex h-32 w-64 flex-col items-center justify-center gap-3 self-center rounded-2xl border bg-color-secondary p-4 shadow-lg"
           >
+            <span class="pi pi-search-minus text-3xl text-color-primary text-shadow-sm"></span>
             <h3 class="text-shadow-sm font-bold">No posts found</h3>
-            <span class="text-shadow-sm text-color-primary pi pi-search-minus"></span>
           </motion.div>
 
           <!-- Post populated -->
@@ -382,7 +392,7 @@ const selectPost = (postSlug: string) => {
                 damping: 25,
                 delay: index * 0.1,
               }"
-              @click="selectPost(post?.slug)"
+              @click="selectPost(post)"
             >
               <PostCard
                 :title="post?.article_title"

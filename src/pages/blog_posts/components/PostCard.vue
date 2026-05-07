@@ -28,9 +28,9 @@ defineProps<{
     :while-hover="{ scale: 1.04 }"
     :while-press="{ scale: 1, transition: { type: 'spring', duration: 0.3 } }"
     :transition="{ type: 'spring', duration: 0.8 }"
-    class="group w-72 sm:w-80 lg:w-96 bg-white h-72 sm:h-80 lg:h-120 overflow-hidden shadow hover:shadow-xl cursor-pointer rounded-md"
+    class="group w-72 sm:w-80 lg:w-96 bg-white h-72 sm:h-80 lg:h-120 overflow-hidden shadow hover:shadow-xl cursor-pointer rounded-2xl"
   >
-    <figure class="relative h-[80%] w-full overflow-hidden rounded-t-md">
+    <figure class="relative h-[80%] w-full overflow-hidden rounded-t-2xl">
       <div
         class="pointer-events-none absolute inset-0 z-10 bg-linear-to-t from-black/40 via-black/15 to-transparent"
       ></div>
@@ -66,7 +66,7 @@ defineProps<{
 
     <figcaption class="flex items-center justify-center px-4 h-[20%] w-full">
       <div
-        class="p-3 text-sm lg:text-lg font-bold rounded-md transition duration-100 ease-in-out cursor-pointer text-shadow-sm"
+        class="p-3 text-sm lg:text-lg font-bold rounded-2xl transition duration-100 ease-in-out cursor-pointer text-shadow-sm"
       >
         {{ title ?? 'Unknown post' }}
       </div>
