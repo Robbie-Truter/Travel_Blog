@@ -6,6 +6,7 @@ import { AnimatePresence, motion } from 'motion-v';
 import { computed, watch } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import ReadingProgressBar from './components/ReadingProgressBar.vue';
+import SocialShare from './components/SocialShare.vue';
 import BlogPostViewSkeleton from './components/skeletons/BlogPostViewSkeleton.vue';
 
 // Base URL
@@ -39,6 +40,7 @@ watch(
 <template>
   <div>
     <ReadingProgressBar />
+    <SocialShare />
     <AnimatePresence>
       <!-- Loading state -->
       <BlogPostViewSkeleton v-if="isFetching" />
