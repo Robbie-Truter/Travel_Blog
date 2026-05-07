@@ -5,6 +5,7 @@ import { formatDate } from '@/util/formatDate';
 import { AnimatePresence, motion } from 'motion-v';
 import { computed } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
+import ReadingProgressBar from './components/ReadingProgressBar.vue';
 import BlogPostViewSkeleton from './components/skeletons/BlogPostViewSkeleton.vue';
 
 // Base URL
@@ -17,10 +18,18 @@ const { data, isFetching, isError, refetch } = useGetPostByArticle(route.params.
 
 // --- Computed Properties ---
 const postData = computed(() => data?.value?.[0]);
+
+const readingTime = computed(() => {
+  const content = postData.value?.article_content;
+  if (!content) return 0;
+  const words = content.replace(/<[^>]*>/g, '').split(/\s+/).length;
+  return Math.ceil(words / 200);
+});
 </script>
 
 <template>
   <div>
+    <ReadingProgressBar />
     <AnimatePresence>
       <!-- Loading state -->
       <BlogPostViewSkeleton v-if="isFetching" />
@@ -124,10 +133,17 @@ const postData = computed(() => data?.value?.[0]);
               {{ postData?.article_title }}
             </h1>
 
-            <!-- Date -->
-            <p class="mt-4 text-base font-medium text-white/80">
-              Published on {{ formatDate(postData?.date_created) ?? 'Unknown date' }}
-            </p>
+            <!-- Date & Reading Time -->
+            <div
+              class="mt-4 flex items-center justify-center gap-3 text-base font-medium text-white/80"
+            >
+              <p>Published on {{ formatDate(postData?.date_created) ?? 'Unknown date' }}</p>
+              <span v-if="readingTime" class="opacity-30">|</span>
+              <p v-if="readingTime" class="flex items-center gap-1.5">
+                <i class="pi pi-clock text-sm"></i>
+                {{ readingTime }} min read
+              </p>
+            </div>
           </div>
         </motion.header>
 
