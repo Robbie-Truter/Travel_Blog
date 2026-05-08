@@ -55,11 +55,13 @@ const funFacts = [
     <ScrollFade class="my-40">
       <header class="mx-auto max-w-3xl px-6 text-center space-y-8">
         <div class="relative inline-block">
-          <h1 class="relative z-10 text-4xl font-bold tracking-tight">We’re Kija & Robert</h1>
+          <h1 class="relative z-10 text-3xl font-bold tracking-tight md:text-4xl">
+            We’re Kija & Robert
+          </h1>
           <div class="absolute inset-x-0 bottom-1 h-3 bg-color-primary/70 -z-10 rounded-sm"></div>
         </div>
         <section
-          class="w-80 sm:w-[600px] mx-auto mt-5 space-y-5 font-bold tracking-wider break-keep text-gray-800"
+          class="mx-auto mt-5 max-w-2xl px-2 space-y-5 font-bold tracking-wider break-keep text-gray-800 sm:px-0"
         >
           <p>
             Hi! We 're Kija & Robbie from Cape Town, South Africa. By day, we work in marketing and
@@ -103,7 +105,7 @@ const funFacts = [
       <div class="flex flex-col sm:flex-row gap-24 sm:gap-16">
         <!-- ROBERT -->
         <motion.figure
-          class="relative w-72 rounded-3xl bg-white p-6 pt-20 text-center shadow-xl"
+          class="relative w-full max-w-xs rounded-3xl bg-white p-6 pt-20 text-center shadow-xl"
           :initial="{ opacity: 0, x: -50 }"
           :in-view="{ opacity: 1, x: 0 }"
           :transition="{ type: 'spring', stiffness: 100, damping: 20, delay: 0.2 }"
@@ -119,13 +121,15 @@ const funFacts = [
           </h2>
           <p class="mt-4 text-sm leading-relaxed text-gray-700">
             Hi, I’m Robbie, a software developer who spends most of my days coding and
-            problem-solving. Travel gives me the chance to experience different cultures.
+            problem-solving. Travel gives me the chance to experience different cultures—which is
+            why I built <span class="font-bold text-[#99bfd7]">Wanderplan</span> to help us stay
+            organized on the road.
           </p>
         </motion.figure>
 
         <!-- KIJA -->
         <motion.figure
-          class="relative w-[350px] rounded-3xl bg-white p-6 pt-20 text-center shadow-xl"
+          class="relative w-full max-w-[350px] rounded-3xl bg-white p-6 pt-20 text-center shadow-xl"
           :initial="{ opacity: 0, x: 50 }"
           :in-view="{ opacity: 1, x: 0 }"
           :transition="{ type: 'spring', stiffness: 100, damping: 20, delay: 0.4 }"

@@ -3,6 +3,7 @@ import BaseButton from '@/components/BaseButton.vue';
 import ScrollFade from '@/components/ScrollFade.vue';
 import CountryTabs from '@/pages/home_page/components/CountryTabs.vue';
 import LatestPosts from '@/pages/home_page/components/LatestPosts.vue';
+import WanderplanPromo from '@/pages/home_page/components/WanderplanPromo.vue';
 import { motion } from 'motion-v';
 import 'primeicons/primeicons.css';
 import Carousel from 'primevue/carousel';
@@ -40,7 +41,7 @@ const headerImages = ref([
 </script>
 
 <template>
-  <div class="space-y-50">
+  <div class="space-y-24 md:space-y-40 lg:space-y-50">
     <!-- Header Section Carousal -->
     <Carousel
       :value="headerImages"
@@ -69,7 +70,7 @@ const headerImages = ref([
               {{ slotProps.data.subtitle }}
             </h1>
 
-            <h2 class="font-bold text-3xl sm:text-5xl lg:text-6xl">
+            <h2 class="font-bold text-4xl sm:text-5xl lg:text-6xl">
               {{ slotProps.data.title }}
             </h2>
 
@@ -88,6 +89,9 @@ const headerImages = ref([
 
     <!-- Top destination (countries)-->
     <CountryTabs />
+
+    <!-- Wanderplan Promo Section -->
+    <WanderplanPromo />
 
     <!-- About us summary -->
     <section class="px-6 lg:px-20 xl:px-40">
@@ -116,7 +120,7 @@ const headerImages = ref([
           >
             <div class="flex flex-col sm:flex-row items-center justify-center gap-8">
               <div
-                class="flex flex-col gap-6 items-center text-center w-72 lg:w-80 p-6 bg-[#ebf0f2] rounded-xl shadow-lg z-10"
+                class="flex flex-col gap-6 items-center text-center w-full max-w-xs lg:max-w-80 p-6 bg-[#ebf0f2] rounded-xl shadow-lg z-10"
               >
                 <h2 class="text-2xl font-bold leading-snug">
                   Welcome, we're Robert and
@@ -132,6 +136,9 @@ const headerImages = ref([
 
                 <p class="text-sm leading-relaxed text-neutral-700">
                   We love slow travel and focus on inspiring the ordinary to make travel a priority.
+                  When we aren't writing, we're building tools like
+                  <span class="font-bold text-color-primary">Wanderplan</span> to help others
+                  explore.
                 </p>
 
                 <div class="flex gap-3 text-xl text-neutral-700">

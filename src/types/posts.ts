@@ -6,6 +6,7 @@ export type TLatestPosts = {
     slug: string;
     country_name: string;
   };
+  slug: string;
 };
 
 export type TTabPosts = {

@@ -3,13 +3,35 @@ import ScrollFade from '@/components/ScrollFade.vue';
 import LatestPostsError from '@/pages/home_page/components/LatestPostsError.vue';
 import LatestPostsSkeleton from '@/pages/home_page/components/LatestPostsSkeleton.vue';
 import { useGetLatestPosts } from '@/pages/home_page/composables/useGetLatestPosts';
+import { TLatestPosts } from '@/types/posts';
 import 'primeicons/primeicons.css';
+import { useToast } from 'primevue/usetoast';
+import { useRouter } from 'vue-router';
+
+const router = useRouter();
+const toast = useToast();
 
 const {
   data: latestPosts,
   isFetching: isLatestPostsLoading,
   isError: hasLatestPostsError,
 } = useGetLatestPosts();
+
+const DIRECTUS_URL = import.meta.env.VITE_API_BASE_URL;
+
+const selectPost = (post: TLatestPosts) => {
+  if (post?.slug) {
+    router.push(`/blogs/${post.slug}`);
+  } else {
+    toast.add({
+      severity: 'error',
+      summary: 'Post Unavailable',
+      detail: `"${post?.article_title || 'This post'}" could not be opened. Please try another.`,
+      life: 3000,
+      group: 'tr',
+    });
+  }
+};
 </script>
 
 <template>
@@ -40,12 +62,17 @@ const {
       <div class="w-full flex flex-col lg:flex-row justify-center gap-8 font-bold text-lg">
         <!-- List -->
         <article class="flex flex-col gap-2 w-full 2xl:w-auto">
-          <figure v-for="(post, index) in latestPosts" :key="index" class="rounded cursor-pointer">
+          <figure
+            v-for="(post, index) in latestPosts"
+            :key="index"
+            class="rounded cursor-pointer"
+            @click="selectPost(post)"
+          >
             <aside
               class="flex items-center gap-4 transition duration-150 ease-in-out hover:bg-gray-100 hover:shadow-md rounded-xl p-2"
             >
               <img
-                :src="`http://localhost:8055/assets/${post.cover_image}?width=400&quality=80&format=webp`"
+                :src="`${DIRECTUS_URL}/assets/${post.cover_image}?width=400&quality=80&format=webp`"
                 :alt="post.article_title"
                 class="h-28 min-w-28 rounded-2xl object-cover"
               />
@@ -59,11 +86,11 @@ const {
         </article>
 
         <!-- Highlighted post -->
-        <figure class="self-center relative cursor-pointer">
+        <figure class="self-center relative cursor-pointer" @click="selectPost(latestPosts[0])">
           <img
-            :src="`http://localhost:8055/assets/${latestPosts[0].cover_image}`"
+            :src="`${DIRECTUS_URL}/assets/${latestPosts[0].cover_image}?quality=80&format=webp`"
             :alt="latestPosts[0].article_title"
-            class="h-[20rem] lg:h-[30rem] w-[35rem] rounded-xl object-cover brightness-[.7]"
+            class="h-80 lg:h-120 w-140 rounded-xl object-cover brightness-[.7]"
           />
 
           <figcaption
@@ -73,7 +100,7 @@ const {
           </figcaption>
 
           <figcaption
-            class="absolute bottom-6 left-6 right-6 text-white text-lg font-bold leading-tight [text-shadow:_0_1px_0_rgb(0_0_0_/_40%)]"
+            class="absolute bottom-6 left-6 right-6 text-white text-lg font-bold leading-tight [text-shadow:0_1px_0_rgb(0_0_0/40%)]"
           >
             {{ latestPosts[0]?.article_title }}
           </figcaption>

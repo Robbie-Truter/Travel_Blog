@@ -41,6 +41,29 @@ watch(
   <div>
     <ReadingProgressBar />
     <SocialShare />
+
+    <!-- Fixed Back Button -->
+    <motion.div
+      v-tooltip.right="{
+        value: 'Back to blogs',
+        showDelay: 200,
+        pt: {
+          text: 'bg-linear-to-br! from-[#121212]! !via-[#1a1a1a] to-[#222222]! text-primary-contrast! font-medium!',
+        },
+      }"
+      :initial="{ opacity: 0, x: -20 }"
+      :animate="{ opacity: 1, x: 0 }"
+      :transition="{ delay: 0.5, type: 'spring', stiffness: 100 }"
+      class="fixed top-20 left-4 z-100 md:top-22 md:left-8"
+    >
+      <BaseButton
+        custom-class="flex items-center gap-2 rounded-full bg-white/60 px-4 py-2 text-sm font-bold text-neutral-800 shadow-xl backdrop-blur-md md:px-5 md:py-2.5 md:text-md"
+        @click="router.push('/blogs')"
+      >
+        <i class="pi pi-arrow-left text-sm md:text-md"></i>
+      </BaseButton>
+    </motion.div>
+
     <AnimatePresence>
       <!-- Loading state -->
       <BlogPostViewSkeleton v-if="isFetching" />
@@ -89,22 +112,6 @@ watch(
           :transition="{ duration: 0.8, ease: 'easeInOut' }"
           class="relative mb-20 flex h-[55vh] w-full items-center justify-center"
         >
-          <!-- Back Button -->
-          <motion.div
-            :initial="{ opacity: 0, x: -20 }"
-            :animate="{ opacity: 1, x: 0 }"
-            :transition="{ delay: 0.5, type: 'spring', stiffness: 100 }"
-            class="absolute top-8 left-8 z-30"
-          >
-            <BaseButton
-              custom-class="flex items-center gap-2 rounded-2xl border border-white/20 bg-white/10 px-5 py-2.5 text-md font-bold text-white shadow-xl backdrop-blur-md transition-all hover:bg-white/25 active:scale-95"
-              @click="router.push('/blogs')"
-            >
-              <i class="pi pi-arrow-left text-md"></i>
-              Back to Blogs
-            </BaseButton>
-          </motion.div>
-
           <!-- Background Image -->
           <img
             :src="`${DIRECTUS_URL}/assets/${postData?.cover_image}?quality=80&format=webp`"
@@ -139,19 +146,19 @@ watch(
 
             <!-- Title -->
             <h1
-              class="mt-6 text-4xl font-extrabold leading-tight tracking-tight text-white drop-shadow-lg md:text-6xl"
+              class="mt-6 text-3xl font-extrabold leading-tight tracking-tight text-white drop-shadow-lg md:text-6xl"
             >
               {{ postData?.article_title }}
             </h1>
 
             <!-- Date & Reading Time -->
             <div
-              class="mt-4 flex items-center justify-center gap-3 text-base font-medium text-white/80"
+              class="mt-4 flex flex-wrap items-center justify-center gap-2 text-sm font-medium text-white/80 md:gap-3 md:text-base"
             >
               <p>Published on {{ formatDate(postData?.date_created) ?? 'Unknown date' }}</p>
-              <span v-if="readingTime" class="opacity-30">|</span>
+              <span v-if="readingTime" class="hidden opacity-30 md:block">|</span>
               <p v-if="readingTime" class="flex items-center gap-1.5">
-                <i class="pi pi-clock text-sm"></i>
+                <i class="pi pi-clock text-xs md:text-sm"></i>
                 {{ readingTime }} min read
               </p>
             </div>
@@ -160,7 +167,7 @@ watch(
 
         <motion.section
           v-if="postData?.article_content"
-          class="mx-auto my-20"
+          class="mx-auto my-20 px-6 md:px-0"
           :initial="{ opacity: 0 }"
           :in-view="{ opacity: 1 }"
           :transition="{ duration: 0.5, delay: 0.2 }"
@@ -193,10 +200,10 @@ watch(
   flex-direction: column;
   align-items: start;
   margin: auto;
-  max-width: 1152px;
+  max-width: 800px;
   width: 100%;
   font-family: 'Red Hat Display', sans-serif;
-  font-size: 1rem;
+  font-size: 1.1rem;
   line-height: 1.8;
   color: #333;
 }
