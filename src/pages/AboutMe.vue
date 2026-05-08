@@ -121,7 +121,9 @@ const funFacts = [
           </h2>
           <p class="mt-4 text-sm leading-relaxed text-gray-700">
             Hi, I’m Robbie, a software developer who spends most of my days coding and
-            problem-solving. Travel gives me the chance to experience different cultures.
+            problem-solving. Travel gives me the chance to experience different cultures—which is
+            why I built <span class="font-bold text-[#99bfd7]">Wanderplan</span> to help us stay
+            organized on the road.
           </p>
         </motion.figure>
 

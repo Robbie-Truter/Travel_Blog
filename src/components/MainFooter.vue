@@ -10,10 +10,10 @@
           <li class="hover:text-[#EDB5BF]">About Us</li>
           <li class="hover:text-[#EDB5BF]">Contact Us</li>
           <li class="space-x-2">
-            <button class="text-[13px] lg:text-[15px] mt-[1px] hover:text-[#EDB5BF]">
+            <button class="text-[13px] lg:text-[15px] mt-px hover:text-[#EDB5BF]">
               <span class="pi pi-facebook"></span>
             </button>
-            <button class="text-[13px] lg:text-[15px] mt-[1px] hover:text-[#EDB5BF]">
+            <button class="text-[13px] lg:text-[15px] mt-px hover:text-[#EDB5BF]">
               <span class="pi pi-instagram"></span>
             </button>
           </li>

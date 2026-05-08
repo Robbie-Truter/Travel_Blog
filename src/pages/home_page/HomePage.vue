@@ -3,6 +3,7 @@ import BaseButton from '@/components/BaseButton.vue';
 import ScrollFade from '@/components/ScrollFade.vue';
 import CountryTabs from '@/pages/home_page/components/CountryTabs.vue';
 import LatestPosts from '@/pages/home_page/components/LatestPosts.vue';
+import WanderplanPromo from '@/pages/home_page/components/WanderplanPromo.vue';
 import { motion } from 'motion-v';
 import 'primeicons/primeicons.css';
 import Carousel from 'primevue/carousel';
@@ -89,6 +90,9 @@ const headerImages = ref([
     <!-- Top destination (countries)-->
     <CountryTabs />
 
+    <!-- Wanderplan Promo Section -->
+    <WanderplanPromo />
+
     <!-- About us summary -->
     <section class="px-6 lg:px-20 xl:px-40">
       <header class="mb-12 flex flex-col gap-4 justify-center items-center">
@@ -132,6 +136,9 @@ const headerImages = ref([
 
                 <p class="text-sm leading-relaxed text-neutral-700">
                   We love slow travel and focus on inspiring the ordinary to make travel a priority.
+                  When we aren't writing, we're building tools like
+                  <span class="font-bold text-color-primary">Wanderplan</span> to help others
+                  explore.
                 </p>
 
                 <div class="flex gap-3 text-xl text-neutral-700">

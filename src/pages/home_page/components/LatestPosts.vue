@@ -63,7 +63,7 @@ const {
           <img
             :src="`http://localhost:8055/assets/${latestPosts[0].cover_image}`"
             :alt="latestPosts[0].article_title"
-            class="h-[20rem] lg:h-[30rem] w-[35rem] rounded-xl object-cover brightness-[.7]"
+            class="h-80 lg:h-120 w-140 rounded-xl object-cover brightness-[.7]"
           />
 
           <figcaption
@@ -73,7 +73,7 @@ const {
           </figcaption>
 
           <figcaption
-            class="absolute bottom-6 left-6 right-6 text-white text-lg font-bold leading-tight [text-shadow:_0_1px_0_rgb(0_0_0_/_40%)]"
+            class="absolute bottom-6 left-6 right-6 text-white text-lg font-bold leading-tight [text-shadow:0_1px_0_rgb(0_0_0/40%)]"
           >
             {{ latestPosts[0]?.article_title }}
           </figcaption>
