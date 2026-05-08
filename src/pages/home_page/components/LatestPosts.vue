@@ -15,6 +15,7 @@ const {
   data: latestPosts,
   isFetching: isLatestPostsLoading,
   isError: hasLatestPostsError,
+  refetch: refetchLatestPosts,
 } = useGetLatestPosts();
 
 const DIRECTUS_URL = import.meta.env.VITE_API_BASE_URL;
@@ -42,7 +43,7 @@ const selectPost = (post: TLatestPosts) => {
 
   <!-- Error state -->
   <section v-else-if="hasLatestPostsError" class="mt-12 mb-20 px-6 lg:mt-20 lg:px-20 xl:px-40">
-    <LatestPostsError />
+    <LatestPostsError :refetch="refetchLatestPosts" />
   </section>
 
   <!-- Success state -->
