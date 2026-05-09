@@ -5,6 +5,8 @@ export type TLatestPosts = {
   country: {
     slug: string;
     country_name: string;
+    country_iso: string | null;
+    flag_emoji: string;
   };
   slug: string;
 };
@@ -13,7 +15,6 @@ export type TTabPosts = {
   article_title: string;
   cover_image: string;
   country: {
-    slug: string;
     country_name: string;
   };
   location?: {
@@ -34,6 +35,7 @@ export type TAllPosts = {
   country: {
     country_name: string;
     flag_emoji: string;
+    country_iso: string | null;
   };
   location: {
     location_name: string;

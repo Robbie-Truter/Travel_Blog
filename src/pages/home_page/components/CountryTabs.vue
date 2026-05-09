@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import ScrollFade from '@/components/ScrollFade.vue';
+import CountryTabsError from '@/pages/home_page/components/CountryTabsError.vue';
 import CountryTabsSkeleton from '@/pages/home_page/components/CountryTabsSkeleton.vue';
 import { useGetTabPosts } from '@/pages/home_page/composables/useGetTabPosts';
 import type { TTabPosts } from '@/types/posts';
@@ -8,7 +9,12 @@ import { useRouter } from 'vue-router';
 
 const router = useRouter();
 
-const { data: allTabCountries, isFetching: isCountryTabsLoading } = useGetTabPosts();
+const {
+  data: allTabCountries,
+  isFetching: isCountryTabsLoading,
+  isError: hasCountryTabsError,
+  refetch: refetchCountryTabs,
+} = useGetTabPosts();
 
 const currentTab = ref<string | null>(null);
 
@@ -36,6 +42,8 @@ const tabContent = computed(() => {
   return grouped;
 });
 
+const DIRECTUS_URL = import.meta.env.VITE_API_BASE_URL;
+
 const navigateToBlog = (country: string, location?: string) => {
   router.push({ path: '/blogs', state: { country: country, location: location } });
 };
@@ -58,6 +66,11 @@ watch(
     class="flex justify-center mt-12 mb-20 px-6 lg:px-20 xl:px-40"
   >
     <CountryTabsSkeleton />
+  </section>
+
+  <!-- Countries error -->
+  <section v-else-if="hasCountryTabsError" class="px-6 my-12 lg:px-20 xl:px-40">
+    <CountryTabsError :refetch="refetchCountryTabs" />
   </section>
 
   <!-- Countries populated -->
@@ -107,7 +120,7 @@ watch(
           >
             <img
               v-if="image.cover_image"
-              :src="`http://localhost:8055/assets/${image.cover_image}?width=400&quality=80&format=webp`"
+              :src="`${DIRECTUS_URL}/assets/${image.cover_image}?width=400&quality=80&format=webp`"
               :alt="image.article_title"
               class="h-80 w-80 rounded-xl object-cover transition-transform duration-300 group-hover:scale-105 group-hover:shadow-xl"
             />

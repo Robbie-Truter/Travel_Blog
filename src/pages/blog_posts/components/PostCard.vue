@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { formatDate } from '@/util/formatDate';
+import 'flag-icons/css/flag-icons.min.css';
 import { motion } from 'motion-v';
 
 // --- Props ---
@@ -7,6 +8,7 @@ defineProps<{
   title?: string;
   countryName?: string;
   countryFlag?: string;
+  countryIso?: string | null;
   coverImg?: string;
   dateCreated?: string;
 }>();
@@ -42,11 +44,15 @@ defineProps<{
       />
 
       <div
-        v-if="countryFlag"
-        class="absolute top-2 right-2 flex items-center justify-center w-10 h-10 rounded-full bg-white/80 shadow-md text-xl"
+        v-if="countryIso || countryFlag"
+        class="absolute top-3 right-3 flex items-center justify-center w-5 h-5 rounded-full bg-white/90 shadow-lg border border-white/50 overflow-hidden"
         :title="countryName"
       >
-        {{ countryFlag }}
+        <span
+          v-if="countryIso"
+          :class="`fi fi-${countryIso} block! w-full! h-full! bg-cover! bg-center!`"
+        ></span>
+        <span v-else class="text-2xl">{{ countryFlag }}</span>
       </div>
 
       <figcaption class="absolute left-4 bottom-4 z-20 flex flex-col gap-2 text-sm font-semibold">
