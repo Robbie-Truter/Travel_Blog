@@ -401,6 +401,7 @@ const selectPost = (post: TAllPosts) => {
                 :cover-img="post?.cover_image"
                 :country-name="post?.country.country_name"
                 :country-flag="post?.country?.flag_emoji"
+                :country-iso="post?.country?.country_iso"
                 :date-created="post?.date_created"
               />
             </motion.div>

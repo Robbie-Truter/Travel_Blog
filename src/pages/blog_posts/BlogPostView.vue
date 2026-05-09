@@ -2,13 +2,14 @@
 import BaseButton from '@/components/BaseButton.vue';
 import { useGetPostByArticle } from '@/pages/blog_posts/composables/useGetPostByArticle';
 import { formatDate } from '@/util/formatDate';
+import 'flag-icons/css/flag-icons.min.css';
 import { AnimatePresence, motion } from 'motion-v';
 import { computed, watch } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import ReadingProgressBar from './components/ReadingProgressBar.vue';
 import RelatedPosts from './components/RelatedPosts.vue';
-import SocialShare from './components/SocialShare.vue';
 import BlogPostViewSkeleton from './components/skeletons/BlogPostViewSkeleton.vue';
+import SocialShare from './components/SocialShare.vue';
 
 // Base URL
 const DIRECTUS_URL = import.meta.env.VITE_API_BASE_URL;
@@ -133,11 +134,23 @@ watch(
           >
             <!-- Metadata Pills -->
             <div class="flex flex-wrap items-center justify-center gap-3">
-              <span
-                class="rounded-full border border-white/20 bg-white/10 px-4 py-2 text-sm font-semibold shadow-md backdrop-blur-sm"
+              <div
+                class="flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-2 text-sm font-semibold shadow-md backdrop-blur-sm"
               >
+                <div
+                  v-if="postData?.country?.country_iso || postData?.country?.flag_emoji"
+                  class="shrink-0 h-4 w-5.5 overflow-hidden rounded-xs border border-white/20 shadow-sm"
+                >
+                  <span
+                    v-if="postData.country.country_iso"
+                    :class="`fi fi-${postData.country.country_iso} block! w-full! h-full! bg-cover! bg-center!`"
+                  ></span>
+                  <span v-else class="text-[10px] leading-none">
+                    {{ postData.country.flag_emoji }}
+                  </span>
+                </div>
                 {{ postData?.country?.country_name }}
-              </span>
+              </div>
               <span v-if="postData?.location?.location_name" class="text-white/50">/</span>
               <span
                 v-if="postData?.location?.location_name"

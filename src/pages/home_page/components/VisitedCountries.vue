@@ -4,23 +4,6 @@ import 'flag-icons/css/flag-icons.min.css';
 import { motion } from 'motion-v';
 
 const { data: countries, isFetching } = useGetCountries();
-
-// Mapping country names to flag-icon ISO codes
-// You can add more mappings here as you visit more countries!
-const countryToIso: Record<string, string> = {
-  Türkiye: 'tr',
-  Georgia: 'ge',
-  Romania: 'ro',
-  Greece: 'gr',
-  Czechia: 'cz',
-  Vietnam: 'vn',
-  Thailand: 'th',
-  'South Africa': 'za',
-};
-
-const getIsoCode = (name: string) => {
-  return countryToIso[name] || '';
-};
 </script>
 
 <template>
@@ -58,8 +41,8 @@ const getIsoCode = (name: string) => {
               class="shrink-0 h-8 w-11 overflow-hidden rounded shadow-sm border border-neutral-100"
             >
               <span
-                v-if="getIsoCode(country.country_name)"
-                :class="`fi fi-${getIsoCode(country.country_name)} block! w-full! h-full! bg-cover! bg-center!`"
+                v-if="country.country_iso"
+                :class="`fi fi-${country.country_iso} block! w-full! h-full! bg-cover! bg-center!`"
               ></span>
               <span v-else class="text-2xl">{{ country.flag_emoji }}</span>
             </div>

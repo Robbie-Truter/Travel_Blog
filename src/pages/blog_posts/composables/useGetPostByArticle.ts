@@ -9,7 +9,7 @@ export const useGetPostByArticle = (slugGetter: () => string) => {
     queryKey: computed(() => ['getPostByArticle', slugGetter()]),
     queryFn: () =>
       get<TAllPosts[]>(
-        `/items/posts?fields=*,country.country_name,location.location_name&filter[slug][_eq]=${slugGetter()}`
+        `/items/posts?fields=*,country.country_name,country.country_iso,country.flag_emoji,location.location_name&filter[slug][_eq]=${slugGetter()}`
       ),
     staleTime: 1000 * 60 * 5,
     refetchOnWindowFocus: false,

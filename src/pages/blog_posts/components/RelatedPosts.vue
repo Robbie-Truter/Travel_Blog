@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { useGetLatestPosts } from '@/pages/home_page/composables/useGetLatestPosts';
 import { TLatestPosts } from '@/types/posts';
+import 'flag-icons/css/flag-icons.min.css';
 import { motion } from 'motion-v';
 import { useToast } from 'primevue';
 import { computed } from 'vue';
@@ -116,12 +117,22 @@ const navigateToPost = (post: TLatestPosts) => {
 
           <!-- Card Content -->
           <div class="space-y-1.5 px-2">
-            <p
+            <div
               v-if="post.country?.country_name"
-              class="text-[10px] font-black uppercase tracking-[0.2em] text-neutral-400"
+              class="flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.2em] text-neutral-400"
             >
+              <div
+                v-if="post.country.country_iso || post.country.flag_emoji"
+                class="shrink-0 h-3 w-4 overflow-hidden rounded-[1px] border border-neutral-100 shadow-xs"
+              >
+                <span
+                  v-if="post.country.country_iso"
+                  :class="`fi fi-${post.country.country_iso} block! w-full! h-full! bg-cover! bg-center!`"
+                ></span>
+                <span v-else class="text-[8px] leading-none">{{ post.country.flag_emoji }}</span>
+              </div>
               {{ post.country.country_name }}
-            </p>
+            </div>
             <h4
               class="text-lg font-bold leading-tight text-neutral-800 transition-colors duration-300 group-hover:text-color-primary"
             >
