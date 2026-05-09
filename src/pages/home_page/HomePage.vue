@@ -3,6 +3,7 @@ import BaseButton from '@/components/BaseButton.vue';
 import ScrollFade from '@/components/ScrollFade.vue';
 import CountryTabs from '@/pages/home_page/components/CountryTabs.vue';
 import LatestPosts from '@/pages/home_page/components/LatestPosts.vue';
+import VisitedCountries from '@/pages/home_page/components/VisitedCountries.vue';
 import WanderplanPromo from '@/pages/home_page/components/WanderplanPromo.vue';
 import { motion } from 'motion-v';
 import 'primeicons/primeicons.css';
@@ -83,6 +84,9 @@ const headerImages = ref([
         </section>
       </template>
     </Carousel>
+
+    <!-- Visited Countries Slider -->
+    <VisitedCountries />
 
     <!-- Featured posts -->
     <LatestPosts />
