@@ -6,6 +6,7 @@ import { AnimatePresence, motion } from 'motion-v';
 import { computed, watch } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import ReadingProgressBar from './components/ReadingProgressBar.vue';
+import RelatedPosts from './components/RelatedPosts.vue';
 import SocialShare from './components/SocialShare.vue';
 import BlogPostViewSkeleton from './components/skeletons/BlogPostViewSkeleton.vue';
 
@@ -15,7 +16,9 @@ const DIRECTUS_URL = import.meta.env.VITE_API_BASE_URL;
 // --- Composables ---
 const route = useRoute();
 const router = useRouter();
-const { data, isFetching, isError, refetch } = useGetPostByArticle(route.params.slug as string);
+const { data, isFetching, isError, refetch } = useGetPostByArticle(
+  () => route.params.slug as string
+);
 
 // --- Computed Properties ---
 const postData = computed(() => data?.value?.[0]);
@@ -173,6 +176,13 @@ watch(
           :transition="{ duration: 0.5, delay: 0.2 }"
         >
           <article class="blog-content" v-html="postData?.article_content"></article>
+
+          <!-- Related Posts -->
+          <RelatedPosts
+            v-if="postData?.country?.country_name && route.params.slug"
+            :country-name="postData.country.country_name"
+            :current-post-slug="route.params.slug as string"
+          />
         </motion.section>
 
         <!-- Content Fallback -->
