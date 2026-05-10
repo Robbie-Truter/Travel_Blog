@@ -1,6 +1,7 @@
 import AboutMe from '@/pages/AboutMe.vue';
 import BlogPostList from '@/pages/blog_posts/BlogPostList.vue';
 import BlogPostView from '@/pages/blog_posts/BlogPostView.vue';
+import GalleryPage from '@/pages/gallery/GalleryPage.vue';
 import HomePage from '@/pages/home_page/HomePage.vue';
 import NotFound from '@/pages/NotFound.vue';
 import { createRouter, createWebHistory } from 'vue-router';
@@ -10,6 +11,7 @@ const routes = [
   { path: '/', redirect: '/home' },
   { path: '/home', component: HomePage },
   { path: '/about-us', component: AboutMe },
+  { path: '/gallery', component: GalleryPage },
   { path: '/blogs', component: BlogPostList },
   { path: '/blogs/:slug', component: BlogPostView },
   { path: '/:catchAll(.*)', component: NotFound },

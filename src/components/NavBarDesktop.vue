@@ -40,7 +40,7 @@ const isActive = (path: string) => route.path === path;
             isActive('/home') ? 'text-color-primary' : 'text-gray-600 hover:text-color-primary/80',
           ]"
         >
-          <span class="pi pi-home mr-2"></span>
+          <span class="pi pi-compass mr-2"></span>
           Home
         </BaseButton>
       </RouterLink>
@@ -52,7 +52,7 @@ const isActive = (path: string) => route.path === path;
             isActive('/blogs') ? 'text-color-primary' : 'text-gray-600 hover:text-color-primary/80',
           ]"
         >
-          <span class="pi pi-camera mr-2"></span>
+          <span class="pi pi-map mr-2"></span>
           Blogs
         </BaseButton>
       </RouterLink>
@@ -70,6 +70,20 @@ const isActive = (path: string) => route.path === path;
         >
           <span class="pi pi-heart-fill mr-2"></span>
           About Us
+        </BaseButton>
+      </RouterLink>
+
+      <RouterLink to="/gallery">
+        <BaseButton
+          :custom-class="[
+            'rounded-md font-semibold !p-2 transition-colors duration-300',
+            isActive('/gallery')
+              ? 'text-color-primary'
+              : 'text-gray-600 hover:text-color-primary/80',
+          ]"
+        >
+          <span class="pi pi-images mr-2"></span>
+          Gallery
         </BaseButton>
       </RouterLink>
 
@@ -106,7 +120,7 @@ const isActive = (path: string) => route.path === path;
                 : 'text-gray-600 hover:text-color-primary/80',
             ]"
           >
-            <span class="pi pi-home mr-2"></span>
+            <span class="pi pi-compass mr-2"></span>
             Home
           </BaseButton>
         </RouterLink>
@@ -121,7 +135,7 @@ const isActive = (path: string) => route.path === path;
                 : 'text-gray-600 hover:text-color-primary/80',
             ]"
           >
-            <span class="pi pi-camera mr-2"></span>
+            <span class="pi pi-map mr-2"></span>
             Blogs
           </BaseButton>
         </RouterLink>
@@ -140,6 +154,21 @@ const isActive = (path: string) => route.path === path;
           >
             <span class="pi pi-heart-fill mr-2"></span>
             About Us
+          </BaseButton>
+        </RouterLink>
+
+        <RouterLink to="/gallery">
+          <BaseButton
+            size="sm"
+            :custom-class="[
+              'rounded-md font-semibold !p-2 transition-colors duration-300',
+              isActive('/gallery')
+                ? 'text-color-primary'
+                : 'text-gray-600 hover:text-color-primary/80',
+            ]"
+          >
+            <span class="pi pi-images mr-2"></span>
+            Gallery
           </BaseButton>
         </RouterLink>
 

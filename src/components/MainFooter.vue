@@ -8,6 +8,7 @@
           <li class="hover:text-[#EDB5BF]">Home</li>
           <li class="hover:text-[#EDB5BF]">Blogs</li>
           <li class="hover:text-[#EDB5BF]">About Us</li>
+          <li class="hover:text-[#EDB5BF]">Gallery</li>
           <li class="hover:text-[#EDB5BF]">Contact Us</li>
           <li class="space-x-2">
             <button class="text-[13px] lg:text-[15px] mt-px hover:text-[#EDB5BF]">
